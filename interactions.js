@@ -49,16 +49,16 @@
   // Plain Framer frames that should behave like links.
   var LINKS = [
     { sel: ".framer-19vq3br", href: "", label: "TwinzLab home", kind: "plain" },
-    { sel: ".framer-qdozql", mail: "Partnerships", kind: "text" },
+    { sel: ".framer-qdozql", mail: "Build with us", kind: "text" },
     { sel: ".framer-1es5w7d", mail: "", label: "Email " + EMAIL, kind: "text" },
     { sel: ".framer-14aoz5q", href: "", label: "TwinzLab home", kind: "text" },
     { sel: ".framer-1j8xv75", href: "about/", kind: "text" },
     { sel: ".framer-51s8nu", href: "products/", kind: "text" },
     { sel: ".framer-jfm3mh", href: "lab/", kind: "text" },
     { sel: ".framer-1hoop8f", href: "contact/", kind: "text" },
-    { sel: ".framer-1d8ufji", href: "products/?filter=aresson#products", label: "Aresson: sports sessions", kind: "card" },
-    { sel: ".framer-1413m6a", href: "products/?filter=daftar#products", label: "Daftar: shop sales and team", kind: "card" },
-    { sel: ".framer-ck2tmp", href: "products/?filter=soon#products", label: "More products coming soon", kind: "card" },
+    { sel: ".framer-1d8ufji", href: "products/?filter=apps#products", label: "Twinz Apps: browse apps", kind: "card" },
+    { sel: ".framer-1413m6a", href: "products/?filter=games#products", label: "Twinz Play: browse games", kind: "card" },
+    { sel: ".framer-ck2tmp", href: "products/?filter=ai-tools#products", label: "Twinz AI: browse AI tools", kind: "card" },
     { sel: ".framer-1x8ulyn", mail: "", label: "Email " + EMAIL, kind: "text" }
   ];
 
@@ -307,7 +307,7 @@
           field("email", "Email address", '<input id="tz-email" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="120" placeholder="you@company.com">') +
         "</div>" +
         '<div class="tz-topic" hidden><span class="tz-topic__label">Reason</span><span class="tz-topic__value"></span><button type="button" class="tz-topic__clear" aria-label="Remove topic">&times;</button></div>' +
-        field("message", "Message", '<textarea id="tz-message" name="message" rows="6" required minlength="20" maxlength="2000" placeholder="Share a partnership, an app idea, or another question."></textarea>', '<span class="tz-count" aria-hidden="true">0 / 2000</span>') +
+        field("message", "Message", '<textarea id="tz-message" name="message" rows="6" required minlength="20" maxlength="2000" placeholder="An idea, a challenge, a partnership, or an investment conversation."></textarea>', '<span class="tz-count" aria-hidden="true">0 / 2000</span>') +
         '<div class="tz-hp" aria-hidden="true"><label for="tz-honey">Leave this field empty</label><input id="tz-honey" name="_honey" type="text" tabindex="-1" autocomplete="off"></div>' +
         '<div class="tz-form__actions">' +
           '<button type="submit" class="tz-btn tz-btn--primary tz-submit"><span class="tz-spinner" aria-hidden="true"></span><span class="tz-submit__label">Send message</span></button>' +
