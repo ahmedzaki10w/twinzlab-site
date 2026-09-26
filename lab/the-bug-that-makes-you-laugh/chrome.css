@@ -455,3 +455,18 @@ td.framer-text, th.framer-text { overflow-wrap: anywhere; vertical-align: top; m
 .framer-LOnUN .framer-eoj4lp-container { z-index: 0; flex: 0 0 auto; height: 157px; position: absolute; bottom: 0px; left: 0px; right: 0px; pointer-events: none; }
 
 .framer-Q9WRp { aspect-ratio: 1 / 1; mask: var(--framer-icon-mask); width: 24px; display: block; }
+
+.framer-LOnUN .framer-ntizu1 { bottom: calc(calc(100% - min(var(--framer-viewport-height, 100%), 100%)) + 0px); height: min-content; position: var(--framer-canvas-fixed-position, fixed); z-index: 1; background-color: rgb(23, 16, 11); flex-flow: row; flex: 0 0 auto; order: -1000; place-content: center; align-items: center; gap: 8px; padding: 100px 80px; display: flex; left: 0px; right: 0px; overflow: hidden; }
+.framer-LOnUN .framer-1fs2i4m { flex-flow: column; flex: 1 0 0px; place-content: center; align-items: center; gap: 64px; width: 1px; padding: 0; display: flex; position: relative; overflow: visible; }
+.framer-LOnUN .framer-xie4sd { flex-flow: row; flex: 0 0 auto; place-content: center space-between; align-items: center; width: 100%; max-width: 1640px; height: min-content; padding: 0; display: flex; position: relative; overflow: visible; }
+.framer-LOnUN .framer-1gn8tz2 { flex-flow: column; flex: 0 0 auto; place-content: flex-start space-between; align-self: stretch; align-items: flex-start; width: min-content; height: auto; padding: 0; display: flex; position: relative; overflow: visible; }
+.framer-LOnUN .framer-v6dc94 { flex-flow: column; flex: 0 0 auto; place-content: flex-start center; align-items: flex-start; gap: 4px; width: min-content; height: min-content; padding: 0; display: flex; position: relative; overflow: visible; }
+.framer-LOnUN .framer-1es5w7d { flex-flow: row; flex: 0 0 auto; place-content: center; align-items: center; gap: 10px; width: min-content; height: min-content; padding: 0; display: flex; position: relative; overflow: visible; }
+.framer-LOnUN .framer-1wn7zb { flex-flow: column; flex: 0 0 auto; place-content: flex-start center; align-items: flex-start; gap: 10px; width: min-content; height: min-content; padding: 0; display: flex; position: relative; overflow: visible; }
+.framer-LOnUN .framer-14aoz5q { white-space: pre; flex: 0 0 auto; width: auto; height: auto; position: relative; }
+.framer-LOnUN .framer-uzoomt { flex-flow: row; flex: 0 0 auto; place-content: center; align-items: center; gap: 140px; width: min-content; height: min-content; padding: 0; display: flex; position: relative; overflow: visible; }
+.framer-LOnUN .framer-eaqpor { flex-flow: column; flex: 0 0 auto; place-content: flex-start; align-items: flex-start; gap: 20px; width: min-content; height: 183px; padding: 0; display: flex; position: relative; overflow: visible; }
+.framer-LOnUN .framer-canpwq, .framer-LOnUN .framer-1hw19a5 { flex-flow: column; flex: 0 0 auto; place-content: flex-start center; align-items: flex-start; gap: 16px; width: min-content; height: min-content; padding: 0; display: flex; position: relative; overflow: visible; }
+.framer-LOnUN .framer-tqaa0u { flex-flow: column; flex: 0 0 auto; place-content: flex-start; align-items: flex-start; gap: 20px; width: min-content; height: min-content; padding: 0; display: flex; position: relative; overflow: visible; }
+.framer-LOnUN .framer-johc2t { --34440n: #fff; --fbr8zx: 1.5; aspect-ratio: 1 / 1; height: var(--framer-aspect-ratio-supported, 24px); flex: 0 0 auto; width: 24px; position: relative; }
+.framer-UYIEC { aspect-ratio: 1 / 1; width: 24px; display: block; }
