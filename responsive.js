@@ -19,7 +19,9 @@
     attributeFilter: ["content"],
   });
 
-  var root = /\/(about|products|contact|lab)\//.test(location.pathname) ? "../" : "./";
+  var path = location.pathname.replace(/index\.html$/, "");
+  var depth = path.split("/").filter(Boolean).length;
+  var root = depth ? "../".repeat(depth) : "./";
   var links = [
     ["Home", root],
     ["About", root + "about/"],
@@ -30,7 +32,10 @@
   function current(href) {
     var a = document.createElement("a");
     a.href = href;
-    return a.pathname.replace(/index\.html$/, "") === location.pathname.replace(/index\.html$/, "");
+    var here = location.pathname.replace(/index\.html$/, "");
+    var there = a.pathname.replace(/index\.html$/, "");
+    if (there === here) return true;
+    return there.slice(-5) === "/lab/" && here.indexOf(there) === 0;
   }
 
   function build() {

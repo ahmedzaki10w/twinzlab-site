@@ -27,6 +27,7 @@
 }
 
 * { box-sizing: border-box; }
+.tz-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -44,39 +45,6 @@ a:focus-visible, button:focus-visible {
   outline-offset: 3px;
 }
 
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 18px 40px;
-  background: rgba(23, 16, 11, 0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
-}
-.logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--ink);
-  text-decoration: none;
-  letter-spacing: 0.14em;
-  font-size: 14px;
-}
-.logo img { display: block; border-radius: 6px; }
-.site-nav {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  font-size: 15px;
-}
-.site-nav a { color: var(--muted); text-decoration: none; }
-.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--ink); }
-.nav-toggle { display: none; }
-
 .pill {
   display: inline-flex;
   align-items: center;
@@ -91,7 +59,7 @@ a:focus-visible, button:focus-visible {
 }
 .pill:hover { background: rgba(255, 255, 255, 0.06); }
 
-.article { padding: 48px 24px 24px; }
+.article { padding: 148px 24px 24px; }
 .article h1, .dek, .byline, .kicker, .prose { max-width: 42rem; margin-left: auto; margin-right: auto; }
 .kicker {
   margin: 0 0 16px;
@@ -183,28 +151,7 @@ h1 {
 .copy { margin-bottom: 0; }
 
 @media (max-width: 800px) {
-  .site-header { padding: 14px 16px; flex-wrap: wrap; }
-  .nav-toggle {
-    display: inline-flex;
-    align-items: center;
-    padding: 8px 12px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: transparent;
-    color: var(--ink);
-    font: inherit;
-    font-size: 14px;
-  }
-  .site-nav {
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-    padding-top: 8px;
-  }
-  .site-nav.is-open { display: flex; }
-  .article { padding-top: 28px; }
+  .article { padding-top: 116px; }
   .dek { font-size: 18px; }
   .prose h2, .closer h2 { font-size: 24px; }
   .site-footer { padding: 24px 16px 36px; }
