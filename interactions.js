@@ -68,11 +68,13 @@
   var CARD_PROXIES = [
     ".framer-inyeg6", ".framer-1kvby1z", ".framer-1dmwas0",
     ".framer-1ef4b7q", ".framer-nzlyda", ".framer-tlhq47",
-    ".framer-1qxun2q", ".framer-ncsnc3"
+    ".framer-1qxun2q", ".framer-ncsnc3",
+    ".framer-eo4uhb"
   ];
 
   var PRODUCT_PILLS = [".framer-tdbu6h", ".framer-19so74", ".framer-1y83g0w"];
-  var LAB_READ_MORE = [".framer-1uia4ak", ".framer-17laeob", ".framer-1q7myax"];
+  var ARTICLE = "lab/the-bug-that-makes-you-laugh/";
+  var LAB_READ_MORE = [".framer-17laeob", ".framer-1q7myax"];
 
   var ANCHORS = {
     home: { ".framer-1lq0uvn": "who-we-are", ".framer-ihlbe4": "what-we-build", ".framer-iyzx2i": "featured-product", ".framer-2dudm4": "process", ".framer-10dq8av": "from-the-lab" },
@@ -96,7 +98,7 @@
       cards: [".framer-eo4uhb", ".framer-qwhetu", ".framer-wljenu"],
       tag: ".framer-svx48s, .framer-brf2i9, .framer-1dxoj8z",
       empty: function (label) {
-        return { msg: "No " + label + " posts yet. New entries land here first.", cta: "Show all posts", filter: "all" };
+        return { msg: "No " + label + " posts yet.", cta: "Show all posts", filter: "all" };
       }
     }
   };
@@ -159,6 +161,9 @@
 
     LAB_READ_MORE.forEach(function (sel) {
       $$(sel, root).forEach(function (el) { makeDisabled(el, "Full post coming soon", "pill"); });
+    });
+    $$(".framer-1uia4ak, .framer-fwj0dz-container a.framer-s29zbl", root).forEach(function (el) {
+      makeLink(el, site(ARTICLE), "button", "Read the article");
     });
 
     CARD_PROXIES.forEach(function (sel) {

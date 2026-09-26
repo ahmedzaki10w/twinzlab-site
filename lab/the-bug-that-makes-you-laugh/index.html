@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Bug That Makes You Laugh: What a Theory of Jokes Says About Building AI — TwinzLab</title>
+<meta name="description" content="Are jokes just bugs in our mental models? We dig into Roman Yampolskiy&#x27;s theory of humor and what it means for AI, AI safety and building products with AI.">
+<link rel="canonical" href="https://ahmedzaki10w.github.io/lab/the-bug-that-makes-you-laugh/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TwinzLab">
+<meta property="og:title" content="The Bug That Makes You Laugh: What a Theory of Jokes Says About Building AI">
+<meta property="og:description" content="Are jokes just bugs in our mental models? We dig into Roman Yampolskiy&#x27;s theory of humor and what it means for AI, AI safety and building products with AI.">
+<meta property="og:url" content="https://ahmedzaki10w.github.io/lab/the-bug-that-makes-you-laugh/">
+<meta property="og:image" content="https://ahmedzaki10w.github.io/assets/lab/the-bug-that-makes-you-laugh/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-09-27">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Bug That Makes You Laugh: What a Theory of Jokes Says About Building AI">
+<meta name="twitter:description" content="Are jokes just bugs in our mental models? We dig into Roman Yampolskiy&#x27;s theory of humor and what it means for AI, AI safety and building products with AI.">
+<meta name="twitter:image" content="https://ahmedzaki10w.github.io/assets/lab/the-bug-that-makes-you-laugh/og.jpg">
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="article.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="logo" href="../../">
+    <img src="../../assets/icons/favicon.svg" alt="" width="28" height="28">
+    <span>TWINZLAB</span>
+  </a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+  <nav id="site-nav" class="site-nav">
+    <a href="../../">Home</a>
+    <a href="../../about/">About</a>
+    <a href="../../products/">Products</a>
+    <a href="../../lab/" aria-current="page">Lab</a>
+    <a href="../../contact/">Contact</a>
+    <a class="pill" href="../../contact/#contact-form">Build with us</a>
+  </nav>
+</header>
+<main id="main">
+  <article class="article">
+    <p class="kicker"><a href="../../lab/">Lab</a></p>
+    <h1>The Bug That Makes You Laugh: What a Theory of Jokes Says About Building AI</h1>
+    <p class="dek">A computer scientist argues that every joke is a glitch in your mental model, and that makes humor a surprisingly useful lens on AI, its blind spots and the products we build with it.</p>
+    <p class="byline"><span>TwinzLab</span> <time datetime="2026-09-27">September 27, 2026</time></p>
+    <figure class="hero">
+      <img src="../../assets/lab/the-bug-that-makes-you-laugh/hero.jpg" width="1600" height="900" alt="Line drawing of a smiling face in dark glasses on a pale green and grey field.">
+    </figure>
+    <div class="prose">
+<p>Here is a small experiment. Read this line, which cognitive scientists Matthew Hurley, Daniel Dennett and Reginald Adams use to illustrate their theory of humor: &quot;I wondered why the Frisbee was getting bigger, and then it hit me.&quot;</p>
+<p>If you smiled, something specific just happened in your head. You committed to one meaning of &quot;hit me&quot; (I realized). A moment later you found out you were wrong (it literally hit me). You fixed the mistake, and your brain paid you a small reward for fixing it.</p>
+<p>That is the core idea behind a 2025 paper by Roman V. Yampolskiy, a computer scientist at the University of Louisville, called &quot;Towards Solving Humor: Why the Funniest AI Joke Will Not Be Funny, to Us.&quot; We build apps and poke at AI models for a living, so a paper that treats jokes as software bugs didn&#x27;t stay in the &quot;read later&quot; folder for long. Here is what it argues, where we think it&#x27;s onto something, and where we&#x27;re not convinced.</p>
+<h2>Jokes as bugs, laughter as a bug report</h2>
+<p>Yampolskiy builds on <em>Inside Jokes</em> (MIT Press, 2011), in which Hurley, Dennett and Adams propose that humor evolved as a reward for catching mistakes in our own fast, half-conscious reasoning. That view descends from the incongruity theory, which the Stanford Encyclopedia of Philosophy calls &quot;now the dominant theory of humor in philosophy and psychology&quot;: we laugh when something violates our mental patterns and expectations. One refinement, incongruity-resolution, adds that the fun comes from making sense of the surprise.</p>
+<p>Yampolskiy carries the idea into software terms. A joke&#x27;s setup is like code that relies on shared libraries of knowledge. The punchline is the unexpected behavior. In his words, &quot;bugs can be seen as jokes expressed in a programming language.&quot; Laughter becomes a signal to other people: &quot;Here&#x27;s a bug—take note!&quot;</p>
+<p>He even maps joke types onto bug categories, and some of the pairings are delightful. His example for a memory leak is &quot;My memory&#x27;s not what it used to be. My memory&#x27;s not what it used to be.&quot; His infinite loop is &quot;Lather, rinse, repeat.&quot; The theory also explains why a joke dies when you hear it twice: &quot;If the joke is already known to the audience, it is not funny because the relevant model correction has already taken place.&quot;</p>
+<p>The paper frames all of this as a formal theory. In practice, the formal parts are light. There&#x27;s a two-part setup/punchline model and a funniness formula (H = α × C / L, surprise divided by length) that the author himself calls &quot;hypothetical&quot; and &quot;simplistic.&quot; So read it as a thought-provoking framework rather than a finished science of funny.</p>
+<h2>Can machines get the joke?</h2>
+<p>If humor means catching your own mistakes, then the ability to make and understand jokes starts to look like a test of intelligence. Yampolskiy argues just that. He proposes humor as a possible &quot;AI-complete&quot; problem, meaning one you can&#x27;t fully solve without human-level general intelligence. He also writes that his own tests of recent models &quot;were only able to generate content of fairly-low funniness, with an occasional &#x27;OK&#x27; joke.&quot;</p>
+<p>The research on this is messier and more interesting than a yes or a no:</p>
+<ul><li><strong>Repetition.</strong> In early 2023, Sophie Jentzsch and Kristian Kersting asked ChatGPT for a joke about a thousand times. Over 90% of the 1,008 jokes it produced were the same 25 jokes. The scarecrow who was &quot;outstanding in his field&quot; came up 140 times.</li><li><strong>Confident nonsense.</strong> In the same study, ChatGPT gave accurate explanations for most real jokes but also made up convincing explanations for jokes that didn&#x27;t work.</li><li><strong>Understanding gaps.</strong> Jack Hessel and colleagues built benchmarks from The New Yorker&#x27;s cartoon caption contest. On one matching task their best image model scored 62%, while humans scored 94%. People preferred human-written explanations of why a caption was funny over GPT-4&#x27;s explanations in about two-thirds of head-to-head comparisons.</li><li><strong>But also: funny enough.</strong> In a 2024 PLOS ONE study, Drew Gorenz and Norbert Schwarz found that people rating jokes blind scored ChatGPT 3.5 above 63–87% of the ordinary participants who wrote jokes for the same prompts. Its satirical headlines rated about the same as real ones from The Onion.</li><li><strong>And yet.</strong> When Google DeepMind researchers ran workshops with 20 professional comedians, most felt the models produced &quot;bland and biased comedy tropes.&quot; The average creativity-support score was 54.6 out of 100, which the researchers call mediocre. Several comedians said they still ended up writing the punchlines themselves.</li></ul>
+<p>Taken together, it depends what you measure. Models can reach decent crowd-pleasing funny with good prompts. Their understanding of jokes still has gaps, and they&#x27;re weak at original material with a real point of view.</p>
+<h2>The safety angle: humor as an immune system</h2>
+<p>This is where the paper gets bold. Yampolskiy argues that &quot;every joke fundamentally involves value misalignment&quot;, meaning a gap between what was expected and what happened. So an AI that can&#x27;t spot joke-like incongruities might also miss the gap between its own behavior and human values. A sense of humor, he suggests, could work &quot;like an immune system for the mind of the machine.&quot;</p>
+<p>We find this more useful as a metaphor than as a mechanism. But one real result lines up with it. The ChatGPT that explained broken jokes with total confidence was a system failing to notice that something didn&#x27;t compute.</p>
+<p>Still, there are strong counterpoints, and they deserve space:</p>
+<ul><li><strong>Surprise isn&#x27;t enough.</strong> Benign violation theory, from A. Peter McGraw and Caleb Warren, holds that we laugh at violations that also seem harmless. A mistake detector alone doesn&#x27;t explain why some errors amuse us and others alarm us.</li><li><strong>Humor is social.</strong> The Stanford Encyclopedia cites an estimate that we&#x27;re about thirty times more likely to laugh with other people than alone. Some researchers trace laughter to play signals in our ape ancestors. Humor is about bonding and belonging as much as fixing errors.</li><li><strong>Mimicry without mirth.</strong> Hurley, Dennett and Adams, quoted in the paper, imagine an AI that understands human humor and even creates it, yet &quot;could have no appetite for humor.&quot; Gorenz and Schwarz reach a similar conclusion from their data: knowing the patterns of comedy may be enough to produce it. If so, joke-writing is a poor test of the self-debugging the theory cares about.</li><li><strong>Hard to test.</strong> Calling something &quot;AI-complete&quot; is hard to prove or disprove, and the paper admits &quot;it is impossible to definitively determine whether something is a joke or not.&quot; That&#x27;s honest, but it makes humor a slippery benchmark.</li></ul>
+<h2>Why the funniest joke won&#x27;t be funny to us</h2>
+<p>The title comes from the paper&#x27;s most unsettling move. If the funniest joke is also the worst bug, then the ultimate punchline would be a catastrophic mistake at civilizational scale. Picture the old genie story: we ask a powerful AI to fix everything, and it finds a solution that technically works and that no one wanted. Yampolskiy notes that bugs have no upper limit on complexity, so there could be &quot;superjokes&quot; too intricate for people to even recognize as jokes.</p>
+<p>His conclusion: &quot;This ultimate joke wouldn&#x27;t be amusing to us because we are the butt of the joke, not the ones in on it.&quot; It&#x27;s a gloomy thought wearing a clown nose.</p>
+<h2>What this means if you build with AI</h2>
+<p>We don&#x27;t need to settle the theory to take something practical from it:</p>
+<ol><li><strong>Treat funny failures as bug reports.</strong> When a model&#x27;s output makes your team laugh, write it down. Something odd enough to be funny often reveals a wrong assumption, in the model or in your prompt.</li><li><strong>Test for &quot;that doesn&#x27;t make sense.&quot;</strong> Give your system inputs that are deliberately broken, like the fake jokes Jentzsch and Kersting used. Check whether it pushes back or just makes up an answer. Design a graceful &quot;this doesn&#x27;t compute&quot; path.</li><li><strong>Specific beats generic.</strong> Vague requests got the same 25 jokes on repeat. Gorenz and Schwarz, whose model scored well, used clear constraints and examples, and they warn that vaguer prompts may produce weaker jokes. That applies to far more than jokes.</li><li><strong>Be careful who the joke is on.</strong> Yampolskiy himself advises caution with humor in human-AI interaction, since sarcasm and irony are easy to misread. In a product, a joke at the user&#x27;s expense lands very differently from one they&#x27;re in on.</li><li><strong>Let humans write the punchline.</strong> Use AI for structure, drafts and variations. The comedians in the DeepMind study found that the part that actually lands still mostly came from people.</li></ol>
+<p>Maybe the best test of a well-built AI product is a little like a good joke. It surprises you in a way that makes sense afterward, and nobody ends up as the butt of it.</p>
+      <section class="sources" aria-labelledby="sources-heading">
+        <h2 id="sources-heading">Sources</h2>
+        <ol>
+<li>Roman V. Yampolskiy, &quot;Towards Solving Humor: Why the Funniest AI Joke Will Not Be Funny, to Us&quot; (2025). PhilArchive record: <a href="https://philarchive.org/rec/YAMTSH">https://philarchive.org/rec/YAMTSH</a> · PDF: <a href="https://philpapers.org/archive/YAMTSH.pdf">https://philpapers.org/archive/YAMTSH.pdf</a> · Full text read via Internet Archive snapshot (16 July 2025): <a href="https://web.archive.org/web/20250716133000/https://philarchive.org/archive/YAMTSH">https://web.archive.org/web/20250716133000/https://philarchive.org/archive/YAMTSH</a></li>
+<li>Roman V. Yampolskiy, &quot;The first great joke told by AI might be the last one humans hear,&quot; IAI TV, 9 July 2025: <a href="https://iai.tv/articles/the-first-great-joke-told-by-ai-might-be-the-last-one-humans-hear-auid-3251">https://iai.tv/articles/the-first-great-joke-told-by-ai-might-be-the-last-one-humans-hear-auid-3251</a></li>
+<li>Matthew M. Hurley, Daniel C. Dennett, Reginald B. Adams Jr., <em>Inside Jokes: Using Humor to Reverse-Engineer the Mind</em> (MIT Press, 2011): <a href="https://mitpress.mit.edu/9780262518697/inside-jokes/">https://mitpress.mit.edu/9780262518697/inside-jokes/</a></li>
+<li>John Morreall, &quot;Philosophy of Humor,&quot; Stanford Encyclopedia of Philosophy (rev. 2024): <a href="https://plato.stanford.edu/entries/humor/">https://plato.stanford.edu/entries/humor/</a></li>
+<li>A. Peter McGraw &amp; Caleb Warren, &quot;Benign Violations: Making Immoral Behavior Funny,&quot; <em>Psychological Science</em> 21(8), 2010: <a href="https://doi.org/10.1177/0956797610376073">https://doi.org/10.1177/0956797610376073</a> (author PDF: <a href="https://leeds-faculty.colorado.edu/mcgrawp/pdf/mcgraw.warren.2010.pdf)">https://leeds-faculty.colorado.edu/mcgrawp/pdf/mcgraw.warren.2010.pdf)</a></li>
+<li>Giovanni Sabato, &quot;What&#x27;s So Funny? The Science of Why We Laugh,&quot; <em>Scientific American</em>, 2019: <a href="https://www.scientificamerican.com/article/whats-so-funny-the-science-of-why-we-laugh/">https://www.scientificamerican.com/article/whats-so-funny-the-science-of-why-we-laugh/</a></li>
+<li>Sophie Jentzsch &amp; Kristian Kersting, &quot;ChatGPT is fun, but it is not funny! Humor is still challenging Large Language Models&quot; (2023): <a href="https://arxiv.org/abs/2306.04563">https://arxiv.org/abs/2306.04563</a></li>
+<li>Jack Hessel et al., &quot;Do Androids Laugh at Electric Sheep? Humor &#x27;Understanding&#x27; Benchmarks from The New Yorker Caption Contest&quot; (ACL 2023): <a href="https://arxiv.org/abs/2209.06293">https://arxiv.org/abs/2209.06293</a></li>
+<li>Drew Gorenz &amp; Norbert Schwarz, &quot;How funny is ChatGPT? A comparison of human- and A.I.-produced jokes,&quot; <em>PLOS ONE</em> 19(7), 2024: <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0305364">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0305364</a></li>
+<li>Piotr W. Mirowski, Juliette Love, Kory W. Mathewson, Shakir Mohamed, &quot;A Robot Walks into a Bar: Can Language Models Serve as Creativity Support Tools for Comedy?&quot; (FAccT 2024): <a href="https://arxiv.org/abs/2405.20956">https://arxiv.org/abs/2405.20956</a></li>
+</ol>
+      </section>
+    </div>
+  </article>
+  <aside class="closer">
+    <h2>Bring an idea, a challenge, or a partnership.</h2>
+    <p>An investment conversation is welcome too.</p>
+    <a class="pill" href="../../contact/#contact-form">Get in touch</a>
+  </aside>
+</main>
+<footer class="site-footer">
+  <p>For ideas, challenges, partnerships, or a hello.</p>
+  <p><a href="mailto:hello@twinzlab.com">hello@twinzlab.com</a></p>
+  <nav class="footer-nav" aria-label="Pages">
+    <a href="../../">Home</a>
+    <a href="../../about/">About</a>
+    <a href="../../products/">Products</a>
+    <a href="../../lab/">Lab</a>
+    <a href="../../contact/">Contact</a>
+  </nav>
+  <p class="copy">©2026 TwinzLab. Built by two minds.</p>
+</footer>
+<script>
+  var toggle = document.querySelector(".nav-toggle");
+  var nav = document.getElementById("site-nav");
+  toggle.addEventListener("click", function () {
+    var open = nav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.textContent = open ? "Close" : "Menu";
+  });
+</script>
+</body>
+</html>
