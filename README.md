@@ -1,6 +1,6 @@
-# Twinzlab site
+# TwinzLab site
 
-Static marketing site for Twinzlab (HTML/CSS/JS).
+Static marketing site for TwinzLab (HTML/CSS/JS).
 
 ## Run locally
 
@@ -25,4 +25,4 @@ Use a non-default port (e.g. `4817`) if `3000` / `8080` are already in use.
 
 ## Branding notes
 
-Framer editor badge / Edit Content button are disabled. Site icons live in `assets/icons/` (Twinzlab logo). Document titles are Twinzlab-branded on all pages.
+Framer editor badge / Edit Content button are disabled. Site icons live in `assets/icons/` (TwinzLab logo). Document titles are TwinzLab-branded on all pages.
