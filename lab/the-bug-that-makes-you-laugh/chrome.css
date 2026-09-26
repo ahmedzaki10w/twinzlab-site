@@ -452,6 +452,6 @@ td.framer-text, th.framer-text { overflow-wrap: anywhere; vertical-align: top; m
 
 .framer-LOnUN .framer-1ono1rh-container { flex: 0 0 auto; width: auto; height: auto; position: relative; }
 
-.framer-LOnUN .framer-eoj4lp-container { z-index: 0; flex: 0 0 auto; height: 157px; position: absolute; bottom: 0px; left: 0px; right: 0px; }
+.framer-LOnUN .framer-eoj4lp-container { z-index: 0; flex: 0 0 auto; height: 157px; position: absolute; bottom: 0px; left: 0px; right: 0px; pointer-events: none; }
 
 .framer-Q9WRp { aspect-ratio: 1 / 1; mask: var(--framer-icon-mask); width: 24px; display: block; }
