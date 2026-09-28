@@ -1,0 +1,61 @@
+# Cloudflare Workers static assets are uploaded from the repository root
+# (Wrangler auto-detects this site and sets assets.directory to ".").
+# Patterns use .gitignore syntax. Matching paths are not uploaded and
+# therefore 404 on the Workers deployment. GitHub Pages does not read
+# this file, so the Pages site is unchanged.
+
+# Version control. The whole directory must be excluded, not just the
+# top-level entry, so objects, refs, config, and HEAD are not public.
+.git
+**/.git
+**/.git/**
+
+# Repository docs and git metadata that are not website pages.
+/README.md
+/LICENSE
+/LICENSE.md
+/CONTRIBUTING.md
+/CHANGELOG.md
+/CODE_OF_CONDUCT.md
+/SECURITY.md
+.gitignore
+.gitattributes
+
+# Wrangler and Cloudflare tooling, including files autoconfig may write
+# into this directory before upload.
+wrangler.toml
+wrangler.json
+wrangler.jsonc
+wrangler.config.ts
+.wrangler
+.dev.vars
+.dev.vars*
+
+# Secrets and package-manager files.
+.env
+.env.*
+*.pem
+*.key
+node_modules
+package.json
+package-lock.json
+pnpm-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lock
+bun.lockb
+
+# Other dotfiles, VCS metadata, and editor/OS junk.
+.*
+.github
+.gitlab
+.svn
+.hg
+.idea
+.vscode
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
