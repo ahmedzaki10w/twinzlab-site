@@ -119,6 +119,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   letter-spacing: .01em;
   font-variant-numeric: tabular-nums;
 }
+.byline-by { margin-right: 0.35em; }
 .byline a {
   color: var(--heading);
   text-decoration: none;
@@ -130,7 +131,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .byline .sep { margin: 0 8px; color: var(--line-strong); }
 .hero {
   max-width: 960px;
-  margin: 40px auto 8px;
+  margin: 40px auto;
 }
 .hero img {
   display: block;
@@ -542,7 +543,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   .article { padding-left: 20px; padding-right: 20px; }
   .kicker a { min-height: 44px; }
   .byline { margin-top: 16px; padding-top: 0; border-top: 0; }
-  .hero { margin: 24px -20px 8px; max-width: none; }
+  .hero { margin: 24px -20px 32px; max-width: none; }
   .hero img { border-radius: 0; }
   .takeaways,
   .topic-cta,
