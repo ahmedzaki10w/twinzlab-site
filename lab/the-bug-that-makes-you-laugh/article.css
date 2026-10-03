@@ -98,14 +98,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .article h1 {
   margin: 0;
   color: var(--heading);
-  font-size: clamp(32px, 4vw, 48px);
+  font-size: clamp(30px, 2.4vw, 40px);
   font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1.15;
   text-wrap: balance;
 }
 .dek {
-  margin: 20px 0 0;
+  margin: 0 0 1.15em;
   color: var(--muted);
   font-size: 20px;
   line-height: 1.5;
@@ -116,9 +116,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   flex-wrap: wrap;
   align-items: center;
   gap: 0;
-  margin: 24px 0 0;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
+  min-height: 32px;
+  margin: 0;
   color: var(--meta);
   font-size: 14px;
   letter-spacing: .01em;
@@ -135,7 +134,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .byline .sep { margin: 0 8px; color: var(--line-strong); }
 .hero {
-  margin: 40px 0;
+  margin: 20px 0 32px;
 }
 .hero img {
   display: block;
@@ -148,13 +147,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 
 .article-body {
   display: grid;
-  grid-template-columns: minmax(200px, 280px) minmax(0, 1fr);
+  grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
   column-gap: 64px;
   align-items: start;
 }
-.section-nav {
+.article-side {
   position: sticky;
   top: 144px;
+}
+.article-main { min-width: 0; }
+.section-nav {
+  margin-top: 28px;
 }
 .section-nav ol {
   margin: 0;
@@ -503,8 +506,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 
 @media (max-width: 1023px) {
   .article { width: min(1640px, calc(100% - 80px)); padding-top: 116px; padding-bottom: 64px; }
-  .article-body { grid-template-columns: 1fr; row-gap: 8px; }
-  .section-nav { position: static; margin-bottom: 28px; }
+  .article-body { grid-template-columns: 1fr; row-gap: 0; }
+  .article-side { position: static; }
+  .article h1 { font-size: clamp(32px, 6vw, 40px); }
+  .section-nav { margin-top: 24px; margin-bottom: 28px; }
   .dek { font-size: 18px; }
   .prose h2 { font-size: 24px; }
 }
@@ -512,7 +517,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 @media (max-width: 767px) {
   .article { width: min(1640px, calc(100% - 40px)); }
   .kicker a { min-height: 44px; }
-  .byline { margin-top: 16px; padding-top: 0; border-top: 0; }
+  .byline { margin-top: 4px; }
   .hero { margin: 24px 0 32px; }
   .topic-cta,
   .more-lab { padding: 20px; }
