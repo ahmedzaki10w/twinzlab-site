@@ -455,24 +455,32 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   100% { background-color: transparent; box-shadow: 0 0 0 6px transparent; }
 }
 
-.back-top { margin: 28px 0 0; font-size: 14px; }
+.back-top {
+  margin: 40px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  font-size: 16px;
+}
 .back-top a {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 8px;
   min-height: 44px;
-  color: var(--meta);
+  color: var(--heading);
   text-decoration: none;
   transition: color var(--med) var(--ease);
 }
 .back-top svg {
   width: 16px;
   height: 16px;
+  transform: rotate(-90deg);
   transition: transform var(--med) var(--ease);
 }
 @media (hover: hover) {
   .back-top a:hover { color: var(--link); }
-  .back-top a:hover svg { transform: translateY(-2px); }
+  .back-top a:hover svg { transform: translateY(-2px) rotate(-90deg); }
 }
 
 .visually-hidden {
