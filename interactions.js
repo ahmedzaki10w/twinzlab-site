@@ -49,7 +49,7 @@
   // Plain Framer frames that should behave like links.
   var LINKS = [
     { sel: ".framer-19vq3br", href: "", label: "TwinzLab home", kind: "plain" },
-    { sel: ".framer-qdozql", mail: "Build with us", kind: "text" },
+    { sel: ".framer-qdozql", href: "contact/#contact-form", kind: "text" },
     { sel: ".framer-1es5w7d", mail: "", label: "Email " + EMAIL, kind: "text" },
     { sel: ".framer-14aoz5q", href: "", label: "TwinzLab home", kind: "text" },
     { sel: ".framer-1j8xv75", href: "about/", kind: "text" },
