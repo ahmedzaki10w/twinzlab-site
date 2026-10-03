@@ -732,6 +732,35 @@
   #main .framer-fy884u { gap: 8px !important; }
 }
 
+@media (min-width: 1200px) {
+  /* Lab, Products, and About content bands use the footer inner width. */
+  #main .framer-zD3uG .framer-i1496j,
+  #main .framer-zD3uG .framer-o1lqqo,
+  #main .framer-zD3uG .framer-176qsn4,
+  #main .framer-zD3uG .framer-zk7jz2,
+  #main .framer-zD3uG .framer-1klyps3,
+  #main .framer-N0qFv .framer-u11nlu,
+  #main .framer-N0qFv .framer-fmbx53,
+  #main .framer-N0qFv .framer-ob073m,
+  #main .framer-Kz29v .framer-1yoorx3,
+  #main .framer-Kz29v .framer-7832n3,
+  #main .framer-Kz29v .framer-1r977b7,
+  #main .framer-Kz29v .framer-1u1mjpr,
+  #main .framer-Kz29v .framer-kfnepn,
+  #main .framer-Kz29v .framer-1luoeas {
+    width: min(1640px, 100%) !important;
+    max-width: 1640px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  /* Value cards stay one row and meet both edges of that band. */
+  #main .framer-Kz29v .framer-1luoeas > * {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+}
+
 @media (max-width: 767px) {
   #main .framer-ntizu1 { padding: 48px 20px !important; }
   #main .framer-xie4sd { gap: 40px !important; }
