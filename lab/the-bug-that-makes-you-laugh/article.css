@@ -87,12 +87,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   transition: background-color var(--med) var(--ease);
 }
 .kicker-arrow {
-  display: inline-block;
+  display: block;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  transform: scaleX(-1);
   transition: transform var(--med) var(--ease);
 }
 @media (hover: hover) {
   .kicker a:hover { background: rgba(234, 171, 120, .10); text-decoration: none; }
-  .kicker a:hover .kicker-arrow { transform: translateX(-2px); }
+  .kicker a:hover .kicker-arrow { transform: translateX(-2px) scaleX(-1); }
 }
 
 .article h1 {
