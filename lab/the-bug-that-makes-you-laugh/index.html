@@ -68,7 +68,18 @@
     <figure class="hero">
       <img src="../../assets/lab/the-bug-that-makes-you-laugh/hero.jpg" width="1600" height="900" alt="Line drawing of a smiling face in dark glasses on a pale green and grey field.">
     </figure>
-    <div class="prose">
+    <div class="article-body">
+      <nav class="section-nav" aria-label="In this article">
+        <ol>
+          <li><a href="#jokes-as-bugs">Jokes as bugs, laughter as a bug report</a></li>
+          <li><a href="#can-machines-get-the-joke">Can machines get the joke?</a></li>
+          <li><a href="#the-safety-angle">The safety angle: humor as an immune system</a></li>
+          <li><a href="#why-the-funniest-joke">Why the funniest joke won&#x27;t be funny to us</a></li>
+          <li><a href="#building-with-ai">What this means if you build with AI</a></li>
+          <li><a href="#sources-heading">Sources</a></li>
+        </ol>
+      </nav>
+      <div class="prose">
 <p>Here is a small experiment. Read this line, which cognitive scientists Matthew Hurley, Daniel Dennett and Reginald Adams use to illustrate their theory of humor: &quot;I wondered why the Frisbee was getting bigger, and then it hit me.&quot;</p>
 <p>If you smiled, something specific just happened in your head. You committed to one meaning of &quot;hit me&quot; (I realized). A moment later you found out you were wrong (it literally hit me). You fixed the mistake, and your brain paid you a small reward for fixing it.</p>
 <p>That is the core idea behind a 2025 paper by Roman V. Yampolskiy, a computer scientist at the University of Louisville, called &quot;Towards Solving Humor: Why the Funniest AI Joke Will Not Be Funny, to Us.&quot; We build apps and poke at AI models for a living, so a paper that treats jokes as software bugs didn&#x27;t stay in the &quot;read later&quot; folder for long. Here is what it argues, where we think it&#x27;s onto something, and where we&#x27;re not convinced.</p>
@@ -81,23 +92,6 @@
     <li>If you build with AI, treat a laugh as a bug report, test the case that does not make sense, and leave the line that has to land with a person.</li>
   </ul>
 </aside>
-<details class="toc" id="toc" open>
-  <summary>In this article</summary>
-  <ol>
-    <li><a href="#jokes-as-bugs">Jokes as bugs, laughter as a bug report</a></li>
-    <li><a href="#can-machines-get-the-joke">Can machines get the joke?</a></li>
-    <li><a href="#the-safety-angle">The safety angle: humor as an immune system</a></li>
-    <li><a href="#why-the-funniest-joke">Why the funniest joke won&#x27;t be funny to us</a></li>
-    <li><a href="#building-with-ai">What this means if you build with AI</a></li>
-    <li><a href="#sources-heading">Sources</a></li>
-  </ol>
-</details>
-<script>
-(function () {
-  var toc = document.getElementById("toc");
-  if (toc && window.matchMedia("(max-width: 767px)").matches) toc.removeAttribute("open");
-})();
-</script>
 <h2 id="jokes-as-bugs">Jokes as bugs, laughter as a bug report</h2>
 <p>Yampolskiy builds on <em>Inside Jokes</em> (MIT Press, 2011), in which Hurley, Dennett and Adams propose that humor evolved as a reward for catching mistakes in our own fast, half-conscious reasoning. That view descends from the incongruity theory, which the Stanford Encyclopedia of Philosophy calls &quot;now the dominant theory of humor in philosophy and psychology&quot;: we laugh when something violates our mental patterns and expectations. One refinement, incongruity-resolution, adds that the fun comes from making sense of the surprise.</p>
 <p>Yampolskiy carries the idea into software terms. A joke&#x27;s setup is like code that relies on shared libraries of knowledge. The punchline is the unexpected behavior. In his words, &quot;bugs can be seen as jokes expressed in a programming language.&quot; Laughter becomes a signal to other people: &quot;Here&#x27;s a bug—take note!&quot;</p>
@@ -192,6 +186,7 @@
       </section>
       <p class="back-top"><a href="#top">Back to top <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M7 11l5-5 5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
 
+      </div>
     </div>
   </article>
 </main>
@@ -200,6 +195,38 @@
 </div>
 <script src="cta-wave.js"></script>
 
+<script>
+(function () {
+  var links = [].slice.call(document.querySelectorAll(".section-nav a"));
+  if (!links.length) return;
+  var targets = links.map(function (a) {
+    return document.getElementById(a.getAttribute("href").slice(1));
+  }).filter(Boolean);
+  var current = null;
+  var mq = window.matchMedia("(max-width: 767px)");
+  function set(id) {
+    if (current === id) return;
+    current = id;
+    links.forEach(function (a) {
+      var on = id && a.getAttribute("href") === "#" + id;
+      a.classList.toggle("is-active", on);
+      if (on) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+  }
+  function update() {
+    var line = (mq.matches ? 120 : 160);
+    var id = null;
+    targets.forEach(function (el) {
+      if (el.getBoundingClientRect().top <= line) id = el.id;
+    });
+    set(id);
+  }
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+})();
+</script>
 <script>
 (function () {
   var btn = document.getElementById("copy-link");
