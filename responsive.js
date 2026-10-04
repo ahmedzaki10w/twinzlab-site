@@ -69,8 +69,8 @@
     nav.appendChild(cta);
     var mail = document.createElement("a");
     mail.className = "tz-menu__mail";
-    mail.href = "mailto:hello@twinzlab.com";
-    mail.textContent = "hello@twinzlab.com";
+    mail.href = "mailto:hello@twinzlab.online";
+    mail.textContent = "hello@twinzlab.online";
     nav.appendChild(mail);
 
     function setOpen(open) {

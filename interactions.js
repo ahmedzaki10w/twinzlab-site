@@ -1,13 +1,12 @@
 (function () {
   "use strict";
 
-  // Contact form recipient. Messages are delivered by FormSubmit.co, and the
-  // mailto fallback uses it too. Temporary inbox: swap for the domain mailbox
-  // later (FormSubmit sends a one-time activation email to each new address).
-  var FORM_RECIPIENT = "ahmed240017@gmail.com";
+  // Contact form recipient. Messages are delivered by FormSubmit.co.
+  // FormSubmit sends a one-time activation email to each new address.
+  var FORM_RECIPIENT = "hello@twinzlab.online";
 
   var FORM_ENDPOINT = "https://formsubmit.co/ajax/" + FORM_RECIPIENT;
-  var EMAIL = "hello@twinzlab.com";
+  var EMAIL = "hello@twinzlab.online";
   var BASE = (function () {
     var s = document.currentScript && document.currentScript.src;
     return s ? s.replace(/[^/]*$/, "") : location.origin + "/";
