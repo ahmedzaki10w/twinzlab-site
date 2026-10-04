@@ -170,6 +170,11 @@
     CARD_PROXIES.forEach(function (sel) {
       $$(sel, root).forEach(function (el) { setAttr(el, "data-tz-card", ""); setAttr(el, "data-tz-kind", "card"); });
     });
+    // The Lab "Soon" placeholder is not a link card. Drop the hover if it was already applied.
+    $$(".framer-1kvby1z", root).forEach(function (el) {
+      el.removeAttribute("data-tz-card");
+      el.removeAttribute("data-tz-kind");
+    });
 
     var anchors = ANCHORS[page] || {};
     Object.keys(anchors).forEach(function (sel) {
@@ -197,12 +202,21 @@
     var vb = src && src.getAttribute("viewBox");
     if (!vb) return;
     var parts = vb.split(/[\s,]+/);
-    svg.setAttribute("viewBox", vb);
-    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    // The stroke sits on the viewBox edge. Pad it so the tips are not clipped.
     if (parts.length === 4) {
-      use.setAttribute("width", parts[2]);
-      use.setAttribute("height", parts[3]);
+      var pad = 8;
+      var x = parseFloat(parts[0]) - pad;
+      var y = parseFloat(parts[1]) - pad;
+      var w = parseFloat(parts[2]) + pad * 2;
+      var h = parseFloat(parts[3]) + pad * 2;
+      svg.setAttribute("viewBox", x + " " + y + " " + w + " " + h);
+      use.setAttribute("width", String(w));
+      use.setAttribute("height", String(h));
+    } else {
+      svg.setAttribute("viewBox", vb);
     }
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    svg.style.overflow = "visible";
     svg.setAttribute("data-tz-fit", "1");
   }
 

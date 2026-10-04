@@ -189,18 +189,18 @@
   outline-offset: 3px;
 }
 
-/* Process diagram: shrink the mark with the frame instead of clipping it. */
+/* Process diagram: shrink the mark inside the frame so the stroke is not clipped. */
 #main .framer-2dudm4 .framer-b6vbrw {
   left: 50% !important;
   top: 50% !important;
   right: auto !important;
   bottom: auto !important;
-  width: min(653px, 100%) !important;
+  width: min(620px, calc(100% - 28px)) !important;
   height: auto !important;
   aspect-ratio: 653.056 / 344.056 !important;
   transform: translate(-50%, -50%) !important;
-  max-width: 100% !important;
-  max-height: 100% !important;
+  max-width: calc(100% - 28px) !important;
+  max-height: calc(100% - 28px) !important;
 }
 #main .framer-2dudm4 .framer-1f84c24,
 #main .framer-2dudm4 .svgContainer {
