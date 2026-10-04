@@ -195,11 +195,11 @@
   top: 50% !important;
   right: auto !important;
   bottom: auto !important;
-  width: min(620px, calc(100% - 28px)) !important;
+  width: min(560px, calc(100% - 80px)) !important;
   height: auto !important;
   aspect-ratio: 653.056 / 344.056 !important;
   transform: translate(-50%, -50%) !important;
-  max-width: calc(100% - 28px) !important;
+  max-width: calc(100% - 80px) !important;
   max-height: calc(100% - 28px) !important;
 }
 #main .framer-2dudm4 .framer-1f84c24,
