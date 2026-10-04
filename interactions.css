@@ -189,6 +189,23 @@
   outline-offset: 3px;
 }
 
+/* Sticky Lab cards keep their scroll padding, but the hover frame is only the visible card. */
+#main #from-the-lab .framer-inyeg6,
+#main #from-the-lab .framer-1kvby1z,
+#main #from-the-lab .framer-1dmwas0 {
+  pointer-events: none;
+}
+#main #from-the-lab .tz-lab-face {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 16px;
+  border-radius: 12px;
+  pointer-events: auto;
+}
+
 /* From the lab, below desktop: one aligned row, with the image and text inset from the hover frame.
    Desktop keeps Framer's sticky stack (each card sticks, then the section scrolls away). */
 @media (max-width: 1023px) {
@@ -202,8 +219,12 @@
     position: relative !important;
     top: auto !important;
     height: auto !important;
-    padding: 8px !important;
+    padding: 0 !important;
     align-self: flex-start !important;
+  }
+  #main #from-the-lab .tz-lab-face {
+    padding: 8px;
+    gap: var(--tz-gutter);
   }
   #main #from-the-lab .framer-14xwj4f,
   #main #from-the-lab .framer-1lv7zpz,

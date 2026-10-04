@@ -181,7 +181,26 @@
     if (page === "home") {
       setupFeatured();
       fitProcessDiagram();
+      fitLabHover();
     }
+  }
+
+  // The sticky Lab cards carry empty padding so they can stick in sequence.
+  // The hover belongs on the visible face (image + text), not that padding.
+  function fitLabHover() {
+    $$(".framer-inyeg6, .framer-1kvby1z, .framer-1dmwas0", main()).forEach(function (card) {
+      var face = $(".tz-lab-face", card);
+      if (!face) {
+        face = document.createElement("div");
+        face.className = "tz-lab-face";
+        while (card.firstChild) face.appendChild(card.firstChild);
+        card.appendChild(face);
+      }
+      card.removeAttribute("data-tz-card");
+      card.removeAttribute("data-tz-kind");
+      setAttr(face, "data-tz-card", "");
+      setAttr(face, "data-tz-kind", "card");
+    });
   }
 
   // The process mark is a fixed 653×344 drawing inside a frame that shrinks.
