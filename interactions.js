@@ -65,8 +65,9 @@
   var SOCIAL = [".framer-ta0yq0", ".framer-tlzm73", ".framer-1gdr5uv", ".framer-1mshf4g"];
 
   // Cards whose whole surface forwards to the action inside them.
+  // The Lab "Soon" placeholder (.framer-1kvby1z) is not one of these: it stays flat.
   var CARD_PROXIES = [
-    ".framer-inyeg6", ".framer-1kvby1z", ".framer-1dmwas0",
+    ".framer-inyeg6", ".framer-1dmwas0",
     ".framer-1ef4b7q", ".framer-nzlyda", ".framer-tlhq47",
     ".framer-1qxun2q", ".framer-11xoq6b",
     ".framer-eo4uhb"
@@ -178,7 +179,31 @@
 
     if (FILTERS[page]) setupFilter(page);
     if (page === "contact") { setupTopics(); mountForm(); }
-    if (page === "home") setupFeatured();
+    if (page === "home") {
+      setupFeatured();
+      fitProcessDiagram();
+    }
+  }
+
+  // The process mark is a fixed 653×344 drawing inside a frame that shrinks.
+  // Give the displayed svg the source viewBox so it scales down with that frame.
+  function fitProcessDiagram() {
+    var svg = $(".framer-2dudm4 .svgContainer svg", main());
+    if (!svg || svg.getAttribute("data-tz-fit") === "1") return;
+    var use = $("use", svg);
+    if (!use) return;
+    var ref = use.getAttribute("href") || use.getAttribute("xlink:href") || "";
+    var src = document.getElementById(ref.replace("#", ""));
+    var vb = src && src.getAttribute("viewBox");
+    if (!vb) return;
+    var parts = vb.split(/[\s,]+/);
+    svg.setAttribute("viewBox", vb);
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    if (parts.length === 4) {
+      use.setAttribute("width", parts[2]);
+      use.setAttribute("height", parts[3]);
+    }
+    svg.setAttribute("data-tz-fit", "1");
   }
 
   /* ----------------------------------------------------- featured product */
