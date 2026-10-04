@@ -68,7 +68,7 @@
   var CARD_PROXIES = [
     ".framer-inyeg6", ".framer-1kvby1z", ".framer-1dmwas0",
     ".framer-1ef4b7q", ".framer-nzlyda", ".framer-tlhq47",
-    ".framer-1qxun2q", ".framer-ncsnc3",
+    ".framer-1qxun2q", ".framer-11xoq6b",
     ".framer-eo4uhb"
   ];
 
@@ -178,6 +178,139 @@
 
     if (FILTERS[page]) setupFilter(page);
     if (page === "contact") { setupTopics(); mountForm(); }
+    if (page === "home") setupFeatured();
+  }
+
+  /* ----------------------------------------------------- featured product */
+
+  // Copy and links are the three product cards already on the Products page.
+  var FEATURED = [
+    {
+      name: "Daftar",
+      blurb: "A mobile app for kiosk and small-shop owners to manage sales and their team.",
+      href: "products/#daftar",
+      gradient: "linear-gradient(#1e211d 0%,#274735 66.0661%,#accbda 100%)"
+    },
+    {
+      name: "Aresson",
+      blurb: "Discover and book sports sessions with coaches and trainers across different sports.",
+      href: "products/#aresson",
+      gradient: "linear-gradient(#1e211d 0%,#4a3428 62%,#e9ab78 100%)"
+    },
+    {
+      name: "Coming soon",
+      blurb: "More products coming soon. We will add them when there is something real to show.",
+      href: "products/#products",
+      gradient: "linear-gradient(#1e211d 0%,#231d17 58%,#d9d9d9 100%)"
+    }
+  ];
+  var featuredIndex = 0;
+  var featuredTimer = 0;
+  var featuredReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function featuredRow() {
+    return $(".framer-11xoq6b", main());
+  }
+
+  function paintFeatured() {
+    var row = featuredRow();
+    if (!row) return;
+    var slide = FEATURED[featuredIndex];
+    var title = $(".framer-vr1pm9", row);
+    var blurb = $(".framer-8nkvf1", row);
+    var art = $(".framer-1o9oqkl", row);
+    var button = $("a.framer-s29zbl, [data-tz-href]", row);
+    if (title) {
+      var titleText = title.querySelector("p") || title;
+      if (text(titleText) !== slide.name) titleText.textContent = slide.name;
+    }
+    if (blurb) {
+      var blurbText = blurb.querySelector("h2, p") || blurb;
+      if (text(blurbText) !== slide.blurb) blurbText.textContent = slide.blurb;
+    }
+    if (art) art.style.background = slide.gradient;
+    if (button) {
+      setAttr(button, "data-tz-href", site(slide.href));
+      if (button.tagName === "A") setAttr(button, "href", site(slide.href));
+      setAttr(button, "aria-label", "View " + slide.name);
+    }
+    setAttr(row, "aria-label", slide.name);
+    $$(".framer-1ti9ac8 > div", row).forEach(function (dot, i) {
+      dot.classList.toggle("is-on", i === featuredIndex);
+      setAttr(dot, "aria-pressed", i === featuredIndex ? "true" : "false");
+    });
+  }
+
+  function armFeatured() {
+    clearTimeout(featuredTimer);
+    if (featuredReduce) return;
+    var row = featuredRow();
+    if (!row || row.matches(":hover")) return;
+    featuredTimer = setTimeout(function () {
+      showFeatured((featuredIndex + 1) % FEATURED.length, true);
+    }, 5000);
+  }
+
+  function showFeatured(next, animate) {
+    var row = featuredRow();
+    if (!row) return;
+    clearTimeout(featuredTimer);
+    if (next === featuredIndex) { armFeatured(); return; }
+    function apply() {
+      featuredIndex = next;
+      row.classList.remove("tz-feat-out");
+      paintFeatured();
+      armFeatured();
+    }
+    if (!animate || featuredReduce) { apply(); return; }
+    row.classList.add("tz-feat-out");
+    featuredTimer = setTimeout(apply, 480);
+  }
+
+  function setupFeatured() {
+    var row = featuredRow();
+    if (!row) return;
+    // The text card used to own the hover. The row (image + copy) owns it now.
+    var inner = $(".framer-ncsnc3", row);
+    if (inner) {
+      inner.removeAttribute("data-tz-card");
+      inner.removeAttribute("data-tz-kind");
+    }
+    if (row.getAttribute("data-tz-featured") !== "ready") {
+      setAttr(row, "data-tz-featured", "ready");
+      var dots = $$(".framer-1ti9ac8 > div", row);
+      var pager = $(".framer-1ti9ac8", row);
+      if (pager) {
+        setAttr(pager, "role", "group");
+        setAttr(pager, "aria-label", "Featured products");
+      }
+      dots.forEach(function (dot, i) {
+        setAttr(dot, "role", "button");
+        setAttr(dot, "tabindex", "0");
+        setAttr(dot, "aria-label", FEATURED[i] ? "Show " + FEATURED[i].name : "Show product " + (i + 1));
+        dot.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          showFeatured(i, true);
+        });
+        dot.addEventListener("keydown", function (e) {
+          if (e.key !== "Enter" && e.key !== " ") return;
+          e.preventDefault();
+          e.stopPropagation();
+          showFeatured(i, true);
+        });
+      });
+      row.addEventListener("pointerenter", function () { clearTimeout(featuredTimer); });
+      row.addEventListener("pointerleave", armFeatured);
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) clearTimeout(featuredTimer);
+        else armFeatured();
+      });
+      paintFeatured();
+      armFeatured();
+      return;
+    }
+    paintFeatured();
   }
 
   /* -------------------------------------------------------------- filters */
@@ -654,7 +787,7 @@
       return;
     }
     if (hit.hasAttribute("data-tz-card")) {
-      if (t.closest("a, button, input, textarea, select")) return;
+      if (t.closest("a, button, input, textarea, select, .framer-1ti9ac8")) return;
       var inner = hit.querySelector("[data-tz-href]");
       if (inner) { e.preventDefault(); e.stopPropagation(); go(inner.getAttribute("data-tz-href")); }
     }

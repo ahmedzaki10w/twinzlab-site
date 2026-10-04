@@ -148,6 +148,34 @@
   transition-duration: var(--tz-fast) !important;
 }
 
+/* Featured product: hover the whole row (image + copy), and don't clip the lift. */
+#main #featured-product .framer-11xoq6b {
+  overflow: visible !important;
+  border-radius: 8px;
+  transition: transform var(--tz-med) var(--tz-ease), box-shadow var(--tz-med) var(--tz-ease), opacity .48s var(--tz-ease) !important;
+}
+#main #featured-product .framer-11xoq6b.tz-feat-out { opacity: 0; }
+#main #featured-product .framer-1o9oqkl { transition: background .48s var(--tz-ease); }
+#main #featured-product .framer-1ti9ac8 > div {
+  background-color: #231d17 !important;
+  cursor: pointer;
+  position: relative;
+  transition: background-color .35s var(--tz-ease);
+}
+#main #featured-product .framer-1ti9ac8 > div::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  right: -14px;
+  top: -14px;
+  bottom: -14px;
+}
+#main #featured-product .framer-1ti9ac8 > div.is-on { background-color: #d9d9d9 !important; }
+#main #featured-product .framer-1ti9ac8 > div:focus-visible {
+  outline: 2px solid var(--tz-accent);
+  outline-offset: 3px;
+}
+
 /* ---------------------------------------------------------------- chips (filters, contact topics) */
 
 #main [data-tz-kind="chip"],
