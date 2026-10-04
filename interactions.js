@@ -65,9 +65,9 @@
   var SOCIAL = [".framer-ta0yq0", ".framer-tlzm73", ".framer-1gdr5uv", ".framer-1mshf4g"];
 
   // Cards whose whole surface forwards to the action inside them.
-  // The Lab "Soon" placeholder (.framer-1kvby1z) is not one of these: it stays flat.
+  // The Lab "Soon" placeholders stay flat. Only a real post card hovers.
   var CARD_PROXIES = [
-    ".framer-inyeg6", ".framer-1dmwas0",
+    ".framer-inyeg6",
     ".framer-1ef4b7q", ".framer-nzlyda", ".framer-tlhq47",
     ".framer-1qxun2q", ".framer-11xoq6b",
     ".framer-eo4uhb"
@@ -171,7 +171,7 @@
       $$(sel, root).forEach(function (el) { setAttr(el, "data-tz-card", ""); setAttr(el, "data-tz-kind", "card"); });
     });
     // The Lab "Soon" placeholder is not a link card. Drop the hover if it was already applied.
-    $$(".framer-1kvby1z", root).forEach(function (el) {
+    $$(".framer-1kvby1z, .framer-1dmwas0", root).forEach(function (el) {
       el.removeAttribute("data-tz-card");
       el.removeAttribute("data-tz-kind");
     });
