@@ -600,6 +600,26 @@
     --tz-action: 24px;
   }
 }
+/* Who we are portrait: full-bleed on small screens made it taller than the viewport. */
+@media (max-width: 767px) {
+  #main .framer-1lq0uvn .framer-1yawxw3 {
+    width: min(220px, 100%) !important;
+    max-width: 220px !important;
+    align-self: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  #main .framer-1lq0uvn .framer-1yawxw3 {
+    width: min(300px, 100%) !important;
+    max-width: 300px !important;
+    align-self: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
 @media (max-width: 767px) {
   :root {
     --tz-section: 40px;
