@@ -201,6 +201,25 @@
       setAttr(face, "data-tz-card", "");
       setAttr(face, "data-tz-kind", "card");
     });
+    equalizeLabFaces();
+  }
+
+  // Match the three visible cards to the tallest one. The sticky padding stays
+  // on the outer card, so it is not part of this height.
+  function equalizeLabFaces() {
+    var root = main();
+    if (!root) return;
+    var faces = $$("#from-the-lab .tz-lab-face", root);
+    if (faces.length < 2) return;
+    faces.forEach(function (face) { face.style.minHeight = ""; });
+    var max = 0;
+    faces.forEach(function (face) {
+      var h = face.offsetHeight;
+      if (h > max) max = h;
+    });
+    if (!max) return;
+    var px = Math.ceil(max) + "px";
+    faces.forEach(function (face) { face.style.minHeight = px; });
   }
 
   // The process mark is a fixed 653×344 drawing inside a frame that shrinks.
@@ -930,6 +949,20 @@
   function start() {
     enhance();
     new MutationObserver(schedule).observe(main() || document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["href"] });
+    var labResize = false;
+    window.addEventListener("resize", function () {
+      if (labResize) return;
+      labResize = true;
+      requestAnimationFrame(function () {
+        labResize = false;
+        if (pageName() === "home") equalizeLabFaces();
+      });
+    });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        if (pageName() === "home") equalizeLabFaces();
+      });
+    }
     if (location.hash) {
       var id = decodeURIComponent(location.hash.slice(1));
       setTimeout(function () { scrollToId(id); }, 300);
