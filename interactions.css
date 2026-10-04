@@ -152,10 +152,23 @@
 #main #featured-product .framer-11xoq6b {
   overflow: visible !important;
   border-radius: 8px;
-  transition: transform var(--tz-med) var(--tz-ease), box-shadow var(--tz-med) var(--tz-ease), opacity .48s var(--tz-ease) !important;
+  transition: transform var(--tz-med) var(--tz-ease), box-shadow var(--tz-med) var(--tz-ease) !important;
 }
-#main #featured-product .framer-11xoq6b.tz-feat-out { opacity: 0; }
-#main #featured-product .framer-1o9oqkl { transition: background .48s var(--tz-ease); }
+#main #featured-product .framer-11xoq6b::after {
+  box-shadow: inset 0 0 0 1px rgba(245, 241, 236, .16);
+  background: transparent;
+}
+#main #featured-product .tz-feat-ghost {
+  position: absolute !important;
+  z-index: 4;
+  margin: 0 !important;
+  pointer-events: none !important;
+}
+#main #featured-product .framer-1o9oqkl {
+  margin: 8px !important;
+  flex: 1 1 0 !important;
+  width: auto !important;
+}
 #main #featured-product .framer-1ti9ac8 > div {
   background-color: #231d17 !important;
   cursor: pointer;

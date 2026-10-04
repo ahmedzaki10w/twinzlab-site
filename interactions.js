@@ -206,10 +206,16 @@
   ];
   var featuredIndex = 0;
   var featuredTimer = 0;
+  var featuredFadeTimer = 0;
+  var featuredGen = 0;
   var featuredReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function featuredRow() {
-    return $(".framer-11xoq6b", main());
+    var rows = $$(".framer-11xoq6b", main());
+    for (var i = 0; i < rows.length; i++) {
+      if (!rows[i].classList.contains("tz-feat-ghost")) return rows[i];
+    }
+    return null;
   }
 
   function paintFeatured() {
@@ -251,20 +257,64 @@
     }, 5000);
   }
 
+  function clearFeaturedGhost(row) {
+    var parent = row && row.parentElement;
+    if (!parent) return;
+    $$(".tz-feat-ghost", parent).forEach(function (ghost) { ghost.remove(); });
+  }
+
   function showFeatured(next, animate) {
     var row = featuredRow();
     if (!row) return;
     clearTimeout(featuredTimer);
-    if (next === featuredIndex) { armFeatured(); return; }
-    function apply() {
+    clearTimeout(featuredFadeTimer);
+    if (next === featuredIndex) {
+      clearFeaturedGhost(row);
+      armFeatured();
+      return;
+    }
+    featuredGen += 1;
+    var gen = featuredGen;
+    clearFeaturedGhost(row);
+    row.classList.remove("tz-feat-swap");
+    row.classList.remove("tz-feat-out");
+    if (!animate || featuredReduce || typeof row.animate !== "function") {
       featuredIndex = next;
-      row.classList.remove("tz-feat-out");
       paintFeatured();
       armFeatured();
+      return;
     }
-    if (!animate || featuredReduce) { apply(); return; }
-    row.classList.add("tz-feat-out");
-    featuredTimer = setTimeout(apply, 480);
+    var parent = row.parentElement;
+    if (parent && getComputedStyle(parent).position === "static") parent.style.position = "relative";
+    var ghost = row.cloneNode(true);
+    var placed = getComputedStyle(row);
+    ghost.classList.add("tz-feat-ghost");
+    ghost.classList.remove("tz-feat-swap", "tz-feat-out");
+    ghost.setAttribute("aria-hidden", "true");
+    ghost.style.left = row.offsetLeft + "px";
+    ghost.style.top = row.offsetTop + "px";
+    ghost.style.width = row.offsetWidth + "px";
+    ghost.style.height = row.offsetHeight + "px";
+    ghost.style.margin = "0";
+    ghost.style.transform = placed.transform;
+    ghost.style.opacity = "1";
+    parent.appendChild(ghost);
+    featuredIndex = next;
+    paintFeatured();
+    // Old slide sits on top at full opacity; the new one is already underneath.
+    // animate() runs after the ghost has a painted start value, so the fade is not skipped.
+    var fade = ghost.animate(
+      [{ opacity: 1 }, { opacity: 0 }],
+      { duration: 800, easing: "cubic-bezier(0.4, 0, 0.2, 1)", fill: "forwards" }
+    );
+    function done() {
+      if (gen !== featuredGen) return;
+      clearTimeout(featuredFadeTimer);
+      if (ghost.parentNode) ghost.remove();
+      armFeatured();
+    }
+    fade.onfinish = done;
+    featuredFadeTimer = setTimeout(done, 1100);
   }
 
   function setupFeatured() {
