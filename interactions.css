@@ -189,25 +189,28 @@
   outline-offset: 3px;
 }
 
-/* From the lab: align the three cards and keep the hover frame off the image and the text. */
-#main #from-the-lab .framer-1ytkcbt {
-  height: auto !important;
-  align-items: flex-start !important;
-}
-#main #from-the-lab .framer-inyeg6,
-#main #from-the-lab .framer-1kvby1z,
-#main #from-the-lab .framer-1dmwas0 {
-  position: relative !important;
-  top: auto !important;
-  height: auto !important;
-  padding: 8px !important;
-  align-self: flex-start !important;
-}
-#main #from-the-lab .framer-14xwj4f,
-#main #from-the-lab .framer-1lv7zpz,
-#main #from-the-lab .framer-1w099d0 {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+/* From the lab, below desktop: one aligned row, with the image and text inset from the hover frame.
+   Desktop keeps Framer's sticky stack (each card sticks, then the section scrolls away). */
+@media (max-width: 1023px) {
+  #main #from-the-lab .framer-1ytkcbt {
+    height: auto !important;
+    align-items: flex-start !important;
+  }
+  #main #from-the-lab .framer-inyeg6,
+  #main #from-the-lab .framer-1kvby1z,
+  #main #from-the-lab .framer-1dmwas0 {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    padding: 8px !important;
+    align-self: flex-start !important;
+  }
+  #main #from-the-lab .framer-14xwj4f,
+  #main #from-the-lab .framer-1lv7zpz,
+  #main #from-the-lab .framer-1w099d0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 
 /* Process diagram: shrink the mark inside the frame so the stroke is not clipped. */
