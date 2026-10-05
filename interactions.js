@@ -61,7 +61,14 @@
     { sel: ".framer-1x8ulyn", mail: "", label: "Email " + EMAIL, kind: "text" }
   ];
 
-  var SOCIAL = [".framer-ta0yq0", ".framer-tlzm73", ".framer-1gdr5uv", ".framer-1mshf4g"];
+  // Footer social column. The Facebook slot is the TikTok account.
+  // Instagram (@twinzlab.app) stays hidden while that account is under appeal.
+  var SOCIAL = {
+    ".framer-ta0yq0": { href: "https://www.linkedin.com/company/twinzlab", label: "LinkedIn" },
+    ".framer-1gdr5uv": { href: "https://x.com/TwinzLab", label: "X (Twitter)" },
+    ".framer-1mshf4g": { href: "https://www.tiktok.com/@twinzlab", label: "TikTok" }
+  };
+  var SOCIAL_HIDDEN = [".framer-tlzm73"];
 
   // Cards whose whole surface forwards to the action inside them.
   var CARD_PROXIES = [
@@ -106,6 +113,9 @@
   /* -------------------------------------------------------------- enhance */
 
   function makeLink(el, href, kind, label) {
+    el.removeAttribute("data-tz-disabled");
+    el.removeAttribute("aria-disabled");
+    if (el.getAttribute("title") && /coming soon/i.test(el.getAttribute("title"))) el.removeAttribute("title");
     setAttr(el, "data-tz-href", href);
     setAttr(el, "data-tz-kind", kind);
     if (el.tagName === "A") {
@@ -144,9 +154,31 @@
       });
     });
 
-    SOCIAL.forEach(function (sel) {
+    Object.keys(SOCIAL).forEach(function (sel) {
+      var item = SOCIAL[sel];
       $$(sel, root).forEach(function (el) {
-        makeDisabled(el, text(el) + " profile coming soon", "text");
+        var labelNode = $(".framer-text", el) || el;
+        if (text(labelNode) !== item.label) labelNode.textContent = item.label;
+        if (el.getAttribute("data-framer-name") !== item.label) setAttr(el, "data-framer-name", item.label);
+        makeLink(el, item.href, "text", item.label);
+        setAttr(el, "data-tz-external", "");
+      });
+    });
+
+    SOCIAL_HIDDEN.forEach(function (sel) {
+      $$(sel, root).forEach(function (el) {
+        el.removeAttribute("data-tz-href");
+        el.removeAttribute("data-tz-external");
+        el.removeAttribute("data-tz-disabled");
+        el.removeAttribute("data-tz-kind");
+        el.removeAttribute("role");
+        el.removeAttribute("tabindex");
+        el.removeAttribute("aria-disabled");
+        el.removeAttribute("aria-label");
+        el.removeAttribute("title");
+        setAttr(el, "hidden", "");
+        setAttr(el, "aria-hidden", "true");
+        setAttr(el, "data-tz-hidden", "");
       });
     });
 
@@ -903,7 +935,12 @@
       e.stopPropagation();
       if (hit.tagName === "A" && modified(e)) return;
       e.preventDefault();
-      go(hit.getAttribute("data-tz-href"));
+      var href = hit.getAttribute("data-tz-href");
+      if (hit.hasAttribute("data-tz-external")) {
+        window.open(href, "_blank", "noopener,noreferrer");
+        return;
+      }
+      go(href);
       return;
     }
     if (hit.hasAttribute("data-tz-card")) {
