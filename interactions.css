@@ -18,9 +18,6 @@
 #main [data-tz-anchor] { scroll-margin-top: 96px; }
 #main [data-tz-hidden] { display: none !important; }
 
-/* @twinzlab.app is under appeal. Keep the footer item in the export, but do not show or link it. */
-#main .framer-tlzm73 { display: none !important; }
-
 /* ---------------------------------------------------------------- buttons */
 
 #main a.framer-s29zbl,
