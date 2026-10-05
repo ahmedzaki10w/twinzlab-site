@@ -66,7 +66,7 @@
   var SOCIAL = {
     ".framer-ta0yq0": { href: "https://www.linkedin.com/company/twinzlab", label: "LinkedIn" },
     ".framer-1gdr5uv": { href: "https://x.com/TwinzLab", label: "X (Twitter)" },
-    ".framer-1mshf4g": { href: "https://www.tiktok.com/@twinzlab", label: "TikTok" }
+    ".framer-1mshf4g": { href: "https://www.tiktok.com/@twinz_lab", label: "TikTok" }
   };
   var SOCIAL_HIDDEN = [".framer-tlzm73"];
 
