@@ -61,6 +61,27 @@
     { sel: ".framer-1x8ulyn", mail: "", label: "Email " + EMAIL, kind: "text" }
   ];
 
+  // Framer hydrates the header anchors as `./products` (relative to the current
+  // directory). From / that reaches /products; from /about/ it becomes
+  // /about/products. Pin each item to the site root instead.
+  var HEADER_NAV = {
+    home: "",
+    about: "about/",
+    products: "products/",
+    lab: "lab/",
+    labs: "lab/"
+  };
+
+  function headerNavHref(node) {
+    var el = node && node.closest ? node : (node && node.parentElement);
+    if (!el || !el.closest) return "";
+    var a = el.closest("a[href]");
+    if (!a || !a.closest("[data-framer-name='header']")) return "";
+    var name = (a.getAttribute("data-framer-name") || "").trim().toLowerCase();
+    if (!Object.prototype.hasOwnProperty.call(HEADER_NAV, name)) return "";
+    return site(HEADER_NAV[name]);
+  }
+
   // Footer social column. The Facebook slot is the TikTok account.
   var SOCIAL = {
     ".framer-ta0yq0": { href: "https://www.linkedin.com/company/twinzlab", label: "LinkedIn" },
@@ -151,6 +172,11 @@
         var href = l.mail !== undefined ? mailto(l.mail) : site(l.href);
         makeLink(el, href, l.kind, l.label || "");
       });
+    });
+
+    $$("[data-framer-name='header'] a[href]", root).forEach(function (a) {
+      var href = headerNavHref(a);
+      if (href) makeLink(a, href, "nav");
     });
 
     Object.keys(SOCIAL).forEach(function (sel) {
@@ -891,6 +917,19 @@
   window.addEventListener("click", function (e) {
     var t = e.target;
     if (!t || !t.closest) return;
+
+    // Correct the header before the page's own click handler follows `./products`.
+    var navHref = headerNavHref(t);
+    if (navHref && main() && main().contains(t)) {
+      var navA = t.closest("a[href]");
+      if (navA) setAttr(navA, "href", navHref);
+      if (!(navA && modified(e))) {
+        e.preventDefault();
+        e.stopPropagation();
+        go(navHref);
+      }
+      return;
+    }
 
     var setF = t.closest("[data-tz-set-filter]");
     if (setF) { e.preventDefault(); applyFilter(pageName(), setF.getAttribute("data-tz-set-filter"), true); return; }

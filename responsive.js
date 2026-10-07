@@ -19,9 +19,18 @@
     attributeFilter: ["content"],
   });
 
-  var path = location.pathname.replace(/index\.html$/, "");
-  var depth = path.split("/").filter(Boolean).length;
-  var root = depth ? "../".repeat(depth) : "./";
+  // Absolute site root. `../products/` is one directory off when the address
+  // has no trailing slash, and `./products` (what Framer writes) nests under
+  // the current page. responsive.js lives at the site root, so its URL is the root.
+  function siteRoot() {
+    var scripts = document.getElementsByTagName("script");
+    for (var i = scripts.length - 1; i >= 0; i--) {
+      var src = scripts[i].src || "";
+      if (/(?:^|\/)responsive\.js(?:[?#]|$)/.test(src)) return src.replace(/[^/]*$/, "");
+    }
+    return location.origin + "/";
+  }
+  var root = siteRoot();
   var links = [
     ["Home", root],
     ["About", root + "about/"],
