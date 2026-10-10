@@ -243,7 +243,16 @@
     if (finished || leaving) return;
     if (!startedAt) startedAt = now;
     var elapsed = now - startedAt;
-    if (elapsed >= CYCLE_MS) markCycled();
+    if (elapsed >= CYCLE_MS) {
+      markCycled();
+      if (leaving) {
+        drawPath.style.strokeDashoffset = "0";
+        mark.removeAttribute("mask");
+        dotA.setAttribute("opacity", "1");
+        dotB.setAttribute("opacity", "1");
+        return;
+      }
+    }
     var local = elapsed % CYCLE_MS;
     var p = Math.min(1, local / DRAW_MS);
     drawPath.style.strokeDashoffset = String(length * (1 - easeDraw(p)));
