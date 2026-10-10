@@ -980,6 +980,8 @@
     return true;
   }
 
+  var leaving = false;
+
   function go(href) {
     var u = new URL(href, location.href);
     if (u.protocol === "mailto:") { location.href = u.href; return; }
@@ -999,6 +1001,16 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
       return;
+    }
+    if (u.origin === location.origin) {
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce && !leaving) {
+        try { sessionStorage.setItem("tz-page-enter", "1"); } catch (err) {}
+        leaving = true;
+        document.documentElement.classList.add("tz-leaving");
+        setTimeout(function () { location.href = u.href; }, 280);
+        return;
+      }
     }
     location.href = u.href;
   }

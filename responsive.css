@@ -796,6 +796,94 @@
   }
 }
 
+/* Page change. The current page blurs away, and the next page's sections
+   start blurred. A head script adds tz-enter before first paint; if reveal
+   never arms, that script drops the class so content cannot stay hidden. */
+html.tz-leaving #main {
+  opacity: 0;
+  filter: blur(8px);
+  pointer-events: none;
+  transition: opacity .32s cubic-bezier(0.4, 0, 0.2, 1), filter .32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+html.tz-enter #main .framer-152oa6t,
+html.tz-enter #main .framer-dj3hi8,
+html.tz-enter #main .framer-et1gw2,
+html.tz-enter #main .framer-1cs6vvp,
+html.tz-enter #main .framer-1d28yuc,
+html.tz-enter #main .framer-1lq0uvn,
+html.tz-enter #main .framer-ihlbe4,
+html.tz-enter #main .framer-iyzx2i,
+html.tz-enter #main .framer-2dudm4,
+html.tz-enter #main .framer-14mxnf4,
+html.tz-enter #main .framer-1ugbpjk,
+html.tz-enter #main .framer-1h7cige,
+html.tz-enter #main .framer-q8ddpx,
+html.tz-enter #main .framer-1azgdz2,
+html.tz-enter #main .framer-1wesycm,
+html.tz-enter #main .framer-1k78fk5,
+html.tz-enter #main .framer-10dq8av,
+html.tz-enter #main .framer-14b4bh3,
+html.tz-enter #main .article-side,
+html.tz-enter #main .byline,
+html.tz-enter #main .hero,
+html.tz-enter #main .dek,
+html.tz-enter #main .prose > *,
+html.tz-enter #main .author-note,
+html.tz-enter #main .share,
+html.tz-enter #main .topic-cta,
+html.tz-enter #main .more-lab,
+html.tz-enter #main .sources {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translate3d(0, 12px, 0);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--tz-reveal-delay, 0ms);
+}
+html.tz-enter #main .tz-reveal.is-in {
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.tz-leaving #main,
+  html.tz-enter #main .framer-152oa6t,
+  html.tz-enter #main .framer-dj3hi8,
+  html.tz-enter #main .framer-et1gw2,
+  html.tz-enter #main .framer-1cs6vvp,
+  html.tz-enter #main .framer-1d28yuc,
+  html.tz-enter #main .framer-1lq0uvn,
+  html.tz-enter #main .framer-ihlbe4,
+  html.tz-enter #main .framer-iyzx2i,
+  html.tz-enter #main .framer-2dudm4,
+  html.tz-enter #main .framer-14mxnf4,
+  html.tz-enter #main .framer-1ugbpjk,
+  html.tz-enter #main .framer-1h7cige,
+  html.tz-enter #main .framer-q8ddpx,
+  html.tz-enter #main .framer-1azgdz2,
+  html.tz-enter #main .framer-1wesycm,
+  html.tz-enter #main .framer-1k78fk5,
+  html.tz-enter #main .framer-10dq8av,
+  html.tz-enter #main .framer-14b4bh3,
+  html.tz-enter #main .article-side,
+  html.tz-enter #main .byline,
+  html.tz-enter #main .hero,
+  html.tz-enter #main .dek,
+  html.tz-enter #main .prose > *,
+  html.tz-enter #main .author-note,
+  html.tz-enter #main .share,
+  html.tz-enter #main .topic-cta,
+  html.tz-enter #main .more-lab,
+  html.tz-enter #main .sources {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Scroll blur-reveal. The hiding rule only applies once JS opts in, so a
    failed script never leaves sections invisible. Sticky elements use the
    soft variant: opacity only, because filter and transform break sticky. */

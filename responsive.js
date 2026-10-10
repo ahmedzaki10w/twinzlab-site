@@ -120,7 +120,7 @@
     ".framer-1lq0uvn", ".framer-ihlbe4", ".framer-iyzx2i", ".framer-2dudm4",
     ".framer-14mxnf4", ".framer-1ugbpjk", ".framer-1h7cige",
     ".framer-q8ddpx", ".framer-1azgdz2", ".framer-1wesycm", ".framer-1k78fk5",
-    ".framer-14b4bh3"
+    ".framer-10dq8av", ".framer-14b4bh3"
   ];
   var REVEAL_CARDS = [
     ".framer-1d8ufji", ".framer-1413m6a", ".framer-ck2tmp",
@@ -157,7 +157,7 @@
     for (var i = 0; i < list.length; i++) list[i].classList.add("is-in");
   }
 
-  function armReveal(nodes, stagger, cascade) {
+  function armReveal(nodes, stagger, cascade, force) {
     if (!revealObserver) return;
     var live = [];
     for (var i = 0; i < nodes.length; i++) {
@@ -166,20 +166,30 @@
       if (el.closest && el.closest("[data-framer-name='header'], .framer-ntizu1, .tz-menu")) continue;
       var rect = el.getBoundingClientRect();
       if (rect.height < 32 || rect.width < 32) continue;
-      var sticky = revealSticky(el);
-      if (sticky === "child") continue;
+      // Walking every descendant for sticky is a long task on these pages.
+      // Enter fades the section either way, then clears the filter.
+      var sticky = force ? "" : revealSticky(el);
+      // A sticky descendant breaks if an ancestor is blurred. Skip those on
+      // scroll. Page enter still fades them, then clears the filter.
+      if (sticky === "child" && !force) continue;
       el.setAttribute("data-tz-reveal", "1");
       el.classList.add("tz-reveal");
       // Opacity only. Blur or translate on the sticky box itself cancels sticking.
-      if (sticky === "self") el.classList.add("tz-reveal-soft");
+      if (sticky === "self" || (sticky === "child" && force)) el.classList.add("tz-reveal-soft");
       var delay = Math.min((stagger || 0) + (cascade ? live.length * 80 : 0), 280);
       if (delay) el.style.setProperty("--tz-reveal-delay", delay + "ms");
       live.push(el);
     }
     if (!live.length) return;
     if (revealGroups) revealGroups.set(live[0], live);
-    if (revealInView(live[0])) revealShow(live);
-    else revealObserver.observe(live[0]);
+    if (revealInView(live[0])) {
+      // The hidden state has to paint before is-in, or the fade never runs.
+      if (document.documentElement.classList.contains("tz-enter")) {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { revealShow(live); });
+        });
+      } else revealShow(live);
+    } else revealObserver.observe(live[0]);
   }
 
   function articleGroups() {
@@ -207,14 +217,78 @@
     return groups;
   }
 
+  function framerPage() {
+    var main = document.getElementById("main");
+    return !!(main && main.hasAttribute("data-framer-hydrate-v2"));
+  }
+
+  function framerPending() {
+    if (!framerPage()) return false;
+    var el = document.getElementById("main").firstElementChild;
+    if (!el) return true;
+    for (var k in el) if (k.indexOf("__reactFiber") === 0) return false;
+    return true;
+  }
+
+  // Framer replaces the server HTML after load. Fading before that swap
+  // plays the entrance, then snaps it back and plays it again.
+  var enterGate = "idle";
+  function holdEnter() {
+    if (enterGate !== "idle") return;
+    enterGate = "holding";
+    var root = document.documentElement;
+    var main = document.getElementById("main");
+    var started = Date.now();
+    var timer = null;
+    var obs = window.MutationObserver && main
+      ? new MutationObserver(function () { schedule(); })
+      : null;
+    if (obs) obs.observe(main, { childList: true, subtree: true });
+    function schedule() {
+      clearTimeout(timer);
+      timer = setTimeout(release, 100);
+    }
+    function release() {
+      if (!root.classList.contains("tz-enter")) {
+        if (obs) obs.disconnect();
+        enterGate = "idle";
+        return;
+      }
+      if (framerPending() && Date.now() - started < 2200) {
+        timer = setTimeout(release, 80);
+        return;
+      }
+      if (obs) obs.disconnect();
+      enterGate = "open";
+      scanReveal();
+    }
+    schedule();
+  }
+
   function scanReveal() {
     if (revealReduced() || !revealObserver) return;
+    var root = document.documentElement;
+    var entering = root.classList.contains("tz-enter");
+    if (entering && framerPage() && enterGate !== "open") {
+      holdEnter();
+      return;
+    }
+    if (entering) root.classList.add("tz-enter-armed");
+    root.classList.add("tz-reveal-on");
+    var step = 0;
     REVEAL_SECTIONS.forEach(function (sel) {
-      Array.prototype.forEach.call(document.querySelectorAll(sel), function (el) { armReveal([el], 0); });
+      Array.prototype.forEach.call(document.querySelectorAll(sel), function (el) {
+        var shown = revealInView(el);
+        armReveal([el], entering && shown ? Math.min(step, 6) * 70 : 0, false, entering);
+        step++;
+      });
     });
     var cards = document.querySelectorAll(REVEAL_CARDS.join(","));
     var byParent = [];
     Array.prototype.forEach.call(cards, function (el) {
+      // The section fade already brings these in. Arming them now would
+      // hide each card a second time inside a block that is still blurred.
+      if (entering && el.closest && el.closest(REVEAL_SECTIONS.join(","))) return;
       var parent = el.parentElement;
       var row = null;
       for (var i = 0; i < byParent.length; i++) if (byParent[i].parent === parent) row = byParent[i];
@@ -225,8 +299,16 @@
       row.els.push(el);
     });
     byParent.forEach(function (row) { armReveal(row.els, 40, true); });
-    articleGroups().forEach(function (group, index) { armReveal(group, index < 4 ? index * 60 : 0, false); });
-    document.documentElement.classList.add("tz-reveal-on");
+    if (entering && !root.hasAttribute("data-tz-enter-end")) {
+      root.setAttribute("data-tz-enter-end", "1");
+      setTimeout(function () {
+        root.classList.remove("tz-enter");
+        scanReveal();
+      }, 2400);
+    }
+    articleGroups().forEach(function (group, index) {
+      armReveal(group, entering ? Math.min(index, 6) * 70 : (index < 4 ? index * 60 : 0), false);
+    });
   }
 
   function bootReveal() {
