@@ -203,6 +203,7 @@
   width: 100%;
   box-sizing: border-box;
   gap: 16px;
+  padding: 10px 20px 16px;
   border-radius: 12px;
   pointer-events: auto;
 }
@@ -237,7 +238,7 @@
     align-self: flex-start !important;
   }
   #main #from-the-lab .tz-lab-face {
-    padding: 8px;
+    padding: 10px 20px 18px;
     gap: var(--tz-gutter);
   }
   #main #from-the-lab .framer-14xwj4f,
