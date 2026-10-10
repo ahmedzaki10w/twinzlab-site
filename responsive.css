@@ -820,4 +820,12 @@ html.tz-reveal-on .tz-reveal.tz-reveal-soft {
   #main .framer-176qsn4 { padding: var(--tz-card) !important; min-height: 0; }
   #main .framer-1i08ejj { display: none !important; }
   #main .framer-1h1nkbv { margin-bottom: var(--tz-tight) !important; }
+
+  /* process descriptions: the 32px preset was still ~26px on a phone */
+  #main #process .framer-167cz33 .framer-styles-preset-17w1rip,
+  #main #process .framer-g8plio .framer-styles-preset-17w1rip,
+  #main #process .framer-tryj1c .framer-styles-preset-17w1rip,
+  #main #process .framer-4vhuxf .framer-styles-preset-17w1rip {
+    --framer-font-size-scale: .625;
+  }
 }
