@@ -1,5 +1,5 @@
 /* TwinzLab load overlay.
-   Plays assets/twinzlab-logo.lottie with the self-hosted dotLottie web player
+   Plays "assets/animation logo twinzlab.lottie" with the self-hosted dotLottie web player
    (assets/dotlottie/, @lottiefiles/dotlottie-web 0.81.0) on the first view
    of a tab session. Later pages in that tab skip it. Reduced motion skips it. */
 (function () {
@@ -164,7 +164,7 @@
   }
 
   var wasmUrl = base + "assets/dotlottie/dotlottie-player.wasm";
-  var lottieUrl = base + "assets/twinzlab-logo.lottie";
+  var lottieUrl = base + "assets/animation logo twinzlab.lottie";
   // The player fetches the .lottie with default credentials, which does not
   // match a preload, so only the wasm (loaded with CORS) is preloaded.
   preload(wasmUrl, "fetch", true);
