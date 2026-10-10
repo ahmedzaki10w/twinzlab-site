@@ -895,3 +895,45 @@ html.tz-reveal-on .tz-reveal.tz-reveal-soft {
   #main .framer-phmefa .framer-text,
   #main .framer-17nt926 .framer-text { --framer-font-size-scale: .6; }
 }
+
+/* One published article. Keep that card the filled surface (#231d17) and
+   drop the empty "coming soon" slots, including after Framer hydrates them. */
+#main .framer-qwhetu,
+#main .framer-wljenu,
+#main .framer-1kvby1z,
+#main .framer-1dmwas0 { display: none !important; }
+#main .framer-eo4uhb,
+#main #from-the-lab .tz-lab-face {
+  background-color: #231d17 !important;
+}
+#main .framer-1klyps3 > .framer-eo4uhb,
+#main #from-the-lab .framer-inyeg6 {
+  flex: none !important;
+  width: min(420px, 100%) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  align-self: flex-start !important;
+}
+#main #from-the-lab,
+#main #from-the-lab .framer-kg80rm,
+#main #from-the-lab .framer-1ytkcbt,
+#main .framer-10dq8av,
+#main .framer-kg80rm,
+#main .framer-1ytkcbt {
+  height: auto !important;
+  min-height: 0 !important;
+}
+#main #from-the-lab .framer-inyeg6 {
+  position: relative !important;
+  top: auto !important;
+}
+
+/* Article titles are 24px. That still reads large on a tablet and a phone. */
+@media (max-width: 1023px) {
+  #main .framer-zdps2f .framer-text,
+  #main #from-the-lab .framer-g4yjk0 .framer-text { --framer-font-size-scale: .833; }
+}
+@media (max-width: 767px) {
+  #main .framer-zdps2f .framer-text,
+  #main #from-the-lab .framer-g4yjk0 .framer-text { --framer-font-size-scale: .75; }
+}

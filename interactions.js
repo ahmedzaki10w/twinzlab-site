@@ -92,7 +92,7 @@
 
   // Cards whose whole surface forwards to the action inside them.
   var CARD_PROXIES = [
-    ".framer-inyeg6", ".framer-1kvby1z", ".framer-1dmwas0",
+    ".framer-inyeg6",
     ".framer-1ef4b7q", ".framer-nzlyda", ".framer-tlhq47",
     ".framer-1qxun2q", ".framer-11xoq6b",
     ".framer-eo4uhb"
@@ -121,7 +121,7 @@
     },
     lab: {
       chips: ".framer-zk7jz2", list: ".framer-1klyps3",
-      cards: [".framer-eo4uhb", ".framer-qwhetu", ".framer-wljenu"],
+      cards: [".framer-eo4uhb"],
       tag: ".framer-svx48s, .framer-brf2i9, .framer-1dxoj8z",
       empty: function (label) {
         return { msg: "No " + label + " posts yet.", cta: "Show all posts", filter: "all" };
@@ -157,9 +157,18 @@
     setAttr(el, "title", reason);
   }
 
+  // The export still ships two empty "coming soon" article cards. Hydration
+  // puts them back, so drop them on every pass. Only one note is published.
+  function dropPlaceholderArticles() {
+    $$(".framer-qwhetu, .framer-wljenu, .framer-1kvby1z, .framer-1dmwas0", main()).forEach(function (el) {
+      el.remove();
+    });
+  }
+
   function enhance() {
     var root = main();
     if (!root) return;
+    dropPlaceholderArticles();
     var page = pageName();
 
     $$("a.framer-s29zbl", root).forEach(function (a) {
@@ -227,7 +236,7 @@
   // The sticky Lab cards carry empty padding so they can stick in sequence.
   // The hover belongs on the visible face (image + text), not that padding.
   function fitLabHover() {
-    $$(".framer-inyeg6, .framer-1kvby1z, .framer-1dmwas0", main()).forEach(function (card) {
+    $$(".framer-inyeg6", main()).forEach(function (card) {
       var face = $(".tz-lab-face", card);
       if (!face) {
         face = document.createElement("div");
