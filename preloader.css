@@ -24,19 +24,19 @@
   opacity: 0;
 }
 
-/* viewBox is 158 with the mark about 126 tall, so 160px shows the
-   artwork near 128px, and 176px on large screens shows it near 140px. */
+/* viewBox is 158 with the mark about 126 tall, so 136px shows the
+   artwork near 108px, and 152px on large screens shows it near 121px. */
 .tz-preloader__logo {
-  width: 160px;
-  height: 160px;
+  width: 136px;
+  height: 136px;
   display: block;
   flex: 0 0 auto;
 }
 
 @media (min-width: 1280px) {
   .tz-preloader__logo {
-    width: 176px;
-    height: 176px;
+    width: 152px;
+    height: 152px;
   }
 }
 
