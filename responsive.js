@@ -239,19 +239,35 @@
         revealObserver.unobserve(entry.target);
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-    scanReveal();
-    var queued = false;
-    var root = document.getElementById("main") || document.body;
-    if (window.MutationObserver && root) {
-      new MutationObserver(function () {
-        if (queued) return;
-        queued = true;
-        requestAnimationFrame(function () { queued = false; scanReveal(); });
-      }).observe(root, { childList: true, subtree: true });
+
+    var started = false;
+    function startReveal() {
+      if (started) return;
+      started = true;
+      scanReveal();
+      var queued = false;
+      var root = document.getElementById("main") || document.body;
+      if (window.MutationObserver && root) {
+        new MutationObserver(function () {
+          if (queued) return;
+          queued = true;
+          requestAnimationFrame(function () { queued = false; scanReveal(); });
+        }).observe(root, { childList: true, subtree: true });
+      }
+      // Framer hydration replaces the section tree after this script.
+      setTimeout(scanReveal, 400);
+      setTimeout(scanReveal, 1600);
     }
-    // Framer hydration replaces the section tree after this script.
-    setTimeout(scanReveal, 400);
-    setTimeout(scanReveal, 1600);
+
+    // The load overlay covers the first viewport. Arming the reveal while it
+    // is up spends the entrance on a hidden page, so wait until it is gone.
+    // The timeout matches the overlay's own 4s ceiling plus the fade.
+    if (document.documentElement.classList.contains("tz-preloading")) {
+      document.addEventListener("tz-preloader-done", startReveal);
+      setTimeout(startReveal, 5000);
+    } else {
+      startReveal();
+    }
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bootReveal);
