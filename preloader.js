@@ -2,8 +2,8 @@
    The supplied lottie stores the infinity as three 32×36 PNGs and only
    fades two dots, so playing it looks pixelated and never draws a path.
    This reveals the same infinity as a vector (the favicon path) along its
-   centerline, then fades the two dots on that file's timing: 0.59s–0.84s
-   and 1.05s–1.31s inside the 2s cycle. */
+   centerline, inside the file's own 80×80 frame with no scale-up, then
+   fades the two dots on that file's timing: 0.59s–0.84s and 1.05s–1.31s. */
 (function () {
   "use strict";
 
@@ -60,6 +60,8 @@
   var svg = document.createElementNS(NS, "svg");
   svg.setAttribute("class", "tz-preloader__logo");
   svg.setAttribute("viewBox", "0 0 158 158");
+  svg.setAttribute("width", "80");
+  svg.setAttribute("height", "80");
   svg.setAttribute("aria-hidden", "true");
 
   function el(name, attrs) {

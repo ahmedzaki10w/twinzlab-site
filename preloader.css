@@ -24,20 +24,12 @@
   opacity: 0;
 }
 
-/* viewBox is 158 with the mark about 126 tall, so 136px shows the
-   artwork near 108px, and 152px from 1280px up shows it near 121px. */
+/* The logo file is an 80×80 frame. Show that frame 1:1 — no scale-up. */
 .tz-preloader__logo {
-  width: 136px;
-  height: 136px;
+  width: 80px;
+  height: 80px;
   display: block;
   flex: 0 0 auto;
-}
-
-@media (min-width: 1280px) {
-  .tz-preloader__logo {
-    width: 152px;
-    height: 152px;
-  }
 }
 
 .tz-preloader__label {
