@@ -126,7 +126,7 @@
     ".framer-1d8ufji", ".framer-1413m6a", ".framer-ck2tmp",
     ".framer-11xoq6b",
     ".framer-1ef4b7q", ".framer-nzlyda", ".framer-tlhq47",
-    ".framer-eo4uhb", ".framer-qwhetu", ".framer-wljenu",
+    ".framer-eo4uhb",
     ".framer-1luoeas > *",
     ".tz-lab-face"
   ];
