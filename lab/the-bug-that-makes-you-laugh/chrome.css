@@ -280,7 +280,7 @@ td.framer-text, th.framer-text { overflow-wrap: anywhere; vertical-align: top; m
   #main .framer-ntizu1 { position: relative !important; bottom: auto !important; order: 1005 !important; padding: 56px 40px !important; }
   #main .framer-1fs2i4m { width: 100% !important; flex: 0 0 auto !important; }
   #main .framer-ntizu1 [data-framer-component-type="RichTextContainer"], #main .framer-ntizu1 [data-framer-component-type="RichTextContainer"] .framer-text { white-space: nowrap !important; }
-  #main .framer-qruyg5, #main .framer-qruyg5 .framer-text { white-space: normal !important; }
+  #main .framer-ntizu1 .framer-qruyg5, #main .framer-ntizu1 .framer-qruyg5 .framer-text { white-space: normal !important; overflow-wrap: break-word; }
   #main .framer-14b4bh3 { height: auto !important; padding: 48px 40px 64px !important; }
   #main .framer-1qw6wwa { height: auto !important; padding: 48px 24px !important; }
   #main .framer-1qigusr { width: 100% !important; }
@@ -332,6 +332,7 @@ td.framer-text, th.framer-text { overflow-wrap: anywhere; vertical-align: top; m
   #main .framer-xie4sd { flex-direction: column !important; align-items: flex-start !important; gap: 40px !important; }
   #main .framer-1gn8tz2, #main .framer-v6dc94 { width: 100% !important; max-width: 100% !important; align-items: flex-start !important; }
   #main .framer-uzoomt { width: 100% !important; gap: 48px !important; justify-content: flex-start !important; }
+  #main .framer-ntizu1 .framer-qruyg5, #main .framer-ntizu1 .framer-qruyg5 .framer-text { width: 100% !important; max-width: 100% !important; min-width: 0 !important; white-space: normal !important; overflow-wrap: break-word; text-align: left !important; }
   #main .framer-14b4bh3 { padding: 40px 20px 56px !important; }
   #main .framer-1qw6wwa { padding: 40px 20px !important; }
   #main a.framer-gox32l { padding-top: 12px !important; padding-bottom: 12px !important; }
