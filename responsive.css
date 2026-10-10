@@ -821,3 +821,51 @@ html.tz-reveal-on .tz-reveal.tz-reveal-soft {
   #main .framer-1i08ejj { display: none !important; }
   #main .framer-1h1nkbv { margin-bottom: var(--tz-tight) !important; }
 }
+
+/* Product cards: the "View Product" pills are the same gradient as the
+   primary CTA, but Framer drew them at 12px with a 12px arrow. Match the
+   CTA (16px label, 20px arrow, same padding). */
+#main .framer-tdbu6h,
+#main .framer-19so74,
+#main .framer-1y83g0w {
+  gap: 6px !important;
+  padding: 8px 12px 8px 14px !important;
+}
+#main .framer-tdbu6h .framer-text,
+#main .framer-19so74 .framer-text,
+#main .framer-1y83g0w .framer-text {
+  --framer-font-size: 16px !important;
+  --framer-line-height: 1.2em;
+}
+#main .framer-149b2wx,
+#main .framer-wlmccp,
+#main .framer-11lfemi {
+  width: 20px !important;
+  height: 20px !important;
+}
+@media (max-width: 1199px) {
+  #main .framer-tdbu6h,
+  #main .framer-19so74,
+  #main .framer-1y83g0w { min-height: 44px !important; }
+}
+@media (max-width: 767px) {
+  #main .framer-tdbu6h,
+  #main .framer-19so74,
+  #main .framer-1y83g0w {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+}
+
+/* Product names stay 40px on desktop. They were still ~36px on a tablet
+   and ~30px on a phone. */
+@media (max-width: 1023px) {
+  #main .framer-9xeidv .framer-text,
+  #main .framer-phmefa .framer-text,
+  #main .framer-17nt926 .framer-text { --framer-font-size-scale: .7; }
+}
+@media (max-width: 767px) {
+  #main .framer-9xeidv .framer-text,
+  #main .framer-phmefa .framer-text,
+  #main .framer-17nt926 .framer-text { --framer-font-size-scale: .6; }
+}
