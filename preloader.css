@@ -1,5 +1,5 @@
 /* Sitewide load overlay. Fixed, so it never shifts the page underneath.
-   Background is the site body color (:root body { background: rgb(23, 16, 11); }). */
+   The overlay background is #130D09. */
 
 #tz-preloader {
   position: fixed;
@@ -13,9 +13,9 @@
   height: 100dvh;
   margin: 0;
   padding: 0;
-  background: #17100b;
+  background: #130D09;
   opacity: 1;
-  transition: opacity 400ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: auto;
   touch-action: none;
 }
@@ -24,19 +24,19 @@
   opacity: 0;
 }
 
-/* viewBox is 158 with the mark about 126 tall, so 136px shows the
-   artwork near 108px, and 152px on large screens shows it near 121px. */
+/* The file is an 80px comp with the mark about 36px tall, so 240px
+   shows the artwork near 108px, and 268px from 1280px up shows it near 121px. */
 .tz-preloader__logo {
-  width: 136px;
-  height: 136px;
+  width: 240px;
+  height: 240px;
   display: block;
   flex: 0 0 auto;
 }
 
 @media (min-width: 1280px) {
   .tz-preloader__logo {
-    width: 152px;
-    height: 152px;
+    width: 268px;
+    height: 268px;
   }
 }
 
