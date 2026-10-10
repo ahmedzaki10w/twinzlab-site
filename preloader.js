@@ -1,6 +1,6 @@
 /* TwinzLab load overlay.
-   Plays "assets/animation logo twinzlab.lottie" unchanged with the
-   self-hosted dotLottie player (assets/dotlottie/). */
+   Plays "assets/animation logo.lottie" unchanged. The file is an 80×80
+   vector comp (a trim path plus two dots), shown at that size with no scale-up. */
 (function () {
   "use strict";
 
@@ -8,6 +8,7 @@
   var CYCLE_MS = 2000;
   var FADE_MS = 800;
   var SAFETY_MS = 4500;
+  var LOGO_PX = 80;
 
   var script = document.currentScript;
   var base = script && script.src ? script.src.replace(/[^/]*$/, "") : "/";
@@ -63,9 +64,10 @@
     overlay.appendChild(label);
   }
 
+  canvas.style.width = LOGO_PX + "px";
+  canvas.style.height = LOGO_PX + "px";
   var dpr = Math.min(window.devicePixelRatio || 1, 3);
-  var css = 240;
-  if (window.matchMedia && window.matchMedia("(min-width: 1280px)").matches) css = 268;
+  var css = LOGO_PX;
   var rect = canvas.getBoundingClientRect();
   if (rect.width) css = rect.width;
   canvas.width = Math.max(1, Math.round(css * dpr));
@@ -163,7 +165,7 @@
   }
 
   var wasmUrl = base + "assets/dotlottie/dotlottie-player.wasm";
-  var lottieUrl = base + "assets/animation logo twinzlab.lottie";
+  var lottieUrl = base + "assets/animation logo.lottie";
   preload(wasmUrl, "fetch", true);
 
   import(base + "assets/dotlottie/dotlottie-web.js").then(function (mod) {
