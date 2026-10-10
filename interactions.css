@@ -169,24 +169,75 @@
   flex: 1 1 0 !important;
   width: auto !important;
 }
+/* Story bars: one horizontal segment per product. The active segment fills left to right. */
+#main #featured-product .framer-1ti9ac8 {
+  flex-flow: row nowrap !important;
+  align-items: center !important;
+  align-self: stretch !important;
+  justify-content: flex-start !important;
+  gap: 4px !important;
+  width: 100% !important;
+  height: auto !important;
+}
 #main #featured-product .framer-1ti9ac8 > div {
-  background-color: #231d17 !important;
+  flex: 1 1 0 !important;
+  width: auto !important;
+  height: 18px !important;
+  min-width: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
   cursor: pointer;
   position: relative;
-  transition: background-color .35s var(--tz-ease);
+  display: flex !important;
+  align-items: center !important;
+  overflow: visible !important;
 }
-#main #featured-product .framer-1ti9ac8 > div::before {
-  content: "";
-  position: absolute;
-  left: -14px;
-  right: -14px;
-  top: -14px;
-  bottom: -14px;
+#main #featured-product .tz-story-track {
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(217, 217, 217, .28);
+  overflow: hidden;
+  pointer-events: none;
 }
-#main #featured-product .framer-1ti9ac8 > div.is-on { background-color: #d9d9d9 !important; }
+#main #featured-product .tz-story-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: #f3efe9;
+  border-radius: inherit;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+#main #featured-product .framer-1ti9ac8 > div.is-done .tz-story-fill {
+  transform: scaleX(1);
+}
+#main #featured-product .framer-1ti9ac8 > div.is-running .tz-story-fill {
+  animation: tz-story var(--tz-story-ms, 5s) linear forwards;
+}
+#main #featured-product .tz-story-paused .framer-1ti9ac8 > div.is-running .tz-story-fill {
+  animation-play-state: paused;
+}
+#main #featured-product .tz-feat-ghost .tz-story-fill {
+  animation: none !important;
+}
 #main #featured-product .framer-1ti9ac8 > div:focus-visible {
   outline: 2px solid var(--tz-accent);
-  outline-offset: 3px;
+  outline-offset: 2px;
+}
+@keyframes tz-story {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #main #featured-product .tz-story-fill {
+    animation: none !important;
+  }
+  #main #featured-product .framer-1ti9ac8 > div.is-on .tz-story-fill,
+  #main #featured-product .framer-1ti9ac8 > div.is-done .tz-story-fill {
+    transform: scaleX(1) !important;
+  }
 }
 
 /* Sticky Lab cards keep their scroll padding, but the hover frame is only the visible card. */

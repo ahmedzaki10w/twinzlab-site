@@ -319,6 +319,9 @@
   var featuredFadeTimer = 0;
   var featuredGen = 0;
   var featuredReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var STORY_MS = 5000;
+  var storyRemain = STORY_MS;
+  var storyStamp = 0;
 
   function featuredRow() {
     var rows = $$(".framer-11xoq6b", main());
@@ -353,18 +356,84 @@
     setAttr(row, "aria-label", slide.name);
     $$(".framer-1ti9ac8 > div", row).forEach(function (dot, i) {
       dot.classList.toggle("is-on", i === featuredIndex);
+      dot.classList.toggle("is-done", i < featuredIndex);
+      if (i !== featuredIndex) dot.classList.remove("is-running");
       setAttr(dot, "aria-pressed", i === featuredIndex ? "true" : "false");
     });
   }
 
+  function stopStoryClock() {
+    clearTimeout(featuredTimer);
+    featuredTimer = 0;
+    storyStamp = 0;
+  }
+
+  function holdStory() {
+    var row = featuredRow();
+    if (row) row.classList.add("tz-story-paused");
+    if (storyStamp) {
+      storyRemain = Math.max(0, storyRemain - (performance.now() - storyStamp));
+      storyStamp = 0;
+    }
+    clearTimeout(featuredTimer);
+    featuredTimer = 0;
+  }
+
   function armFeatured() {
     clearTimeout(featuredTimer);
+    featuredTimer = 0;
     if (featuredReduce) return;
     var row = featuredRow();
-    if (!row || row.matches(":hover")) return;
+    if (!row) return;
+    if (row.matches(":hover") || document.hidden) {
+      row.classList.add("tz-story-paused");
+      return;
+    }
+    row.classList.remove("tz-story-paused");
+    storyStamp = performance.now();
     featuredTimer = setTimeout(function () {
+      storyStamp = 0;
       showFeatured((featuredIndex + 1) % FEATURED.length, true);
-    }, 5000);
+    }, Math.max(0, storyRemain));
+  }
+
+  function restartFill(dot) {
+    var fill = dot.querySelector(".tz-story-fill");
+    if (!fill) return;
+    fill.style.animation = "none";
+    fill.style.transform = "";
+    void fill.offsetWidth;
+    fill.style.animation = "";
+    fill.style.transform = "";
+  }
+
+  function kickStory() {
+    storyRemain = STORY_MS;
+    storyStamp = 0;
+    var row = featuredRow();
+    if (!row) return;
+    row.style.setProperty("--tz-story-ms", STORY_MS + "ms");
+    var dot = $$(".framer-1ti9ac8 > div", row)[featuredIndex];
+    if (dot && !featuredReduce) {
+      dot.classList.add("is-running");
+      restartFill(dot);
+    }
+    armFeatured();
+  }
+
+  function storyScale(fill) {
+    if (!fill || !fill.parentElement) return 0;
+    var dot = fill.closest ? fill.closest(".framer-1ti9ac8 > div") : fill.parentElement.parentElement;
+    if (dot && dot.classList.contains("is-done")) return 1;
+    if (!dot || !dot.classList.contains("is-running")) return 0;
+    var anims = fill.getAnimations ? fill.getAnimations() : [];
+    if (!anims.length) return 0;
+    var dur = STORY_MS;
+    try {
+      var timing = anims[0].effect.getTiming();
+      if (typeof timing.duration === "number") dur = timing.duration;
+    } catch (err) {}
+    return Math.max(0, Math.min(1, (anims[0].currentTime || 0) / dur));
   }
 
   function clearFeaturedGhost(row) {
@@ -376,11 +445,11 @@
   function showFeatured(next, animate) {
     var row = featuredRow();
     if (!row) return;
-    clearTimeout(featuredTimer);
+    stopStoryClock();
     clearTimeout(featuredFadeTimer);
     if (next === featuredIndex) {
       clearFeaturedGhost(row);
-      armFeatured();
+      kickStory();
       return;
     }
     featuredGen += 1;
@@ -391,12 +460,17 @@
     if (!animate || featuredReduce || typeof row.animate !== "function") {
       featuredIndex = next;
       paintFeatured();
-      armFeatured();
+      kickStory();
       return;
     }
     var parent = row.parentElement;
     if (parent && getComputedStyle(parent).position === "static") parent.style.position = "relative";
+    var scales = $$(".tz-story-fill", row).map(storyScale);
     var ghost = row.cloneNode(true);
+    $$(".tz-story-fill", ghost).forEach(function (fill, i) {
+      fill.style.animation = "none";
+      fill.style.transform = "scaleX(" + (scales[i] || 0) + ")";
+    });
     var placed = getComputedStyle(row);
     ghost.classList.add("tz-feat-ghost");
     ghost.classList.remove("tz-feat-swap", "tz-feat-out");
@@ -421,7 +495,7 @@
       if (gen !== featuredGen) return;
       clearTimeout(featuredFadeTimer);
       if (ghost.parentNode) ghost.remove();
-      armFeatured();
+      kickStory();
     }
     fade.onfinish = done;
     featuredFadeTimer = setTimeout(done, 1100);
@@ -445,6 +519,15 @@
         setAttr(pager, "aria-label", "Featured products");
       }
       dots.forEach(function (dot, i) {
+        if (!dot.querySelector(".tz-story-track")) {
+          var track = document.createElement("span");
+          track.className = "tz-story-track";
+          track.setAttribute("aria-hidden", "true");
+          var fill = document.createElement("span");
+          fill.className = "tz-story-fill";
+          track.appendChild(fill);
+          dot.appendChild(track);
+        }
         setAttr(dot, "role", "button");
         setAttr(dot, "tabindex", "0");
         setAttr(dot, "aria-label", FEATURED[i] ? "Show " + FEATURED[i].name : "Show product " + (i + 1));
@@ -460,14 +543,14 @@
           showFeatured(i, true);
         });
       });
-      row.addEventListener("pointerenter", function () { clearTimeout(featuredTimer); });
+      row.addEventListener("pointerenter", holdStory);
       row.addEventListener("pointerleave", armFeatured);
       document.addEventListener("visibilitychange", function () {
-        if (document.hidden) clearTimeout(featuredTimer);
+        if (document.hidden) holdStory();
         else armFeatured();
       });
       paintFeatured();
-      armFeatured();
+      kickStory();
       return;
     }
     paintFeatured();
