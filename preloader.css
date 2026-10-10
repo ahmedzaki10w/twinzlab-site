@@ -24,20 +24,19 @@
   opacity: 0;
 }
 
-/* The .lottie comp is 113px with the mark inset to about 56px, so the
-   canvas is larger than the artwork. 220px shows the mark at ~109px;
-   256px on large screens shows it at ~127px. */
+/* viewBox is 158 with the mark about 126 tall, so 160px shows the
+   artwork near 128px, and 176px on large screens shows it near 140px. */
 .tz-preloader__logo {
-  width: 220px;
-  height: 220px;
+  width: 160px;
+  height: 160px;
   display: block;
   flex: 0 0 auto;
 }
 
 @media (min-width: 1280px) {
   .tz-preloader__logo {
-    width: 256px;
-    height: 256px;
+    width: 176px;
+    height: 176px;
   }
 }
 
