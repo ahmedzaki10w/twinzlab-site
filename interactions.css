@@ -333,7 +333,7 @@
 #main [data-tz-kind="chip"] img { transition: opacity var(--tz-med) var(--tz-ease); }
 #main [data-tz-kind="chip"][aria-pressed="false"] img { opacity: 0; }
 #main [data-tz-kind="chip"][aria-pressed="false"] .framer-text { color: var(--tz-paper) !important; }
-#main [data-tz-kind="chip"][aria-pressed="true"] { background: var(--tz-primary-bg) !important; }
+#main [data-tz-kind="chip"][aria-pressed="true"] { background-color: var(--tz-paper) !important; background-image: none !important; }
 #main [data-tz-kind="chip"][aria-pressed="true"] .framer-text { color: var(--tz-ink) !important; }
 @media (hover: hover) {
   #main [data-tz-kind="chip"][aria-pressed="false"]:hover { background-color: var(--tz-surface-2) !important; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); }
