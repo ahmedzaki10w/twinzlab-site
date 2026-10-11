@@ -585,17 +585,36 @@ body.tz-form-ready #main .framer-255p7q { height: auto !important; }
   transform: translateY(10px);
 }
 @media (min-width: 1024px) {
-  #main #who-we-are .tz-who-panel {
-    width: 18px !important;
+  /* Match the What We Build cards: same column width, one fixed height.
+     The photos fill that height instead of setting it. */
+  #main #who-we-are .framer-1qxun2q {
     flex: none !important;
-    align-self: stretch !important;
+    width: calc(100% - 440px - 80px) !important;
+    margin-left: 0 !important;
+    height: 348px !important;
+    min-height: 348px !important;
+    justify-content: flex-start !important;
+  }
+  /* Closed bars share the space up to the text. The open photo stays 279px. */
+  #main #who-we-are .tz-who-panel {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 18px !important;
+    height: 348px !important;
+    align-self: center !important;
     overflow: hidden !important;
     cursor: pointer;
     background-color: #231d17 !important;
-    transition: width .7s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    transition: flex-grow .7s cubic-bezier(0.22, 1, 0.36, 1), flex-basis .7s cubic-bezier(0.22, 1, 0.36, 1) !important;
   }
   #main #who-we-are .tz-who-panel.is-open {
+    flex: 0 0 279px !important;
     width: 279px !important;
+    min-width: 279px !important;
+  }
+  #main #who-we-are .tz-who-panel [data-framer-background-image-wrapper],
+  #main #who-we-are .tz-who-panel img {
+    height: 100% !important;
   }
   #main #who-we-are .tz-who-panel img,
   #main #who-we-are .tz-who-panel [data-framer-background-image-wrapper] {
