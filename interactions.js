@@ -320,14 +320,14 @@
       sel: ".framer-uhwjz1",
       title: "Ahmed Zaki",
       body: "Ahmed Zaki is one of the twin brothers who founded TwinzLab. He builds the studio's own apps.",
-      image: "assets/framerusercontent.com/images/xjnUozwBcroSgyqhO9rSPKg1Dr0.0mvmq25.jpg",
+      image: "assets/founders/ahmed-zaki.jpg",
       alt: "Portrait of Ahmed Zaki"
     },
     {
       sel: ".framer-ki8huu",
       title: "Elmodather Zaki",
       body: "Elmodather Zaki founded TwinzLab with his brother. Together they welcome collaborations, challenges, and investment.",
-      image: "assets/framerusercontent.com/images/eaGTdL1Y6fiZm7RNrpgyVO8Ymps.0mqmx3e.jpg",
+      image: "assets/founders/elmodather-zaki.jpg",
       alt: "Portrait of Elmodather Zaki"
     },
     {
@@ -382,11 +382,16 @@
     var hero = $(".framer-1yawxw3 img", whoSection);
     if (!hero) return;
     if (!hero.getAttribute("data-tz-who-src")) setAttr(hero, "data-tz-who-src", hero.getAttribute("src") || site(WHO[WHO.length - 1].image));
+    if (!hero.hasAttribute("data-tz-who-srcset")) setAttr(hero, "data-tz-who-srcset", hero.getAttribute("srcset") || "");
     var slide = WHO[whoIndex];
     if (whoNarrow()) {
+      // srcset would keep the original hands image on screen after src changes.
+      if (hero.hasAttribute("srcset")) hero.removeAttribute("srcset");
       if (!whoSrcMatches(hero, slide.image)) hero.src = site(slide.image);
       setAttr(hero, "alt", slide.alt);
     } else {
+      var set = hero.getAttribute("data-tz-who-srcset");
+      if (set && hero.getAttribute("srcset") !== set) hero.setAttribute("srcset", set);
       var own = hero.getAttribute("data-tz-who-src");
       if (own && !whoSrcMatches(hero, own)) hero.src = own;
       setAttr(hero, "alt", WHO[WHO.length - 1].alt);
