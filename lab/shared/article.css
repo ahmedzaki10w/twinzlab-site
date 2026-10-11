@@ -197,8 +197,23 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   line-height: 1.15;
   text-wrap: balance;
 }
+.prose h3 {
+  margin: 1.75em 0 0.45em;
+  color: var(--heading);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+.prose hr {
+  margin: 2.75em 0 0.25em;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
 .prose p { margin: 0 0 1.15em; text-wrap: pretty; }
 .prose strong { color: var(--ink); font-weight: 700; }
+.prose em { font-style: italic; }
 .prose a { color: var(--link); text-underline-offset: 3px; }
 .prose ul, .prose ol { margin: 0 0 1.2em; padding-left: 1.3em; }
 .prose li { margin: 0.45em 0; padding-left: 0.2em; }

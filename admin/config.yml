@@ -1,0 +1,134 @@
+# TwinzLab Lab editor. See docs/CMS.md.
+backend:
+  name: github
+  repo: ahmedzaki10w/twinzlab-site
+  branch: main
+  base_url: https://twinzlab.online
+  auth_endpoint: api/auth
+  # Public repository. Switch this to `repo` if the repository is made private.
+  auth_scope: public_repo
+
+local_backend: true
+
+publish_mode: simple
+site_url: https://twinzlab.online
+display_url: https://twinzlab.online
+logo_url: https://twinzlab.online/assets/icons/favicon-192.png
+
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  - name: lab
+    label: Lab
+    label_singular: Article
+    folder: content/lab
+    create: true
+    extension: md
+    format: frontmatter
+    identifier_field: title
+    slug: "{{fields.slug}}"
+    summary: "{{date}} — {{title}}"
+    sortable_fields: ["date", "title"]
+    preview_path: "lab/{{slug}}/"
+    view_filters:
+      - label: Drafts
+        field: draft
+        pattern: true
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Slug
+        name: slug
+        widget: string
+        hint: "The address becomes twinzlab.online/lab/this-slug/. Lowercase letters, numbers, and hyphens. Changing it after publishing moves the page."
+        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Use lowercase letters, numbers, and hyphens"]
+      - label: Date
+        name: date
+        widget: datetime
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        picker_utc: true
+        hint: "Newest articles are listed first on the Lab page."
+      - label: Excerpt
+        name: excerpt
+        widget: text
+        hint: "The short line on the Lab card."
+      - label: Description
+        name: description
+        widget: text
+        required: false
+        hint: "The search and social description. Leave blank to use the excerpt."
+      - label: Standfirst
+        name: dek
+        widget: text
+        required: false
+        hint: "The larger opening line under the title. Leave blank to use the excerpt."
+      - label: Cover image
+        name: cover
+        widget: image
+        required: false
+        hint: "Wide image at the top of the article. Leave this blank and the page uses the Lab color field until you add one."
+      - label: Cover alt text
+        name: coverAlt
+        widget: string
+        required: false
+      - label: Card image
+        name: card
+        widget: image
+        required: false
+        hint: "Image on the Lab card. Leave blank to use the cover."
+      - label: Social image
+        name: og
+        widget: image
+        required: false
+        hint: "Image shown when the article is shared. Leave blank to use the card or the cover."
+      - label: Category
+        name: category
+        widget: select
+        required: false
+        default: Experiments
+        options: ["Experiments", "Dev Logs", "Product Updates", "Behind the Scenes", "Announcements", "Opinion"]
+        hint: "The label on the Lab card, and one of the filter chips."
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        hint: "Optional. Each tag is also a filter chip on the Lab page."
+      - label: Author
+        name: author
+        widget: string
+        required: false
+      - label: Author link
+        name: authorUrl
+        widget: string
+        required: false
+        hint: "A path such as /about/, or a full URL."
+      - label: Author note
+        name: authorNote
+        widget: string
+        required: false
+        hint: "The short line at the end of the article."
+      - label: Call to action
+        name: cta
+        widget: string
+        required: false
+        hint: "The line on the contact link. Leave blank for the usual TwinzLab line."
+      - label: Reading time
+        name: minutes
+        widget: number
+        required: false
+        value_type: int
+        min: 1
+        hint: "Minutes. Leave blank and it is counted from the text."
+      - label: Draft
+        name: draft
+        widget: boolean
+        default: false
+        required: false
+        hint: "A draft is saved in the repository and is not published on the site."
+      - label: Body
+        name: body
+        widget: markdown
+        hint: "Write the article in Markdown. A line that starts with ## becomes a section in the side navigation."

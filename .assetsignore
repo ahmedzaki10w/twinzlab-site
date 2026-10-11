@@ -20,6 +20,10 @@
 /SECURITY.md
 .gitignore
 .gitattributes
+/docs
+/content
+/scripts
+/workers
 
 # Wrangler and Cloudflare tooling, including files autoconfig may write
 # into this directory before upload.

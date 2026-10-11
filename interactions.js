@@ -212,6 +212,7 @@
       $$(sel, root).forEach(function (el) { makeDisabled(el, "Full post coming soon", "pill"); });
     });
     $$(".framer-1uia4ak, .framer-fwj0dz-container a.framer-s29zbl", root).forEach(function (el) {
+      if (el.closest(".framer-1klyps3")) return;
       makeLink(el, site(ARTICLE), "button", "Read the article");
     });
 
@@ -225,6 +226,10 @@
       if (el && !el.id) { el.id = anchors[sel]; setAttr(el, "data-tz-anchor", ""); }
     });
 
+    if (page === "lab") {
+      renderLabArticles();
+      syncLabChips(labArticles());
+    }
     if (FILTERS[page]) setupFilter(page);
     if (page === "contact") { setupTopics(); mountForm(); }
     if (page === "home") {
@@ -766,6 +771,138 @@
     paintFeatured();
   }
 
+  /* --------------------------------------------------------- lab articles */
+
+  // The Lab page is a Framer export. Article cards are filled from the
+  // manifest the build writes into #tz-lab-articles, using the published
+  // card as the template so the frame stays the same.
+  var labCardTemplate = null;
+
+  function labArticles() {
+    var node = document.getElementById("tz-lab-articles");
+    if (!node) return [];
+    try {
+      var data = JSON.parse(node.textContent || "[]");
+      return Array.isArray(data) ? data : [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  function labImage(url) {
+    var value = String(url || "");
+    if (!/^\/assets\/[A-Za-z0-9._~/-]+$/.test(value)) return "";
+    return value;
+  }
+
+  function fillLabCard(card, article) {
+    card.removeAttribute("data-tz-hidden");
+    card.removeAttribute("data-tz-disabled");
+    setAttr(card, "data-tz-card", "");
+    setAttr(card, "data-tz-kind", "card");
+    setAttr(card, "data-tz-slug", article.slug || "");
+    var tagKeys = (article.tags || []).map(slug).filter(Boolean);
+    if (tagKeys.length) setAttr(card, "data-tz-tags", tagKeys.join(","));
+    else card.removeAttribute("data-tz-tags");
+    var title = $(".framer-zdps2f .framer-text", card);
+    var excerpt = $(".framer-7454k4 .framer-text", card);
+    var tag = $(".framer-svx48s .framer-text", card);
+    var pill = $(".framer-svx48s", card);
+    var thumb = $(".framer-1p016lq", card);
+    var read = $(".framer-1uia4ak", card);
+    if (title) title.textContent = article.title || "";
+    if (excerpt) excerpt.textContent = article.excerpt || "";
+    if (tag) tag.textContent = article.category || "";
+    if (pill) pill.style.display = article.category ? "" : "none";
+    if (thumb) {
+      var image = labImage(article.card);
+      thumb.style.backgroundImage = image ? 'url("' + image + '")' : "none";
+      thumb.style.backgroundSize = "cover";
+      thumb.style.backgroundPosition = "center";
+      thumb.style.backgroundRepeat = "no-repeat";
+    }
+    if (read) {
+      var path = String(article.url || "").replace(/^\//, "");
+      makeLink(read, site(path), "button", "Read the article");
+    }
+  }
+
+  function renderLabArticles() {
+    var root = main();
+    var list = $(".framer-1klyps3", root);
+    if (!list) return;
+    var articles = labArticles();
+    if (!articles.length) return;
+    var signature = articles.map(function (article) {
+      return [article.slug || "", article.category || "", (article.tags || []).join(",")].join("~");
+    }).join("|");
+    var current = $$(".framer-eo4uhb", list);
+    if (list.getAttribute("data-tz-lab-sig") === signature && current.length === articles.length) return;
+
+    var seed = current[0] || labCardTemplate;
+    if (!labCardTemplate && seed) labCardTemplate = seed.cloneNode(true);
+    if (!labCardTemplate) return;
+
+    current.forEach(function (card) { card.remove(); });
+    var empty = $(".tz-empty", list);
+    articles.forEach(function (article) {
+      var card = labCardTemplate.cloneNode(true);
+      fillLabCard(card, article);
+      if (empty) list.insertBefore(card, empty);
+      else list.appendChild(card);
+    });
+    setAttr(list, "data-tz-lab-sig", signature);
+  }
+
+  // Category is the card label. Tags are extra chips, cloned from the
+  // existing chip so the bar stays the same shape.
+  function syncLabChips(articles) {
+    var bar = $(".framer-zk7jz2", main());
+    if (!bar || !articles.length) return;
+    var present = {};
+    Array.prototype.forEach.call(bar.children, function (chip) {
+      if (chip.hasAttribute("data-tz-extra-chip")) return;
+      var key = slug(text(chip));
+      if (key) present[key] = true;
+    });
+    var wanted = [];
+    var seen = {};
+    articles.forEach(function (article) {
+      var labels = [];
+      if (article.category) labels.push(article.category);
+      (article.tags || []).forEach(function (tag) { labels.push(tag); });
+      labels.forEach(function (label) {
+        var key = slug(label);
+        if (!key || key === "all" || present[key] || seen[key]) return;
+        seen[key] = true;
+        wanted.push(label);
+      });
+    });
+    var current = $$("[data-tz-extra-chip]", bar).map(function (chip) { return text(chip); });
+    if (current.join("|") === wanted.join("|")) {
+      if (wanted.length) setAttr(bar, "data-tz-chip-wrap", "");
+      return;
+    }
+    $$("[data-tz-extra-chip]", bar).forEach(function (chip) { chip.remove(); });
+    if (!wanted.length) {
+      bar.removeAttribute("data-tz-chip-wrap");
+      return;
+    }
+    var template = bar.children[1] || bar.children[0];
+    if (!template) return;
+    wanted.forEach(function (label) {
+      var chip = template.cloneNode(true);
+      setAttr(chip, "data-tz-extra-chip", "");
+      chip.removeAttribute("data-tz-filter");
+      chip.removeAttribute("aria-pressed");
+      chip.removeAttribute("data-tz-kind");
+      var node = $(".framer-text", chip) || chip;
+      node.textContent = label;
+      bar.appendChild(chip);
+    });
+    setAttr(bar, "data-tz-chip-wrap", "");
+  }
+
   /* -------------------------------------------------------------- filters */
 
   function setupFilter(page) {
@@ -806,8 +943,13 @@
     var shown = 0;
     cfg.cards.forEach(function (sel) {
       $$(sel, root).forEach(function (card) {
-        var tag = slug(text($(cfg.tag, card)));
-        var match = value === "all" || tag === value;
+        var keys = [];
+        var pill = slug(text($(cfg.tag, card)));
+        if (pill) keys.push(pill);
+        (card.getAttribute("data-tz-tags") || "").split(",").forEach(function (key) {
+          if (key && keys.indexOf(key) === -1) keys.push(key);
+        });
+        var match = value === "all" || keys.indexOf(value) !== -1;
         if (match) { card.removeAttribute("data-tz-hidden"); shown++; }
         else setAttr(card, "data-tz-hidden", "");
       });

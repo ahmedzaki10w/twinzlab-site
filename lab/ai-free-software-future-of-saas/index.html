@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><!-- twinzlab-lab-article --><script id="tz-preloader-boot">(function(){if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;try{if(sessionStorage.getItem("tz-preloader-seen")==="1")return;}catch(e){}var html=document.documentElement;html.classList.add("tz-preloading");html.setAttribute("aria-busy","true");var style=document.createElement("style");style.textContent="html.tz-preloading{background:#130D09}html.tz-preloading,html.tz-preloading body{overflow:hidden!important}#tz-preloader{position:fixed;inset:0;z-index:20000;display:flex;align-items:center;justify-content:center;width:100%;height:100%;height:100dvh;margin:0;background:#130D09}.tz-preloader__logo{width:80px;height:80px;display:block}.tz-preloader__label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}";(document.head||html).appendChild(style);var overlay=document.createElement("div");overlay.id="tz-preloader";overlay.setAttribute("role","status");overlay.setAttribute("aria-live","polite");var canvas=document.createElement("canvas");canvas.className="tz-preloader__logo";canvas.setAttribute("aria-hidden","true");var label=document.createElement("span");label.className="tz-preloader__label";label.textContent="Loading TwinzLab";overlay.appendChild(canvas);overlay.appendChild(label);html.appendChild(overlay);setTimeout(function(){if(window.__tzPreloaderOwned)return;var el=document.getElementById("tz-preloader");if(!el)return;html.classList.remove("tz-preloading");html.removeAttribute("aria-busy");if(el.parentNode)el.parentNode.removeChild(el);document.dispatchEvent(new Event("tz-preloader-done"));},4800);})();</script><script id="tz-enter-boot">(function(){if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;var html=document.documentElement;var enter=false;try{enter=sessionStorage.getItem("tz-page-enter")==="1";sessionStorage.removeItem("tz-page-enter");}catch(e){}if(enter){html.classList.add("tz-enter");setTimeout(function(){if(!html.classList.contains("tz-enter-armed"))html.classList.remove("tz-enter");},3200);}window.addEventListener("pageshow",function(e){if(!e.persisted)return;html.classList.remove("tz-enter");html.classList.remove("tz-leaving");});var leaving=false;document.addEventListener("click",function(e){if(e.defaultPrevented||leaving||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;var t=e.target;var a=t&&t.closest&&t.closest("a[href]");if(!a||a.target==="_blank"||a.hasAttribute("download"))return;var u;try{u=new URL(a.href,location.href);}catch(err){return;}if(u.protocol==="mailto:"||u.origin!==location.origin||u.pathname===location.pathname)return;leaving=true;try{sessionStorage.setItem("tz-page-enter","1");}catch(err){}html.classList.add("tz-leaving");e.preventDefault();e.stopPropagation();setTimeout(function(){location.href=u.href;},280);},true);})();</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>If Anyone Can Build Anything, Who Still Pays for Software? — TwinzLab</title>
+<meta name="description" content="AI lets anyone rebuild software for free, and open models are coming for the AI labs too. Will SaaS become useless? What dies, what survives and who wins.">
+<link rel="canonical" href="https://twinzlab.online/lab/ai-free-software-future-of-saas/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TwinzLab">
+<meta property="og:title" content="If Anyone Can Build Anything, Who Still Pays for Software?">
+<meta property="og:description" content="AI lets anyone rebuild software for free, and open models are coming for the AI labs too. Will SaaS become useless? What dies, what survives and who wins.">
+<meta property="og:url" content="https://twinzlab.online/lab/ai-free-software-future-of-saas/">
+<meta property="og:image" content="https://twinzlab.online/assets/lab/ai-free-software-future-of-saas/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-10-11">
+<meta property="article:tag" content="From the Lab">
+<meta property="article:tag" content="Opinion">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Open Source">
+<meta property="article:tag" content="SaaS">
+<meta property="article:tag" content="Future of Software">
+<meta property="article:tag" content="Open-Weight Models">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="If Anyone Can Build Anything, Who Still Pays for Software?">
+<meta name="twitter:description" content="AI lets anyone rebuild software for free, and open models are coming for the AI labs too. Will SaaS become useless? What dies, what survives and who wins.">
+<meta name="twitter:image" content="https://twinzlab.online/assets/lab/ai-free-software-future-of-saas/og.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"If Anyone Can Build Anything, Who Still Pays for Software?","datePublished":"2026-10-11","publisher":{"@type":"Organization","name":"TwinzLab"},"image":"https://twinzlab.online/assets/lab/ai-free-software-future-of-saas/og.jpg","mainEntityOfPage":"https://twinzlab.online/lab/ai-free-software-future-of-saas/"}
+</script>
+
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../shared/chrome.css">
+<link rel="stylesheet" href="../../interactions.css">
+<link rel="stylesheet" href="../shared/article.css">
+<link rel="stylesheet" href="../../preloader.css"><script src="../../preloader.js"></script><link rel="stylesheet" href="../../responsive.css">
+<script src="../../responsive.js" defer></script>
+</head>
+<body>
+<div id="main" class="framer-LOnUN framer-DHM4O framer-1Z9lv framer-J2pPB framer-vLzzy">
+<svg class="tz-sprite" aria-hidden="true" focusable="false" width="158" height="158" viewBox="0 0 158 158" fill="none" id="svg1002898647_2495">
+<path d="M64.5361 84.8408C65.7533 87.2411 67.813 88.4926 70.0752 89.0439C72.3959 89.6094 74.7654 89.3852 76.1641 88.9541L78.5996 92.4268C77.5874 93.7693 76.6929 95.2051 75.9316 96.7188L75.9033 96.7764L75.8711 96.832L65.4062 114.958H73.4648L73.9072 116.61C75.5513 122.749 79.2263 128.063 84.1729 131.785C88.8709 135.32 94.711 137.414 101.046 137.414C116.561 137.414 129.138 124.837 129.138 109.322C129.138 93.8075 116.561 81.2307 101.046 81.2305H56.9551C38.978 81.2305 24.4043 66.6567 24.4043 48.6797C24.4043 30.7026 38.978 16.1289 56.9551 16.1289C69.659 16.1289 80.6582 23.4078 86.0195 34.0117L100.316 58.7734H87.9082C85.8155 65.195 81.7841 70.7352 76.5078 74.7051L73.8271 71.1426C78.7739 67.4207 82.4487 62.1062 84.0928 55.9678L84.5361 54.3154H92.5947L82.1299 36.1895L82.0977 36.1338L82.0684 36.0762C77.4462 26.8856 67.9342 20.5879 56.9551 20.5879C41.4402 20.5879 28.8633 33.1648 28.8633 48.6797C28.8633 64.1946 41.4402 76.7715 56.9551 76.7715H101.046C119.023 76.7717 133.596 91.3453 133.596 109.322C133.596 127.299 119.023 141.872 101.046 141.872C93.7112 141.872 86.9372 139.444 81.4932 135.348C76.2168 131.378 72.1855 125.838 70.0928 119.416H57.6836L71.9902 94.6357C72.1275 94.3646 72.2685 94.0958 72.4131 93.8291C71.312 93.7936 70.1634 93.6544 69.0205 93.376C65.8174 92.5955 62.5014 90.6862 60.5596 86.8564L64.5361 84.8408Z" fill="url(#svg1002898647_2495_paint0_linear_389_174)"></path>
+<circle cx="88.8966" cy="100.434" r="3.29116" fill="url(#svg1002898647_2495_paint1_linear_389_174)"></circle>
+<circle cx="68.5919" cy="41.8087" r="3.29116" fill="url(#svg1002898647_2495_paint2_linear_389_174)"></circle>
+<defs>
+<linearGradient id="svg1002898647_2495_paint0_linear_389_174" x1="86.5702" y1="18.3584" x2="86.5702" y2="139.643" gradientUnits="userSpaceOnUse">
+<stop offset="0.211538" stop-color="#D9D9D9"></stop>
+<stop offset="0.605769" stop-color="#EAAB78"></stop>
+<stop offset="0.875" stop-color="#C1DAFF"></stop>
+</linearGradient>
+<linearGradient id="svg1002898647_2495_paint1_linear_389_174" x1="89.3724" y1="97.1426" x2="89.3724" y2="103.725" gradientUnits="userSpaceOnUse">
+<stop offset="0.706429" stop-color="#D9D9D9"></stop>
+<stop offset="0.826923" stop-color="#EAAB78"></stop>
+<stop offset="1" stop-color="#C1DAFF"></stop>
+</linearGradient>
+<linearGradient id="svg1002898647_2495_paint2_linear_389_174" x1="69.0677" y1="38.5176" x2="69.0677" y2="45.0999" gradientUnits="userSpaceOnUse">
+<stop offset="0.706429" stop-color="#D9D9D9"></stop>
+<stop offset="0.826923" stop-color="#EAAB78"></stop>
+<stop offset="1" stop-color="#C1DAFF"></stop>
+</linearGradient>
+</defs>
+</svg>
+<svg class="tz-sprite" id="3403169090" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 16 0 L 0 0" fill="transparent" height="1px" id="bFWUDIFFb" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="10" stroke-width="var(--fbr8zx, 1.5)" stroke="var(--34440n, rgb(0, 0, 0))" transform="translate(4 12)" width="16px"></path><path d="M 0 15.321 L 6.573 8.748 C 6.716 8.606 6.83 8.437 6.908 8.25 C 6.986 8.063 7.026 7.863 7.026 7.661 C 7.026 7.458 6.986 7.258 6.908 7.071 C 6.83 6.885 6.716 6.715 6.573 6.573 L 0 0" fill="transparent" height="15.321179999999998px" id="GILTdJBXg" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--fbr8zx, 1.5)" stroke="var(--34440n, rgb(0, 0, 0))" transform="translate(12.968 4.339)" width="7.026000000000002px"></path></svg>
+<svg class="tz-sprite" id="933102033" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 11.314 0 L 0 11.314" fill="transparent" height="11.31375px" id="OfxNkG6z8" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="10" stroke-width="var(--fbr8zx, 1.5)" stroke="var(--34440n, rgb(0, 0, 0))" transform="translate(6.343 6.343)" width="11.31366px"></path><path d="M 10.834 10.834 L 10.834 1.538 C 10.835 1.336 10.795 1.136 10.718 0.949 C 10.641 0.762 10.528 0.592 10.385 0.449 C 10.242 0.306 10.072 0.192 9.885 0.115 C 9.698 0.038 9.498 -0.001 9.295 0 L 0 0" fill="transparent" height="10.833733225805112px" id="cf72FqlEm" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--fbr8zx, 1.5)" stroke="var(--34440n, rgb(0, 0, 0))" transform="translate(7.267 5.899)" width="10.833715152736417px"></path></svg>
+<div class="framer-115oner-container" style="will-change:transform;opacity:1;transform:none"><div class="framer-1eMsE framer-n0Paq framer-jzvew6 framer-v-jzvew6" data-framer-name="header" style="height: 100%; width: 100%; opacity: 1;"><div class="framer-5yqtk6-container" style="transform: translateY(-50%); opacity: 1;"><div class="framer-5jyrH framer-1Z9lv framer-ufljrx framer-v-16rrhd4" data-framer-name="Labs" style="backdrop-filter: blur(10px); background-color: var(--token-01f4a421-9ceb-4a1d-b541-d39bbcc2b85e, rgba(51, 43, 37, 0.6)); border-radius: 6px; opacity: 1;"><div class="framer-15u5i7y" data-framer-name="Frame 17" style="opacity: 1;"><!--$--><a class="framer-qkc69v framer-1boce9" data-framer-name="Home" href="../../" style="border-radius: 2px; opacity: 1;"><div class="framer-w7832u" data-framer-name="Home" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv: var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255)); --framer-paragraph-spacing: 0px; transform: none; opacity: 1;"><p class="framer-text framer-styles-preset-1irzx5g" data-styles-preset="k0No1TGwx" dir="auto" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255)))">Home</p></div></a><!--/$--><!--$--><a class="framer-1xadmeg framer-1boce9" data-framer-name="About" data-highlight="true" href="../../about/" tabindex="0" style="border-radius: 2px; opacity: 1;"><div class="framer-1ejerpj" data-framer-name="About" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv: var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255)); --framer-paragraph-spacing: 0px; transform: none; opacity: 1;"><p class="framer-text framer-styles-preset-1irzx5g" data-styles-preset="k0No1TGwx" dir="auto" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255)))">About</p></div><div class="framer-c7bfgx" data-highlight="true" tabindex="0" style="background-color: rgba(255, 255, 255, 0.2); border-radius: 2px; box-shadow: rgba(255, 255, 255, 0.25) 0px 0px 10px 0px inset; opacity: 1;"></div></a><!--/$--><!--$--><a class="framer-1ffghwl framer-1boce9" data-framer-name="Products" data-highlight="true" href="../../products/" tabindex="0" style="border-radius: 2px; opacity: 1;"><div class="framer-xpqbt7" data-framer-name="Products" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv: var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255)); --framer-paragraph-spacing: 0px; transform: none; opacity: 1;"><p class="framer-text framer-styles-preset-1irzx5g" data-styles-preset="k0No1TGwx" dir="auto" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255)))">Products</p></div></a><!--/$--><!--$--><a class="framer-1nogl6w framer-1boce9" data-framer-name="lab" data-highlight="true" href="../../lab/" data-framer-page-link-current="true" tabindex="0" style="border-radius: 2px; opacity: 1;"><div class="framer-1cn5hpo" data-framer-name="Lab" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv: var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255)); --framer-paragraph-spacing: 0px; transform: none; opacity: 1;"><p class="framer-text framer-styles-preset-1irzx5g" data-styles-preset="k0No1TGwx" dir="auto" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255)))">Lab</p></div></a><!--/$--></div></div></div><div class="framer-irc5nr" data-framer-name="Frame 91" style="backdrop-filter: blur(10px); background-color: var(--token-01f4a421-9ceb-4a1d-b541-d39bbcc2b85e, rgba(51, 43, 37, 0.6)); border-radius: 6px; transform: translateY(-50%); opacity: 1;"><a class="framer-qdozql" data-framer-name="Build with us" data-framer-component-type="RichTextContainer" href="../../contact/#contact-form" data-tz-kind="text" style="--framer-paragraph-spacing: 0px; transform: none; opacity: 1; text-decoration: none;"><p class="framer-text framer-styles-preset-1teq2qk" data-styles-preset="NTWA68QiY" dir="auto">Build with us</p></a><div class="framer-pe9j7v-container" style="opacity: 1;"><!--$--><a class="framer-64vCR framer-1Z9lv framer-gox32l framer-v-1fhwvbi framer-s29zbl" data-framer-name="Primary without icon" href="../../contact/#contact-form" style="--border-bottom-width: 0px; --border-color: rgba(0, 0, 0, 0); --border-left-width: 0px; --border-right-width: 0px; --border-style: solid; --border-top-width: 0px; background: linear-gradient(rgb(217, 217, 217) 70.6429%, rgb(233, 171, 120) 82.6923%, rgb(193, 217, 255) 100%); border-radius: 4px; opacity: 1;" data-tz-href="../../contact/#contact-form" data-tz-kind="button"><div class="framer-korfai" data-framer-name="Contact" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv: var(--token-f383fec1-c717-48c9-9c4e-a96dee63582f, rgb(24, 17, 11)); --framer-paragraph-spacing: 0px; transform: none; opacity: 1;"><p class="framer-text framer-styles-preset-1irzx5g" data-styles-preset="k0No1TGwx" dir="auto" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-f383fec1-c717-48c9-9c4e-a96dee63582f, rgb(24, 17, 11)))">Contact</p></div></a><!--/$--></div></div><a data-framer-component-type="SVG" data-framer-name="Logo" class="framer-19vq3br" href="../../" aria-label="TwinzLab home" style="image-rendering: pixelated; flex-shrink: 0; fill: rgb(0, 0, 0); color: rgb(0, 0, 0); opacity: 1; text-decoration: none;"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 158 158" preserveAspectRatio="none" width="100%" height="100%"><use href="#svg1002898647_2495"></use></svg></div></a></div></div>
+<main>
+
+    <article class="article" id="top">
+    <div class="article-body">
+      <div class="article-side">
+        <p class="kicker"><a href="../../lab/"><svg class="kicker-arrow" viewBox="0 0 24 24" aria-hidden="true" style="--34440n:currentColor;--fbr8zx:1.5"><use href="#3403169090"></use></svg> Lab</a></p>
+        <h1>If Anyone Can Build Anything, Who Still Pays for Software?</h1>
+        <nav class="section-nav" aria-label="In this article">
+          <ol>
+            <li><a href="#what-s-actually-changing-building-the-first-version-is-getting-cheap">What's actually changing: building the first version is getting cheap</a></li>
+            <li><a href="#the-build-your-own-movement-is-real-with-an-asterisk">The build-your-own movement is real (with an asterisk)</a></li>
+            <li><a href="#so-what-happens-to-saas">So what happens to SaaS?</a></li>
+            <li><a href="#impact-on-companies">Impact on companies</a></li>
+            <li><a href="#impact-on-society">Impact on society</a></li>
+            <li><a href="#three-near-future-scenarios-our-view">Three near-future scenarios (our view)</a></li>
+            <li><a href="#plot-twist-the-tool-that-eats-software-might-get-eaten-too">Plot twist: the tool that eats software might get eaten too</a></li>
+            <li><a href="#what-this-means-for-builders-like-twinzlab">What this means for builders like TwinzLab</a></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="article-main">
+        <p class="byline"><time datetime="2026-10-11">Oct 11, 2026</time><span class="sep" aria-hidden="true">·</span><span>9 min read</span></p>
+        <figure class="hero">
+          <img src="../../assets/lab/ai-free-software-future-of-saas/hero.jpg" width="1600" height="900" alt="A thin white line drawing of a glass wall with one pane shattered, and small figures carrying glowing laptops through the gap. A lock, a database, and a handshake sit on top of the wall.">
+        </figure>
+        <p class="dek">AI is helping people rebuild big paid software for free, and open models are doing the same to the AI labs. Will SaaS, or AI itself, become worthless? We dig into the evidence.</p>
+        <div class="prose">
+<p>Ahmed dropped a spicy take in the Lab this week: <em>if AI lets anyone rebuild any app for free, paid software is about to become useless.</em> Fair question in October 2026.</p>
+<p>Look at the evidence. In early October, a small team called ArtCraft released free, open-source rebuilds of seven Adobe-style apps that its developer says he made with Claude, Ars Technica reports. Back in August, Genspark open-sourced GenOffice, a free AI office suite. Genspark says the first version took &quot;one engineer, one week, $10,000 in tokens.&quot; Neither is finished, but rebuilding software used to take years, and now it&#39;s a weekend headline.</p>
+<p>So is SaaS cooked? Our take: <strong>no, but a big chunk of it is about to get a lot cheaper.</strong> Here&#39;s why.</p>
+<h2 id="what-s-actually-changing-building-the-first-version-is-getting-cheap">What's actually changing: building the first version is getting cheap</h2>
+<p>&quot;Vibe coding&quot; (describing an app to an AI instead of coding it) was Collins Dictionary&#39;s 2025 word of the year. The BBC notes that it lets non-coders build basic apps, but there&#39;s &quot;no guarantee the code will actually work or be free of bugs.&quot;</p>
+<p>The productivity data is messier than the hype:</p>
+<ul>
+<li>In a 2022 GitHub Copilot experiment, developers finished a set coding task (building a small web server) <strong>55.8% faster</strong> with AI.</li>
+<li>METR&#39;s 2025 trial found the opposite on real work. Experienced open-source developers took <strong>19% longer</strong> with early-2025 AI tools, even though they <em>believed</em> AI had sped them up.</li>
+<li>By February 2026, METR said developers were &quot;likely&quot; more sped up than before. But it couldn&#39;t measure by how much, partly because many developers refused to work without AI at all.</li>
+</ul>
+<p>Our read: AI has made the <strong>first version</strong> of software dramatically cheaper. It hasn&#39;t made the <strong>next five years</strong> of that software cheap: the maintenance, the security patches, the weird edge cases.</p>
+<h2 id="the-build-your-own-movement-is-real-with-an-asterisk">The build-your-own movement is real (with an asterisk)</h2>
+<p>Klarna famously dropped Salesforce. But its CEO later said the company &quot;did not replace SaaS with an LLM.&quot; Instead, it consolidated data from many tools onto its own internal stack. He also said he doubts most companies will do the same, and expects &quot;fewer SaaS&quot; companies to consolidate the market, TechCrunch reported.</p>
+<p>Building is easier. Owning what you build is still work.</p>
+<h2 id="so-what-happens-to-saas">So what happens to SaaS?</h2>
+<p>In early 2026, the &quot;SaaSpocalypse&quot; scare hit software stocks. According to Hargreaves Lansdown&#39;s analysis of S&amp;P 500 software companies, the average one fell 27% from the end of 2025 to an April low. By October they had won back around 94% of those losses. But the recovery was uneven:</p>
+<ul>
+<li><strong>Cyber security</strong> stocks were up 66% for the year.</li>
+<li><strong>Design and creative tools</strong> had won back only 32% of their losses.</li>
+</ul>
+<p>HL&#39;s conclusion: companies whose edge is proprietary data, deep knowledge of how their customers work, or regulatory lock-in are holding up. Those whose edge is &quot;a nice interface, or a task an AI agent could soon do&quot; are under pressure. One analyst quoted by heise (via Reuters) thinks the real test comes in about a year.</p>
+<p>In our view, here&#39;s how it splits:</p>
+<ul>
+<li><strong>Getting cheaper:</strong> single-purpose tools, wrappers around a nice UI, and &quot;feature-as-a-product&quot; apps.</li>
+<li><strong>Sticking around:</strong> anything built on data, network effects (where the product gets better as more people use it), trust, distribution, hosting and uptime, support, compliance, and taste.</li>
+</ul>
+<h2 id="impact-on-companies">Impact on companies</h2>
+<ul>
+<li><strong>Incumbents:</strong> HL flags &quot;seat compression&quot;: if AI means companies need fewer employees, they also need fewer per-user licences. It expects pricing to move toward paying for usage or outcomes. Our view: per-user subscriptions for generic tools are the most exposed.</li>
+<li><strong>Startups:</strong> Building is cheaper, so there&#39;s less money needed to start, but also way more competitors.</li>
+<li><strong>Jobs:</strong> Stanford&#39;s Digital Economy Lab finds no broad, economy-wide job loss from AI. But employment of 22–25-year-olds in highly AI-exposed jobs is about <strong>19% below</strong> where it would be if it had kept pace with their less-exposed peers, mainly because of reduced hiring. The researchers stress this is descriptive, not proof of cause. Our view: junior &quot;write the boilerplate&quot; roles shrink, while judgment, review and product sense matter more.</li>
+<li><strong>Open source:</strong> Free code still needs people to maintain it. curl, a tool used across much of the internet, ended its bug-bounty program in January 2026. Its creator said low-quality AI-generated reports had overwhelmed the small team. The free projects that last usually have someone paying: Canva funds a free Affinity by charging for AI and premium features, and Blender runs on donations.</li>
+</ul>
+<h2 id="impact-on-society">Impact on society</h2>
+<ul>
+<li><strong>Access:</strong> This is the genuinely exciting part. In the Copilot study, less-experienced developers benefited most. Our view: a small business or a solo builder anywhere can now make tools that used to need a funded team.</li>
+<li><strong>Quality and trust:</strong> Veracode tested 100+ AI models and found that <strong>45%</strong> of the code samples introduced known security flaws. Newer models weren&#39;t more secure.</li>
+<li><strong>Who captures the value:</strong> Our view: when the app becomes free, the money moves to whoever sells the AI, the hosting and the data. Both ArtCraft and GenOffice give the app away and charge for AI usage.</li>
+<li><strong>Digital inequality:</strong> Also our view: &quot;free software&quot; that needs paid AI credits, fast internet and a strong laptop isn&#39;t equally free for everyone. The gap shifts from who can afford a license to who can afford the compute.</li>
+</ul>
+<h2 id="three-near-future-scenarios-our-view">Three near-future scenarios (our view)</h2>
+<ol>
+<li><strong>The great discount:</strong> Generic tools go free or near-free. Paid software survives where it handles your data, your team or your compliance.</li>
+<li><strong>The AI toll booth:</strong> Apps are free, but almost every useful feature costs AI credits. You pay the AI provider instead of the software company.</li>
+<li><strong>The hangover:</strong> A flood of half-maintained AI clones creates security and reliability problems, and people pay extra for software they can trust.</li>
+</ol>
+<p>Our bet: a mix, with #1 and #2 first.</p>
+<h2 id="plot-twist-the-tool-that-eats-software-might-get-eaten-too">Plot twist: the tool that eats software might get eaten too</h2>
+<p>The irony: the AI labs powering all this free software face the same threat.</p>
+<ul>
+<li><strong>Open models are closing in.</strong> Stanford&#39;s 2025 AI Index found that the gap between the best closed model and the best open-weight model (one whose weights anyone can download and run) shrank from 8% to 1.7% on the Chatbot Arena leaderboard in about a year. For January–May 2026, Epoch AI puts the most capable open-weight models about <strong>four months</strong> behind the closed frontier. That&#39;s slightly <em>wider</em> than its earlier three-month estimate, so it&#39;s not over.</li>
+<li><strong>The leading open models are mostly Chinese.</strong> In September 2026, analyst Nathan Lambert estimated that Chinese open-weight models such as Z.ai&#39;s GLM, Moonshot&#39;s Kimi, DeepSeek and Alibaba&#39;s Qwen sit roughly 2–5 months behind the closed US frontier. He puts US open models, like OpenAI&#39;s gpt-oss and Google&#39;s Gemma, about 6–9 months behind. He notes that companies like Cursor and Airbnb build on them because they&#39;re cheap and flexible.</li>
+<li><strong>Cheaper AI moves markets.</strong> Stanford found that the cost of running a model at GPT-3.5 level fell more than 280-fold between November 2022 and October 2024. And when DeepSeek&#39;s low-cost model took off in January 2025, Nvidia&#39;s shares fell 16.9% in a single day, the BBC reported.</li>
+</ul>
+<p>So how do the big labs defend themselves? In our view, they rely on the same moats as the SaaS winners: scale and compute, distribution through products people already use (ChatGPT and Claude Code, not just raw APIs), enterprise trust, and being first to the frontier. Policy matters too. Citi analysts, quoted by the BBC, called US access to advanced chips an advantage, and Lambert describes rising regulatory attention on the strongest models.</p>
+<p><strong>If both software and AI get close to free, who wins?</strong> Our view: whoever owns the customer relationship, the trusted data, the compute, and the taste to make something people actually love. Intelligence becomes a utility, like electricity. The money is in what you build with it.</p>
+<h2 id="what-this-means-for-builders-like-twinzlab">What this means for builders like TwinzLab</h2>
+<p>We build our own apps, so this is personal:</p>
+<ul>
+<li><strong>Features aren&#39;t a moat anymore.</strong> If AI can copy what an app does in a weekend, the defensible part is taste, trust, community, and doing the boring maintenance well for years.</li>
+<li><strong>Use the free wave.</strong> Cheaper tools and AI-assisted building let a two-founder team ship things that used to need a studio.</li>
+<li><strong>Don&#39;t marry one model.</strong> If AI is turning into a utility, we build so we can switch between models, closed or open, and we&#39;re honest with users about what costs money.</li>
+<li><strong>Treat AI-written code as a draft.</strong> We review it, test it and secure it before we ship it.</li>
+</ul>
+<p>So, Ahmed: paid software isn&#39;t becoming useless. But &quot;we built it, so pay us monthly&quot; is no longer a business model on its own, and soon &quot;we trained it, so pay us per token&quot; won&#39;t be either. When the code and the intelligence both get cheap, the value moves to <em>standing behind</em> what you make. That&#39;s the part we plan to be good at.</p>
+<hr>
+<h3 id="sources">Sources</h3>
+<ul>
+<li>Ars Technica, &quot;&#39;Software is over&#39;: Bold AI developer takes aim at Adobe with open source clones,&quot; Oct 7, 2026: <a href="https://arstechnica.com/ai/2026/10/software-is-over-bold-ai-developer-takes-aim-at-adobe-with-open-source-clones/" target="_blank" rel="noopener noreferrer">https://arstechnica.com/ai/2026/10/software-is-over-bold-ai-developer-takes-aim-at-adobe-with-open-source-clones/</a></li>
+<li>Genspark, &quot;GenOffice: The First Open-Source AI Office Suite,&quot; Aug 3, 2026: <a href="https://www.genspark.ai/blog/genoffice-open-source-ai-office" target="_blank" rel="noopener noreferrer">https://www.genspark.ai/blog/genoffice-open-source-ai-office</a></li>
+<li>BBC News, &quot;&#39;Vibe coding&#39; named word of the year by Collins Dictionary,&quot; Nov 6, 2025: <a href="https://www.bbc.com/news/articles/cpd2y053nleo" target="_blank" rel="noopener noreferrer">https://www.bbc.com/news/articles/cpd2y053nleo</a></li>
+<li>Peng et al., &quot;The Impact of AI on Developer Productivity: Evidence from GitHub Copilot,&quot; arXiv, 2023: <a href="https://arxiv.org/abs/2302.06590" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2302.06590</a></li>
+<li>METR, &quot;Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity,&quot; Jul 10, 2025: <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/</a></li>
+<li>METR, &quot;We are Changing our Developer Productivity Experiment Design,&quot; Feb 24, 2026: <a href="https://metr.org/blog/2026-02-24-uplift-update/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2026-02-24-uplift-update/</a></li>
+<li>TechCrunch, &quot;Klarna CEO doubts that other companies will replace Salesforce with AI,&quot; Mar 4, 2025: <a href="https://techcrunch.com/2025/03/04/klarna-ceo-doubts-that-other-companies-will-replace-salesforce-with-ai/" target="_blank" rel="noopener noreferrer">https://techcrunch.com/2025/03/04/klarna-ceo-doubts-that-other-companies-will-replace-salesforce-with-ai/</a></li>
+<li>Hargreaves Lansdown, &quot;What happened to software stocks after the AI-driven &#39;SaaSpocalypse&#39;?&quot;, Oct 7, 2026: <a href="https://www.hl.co.uk/news/what-happened-to-software-stocks-after-the-ai-driven-saaspocalypse" target="_blank" rel="noopener noreferrer">https://www.hl.co.uk/news/what-happened-to-software-stocks-after-the-ai-driven-saaspocalypse</a></li>
+<li>heise online, &quot;&#39;SaaSpocalypse&#39; cancelled – or postponed?&quot;, Oct 7, 2026: <a href="https://www.heise.de/en/news/SaaSpocalypse-cancelled-or-postponed-Software-stocks-are-rising-again-11478700.html" target="_blank" rel="noopener noreferrer">https://www.heise.de/en/news/SaaSpocalypse-cancelled-or-postponed-Software-stocks-are-rising-again-11478700.html</a></li>
+<li>Stanford Digital Economy Lab, &quot;No Widespread Displacement, but the AI Employment Gap for Young Workers Has Widened to 19%,&quot; 2026: <a href="https://digitaleconomy.stanford.edu/news/canariesaug26/" target="_blank" rel="noopener noreferrer">https://digitaleconomy.stanford.edu/news/canariesaug26/</a></li>
+<li>Daniel Stenberg, &quot;The end of the curl bug-bounty,&quot; Jan 26, 2026: <a href="https://daniel.haxx.se/blog/2026/01/26/the-end-of-the-curl-bug-bounty/" target="_blank" rel="noopener noreferrer">https://daniel.haxx.se/blog/2026/01/26/the-end-of-the-curl-bug-bounty/</a></li>
+<li>Veracode, &quot;We Asked 100+ AI Models to Write Code. Here&#39;s How Many Failed Security Tests,&quot; Jul 30, 2025: <a href="https://www.veracode.com/blog/genai-code-security-report/" target="_blank" rel="noopener noreferrer">https://www.veracode.com/blog/genai-code-security-report/</a></li>
+<li>Stanford HAI, &quot;The 2025 AI Index Report&quot;: <a href="https://hai.stanford.edu/ai-index/2025-ai-index-report" target="_blank" rel="noopener noreferrer">https://hai.stanford.edu/ai-index/2025-ai-index-report</a></li>
+<li>Epoch AI, &quot;Open models lag state-of-the-art closed models by 4 months,&quot; May 29, 2026: <a href="https://epoch.ai/data-insights/open-closed-eci-gap" target="_blank" rel="noopener noreferrer">https://epoch.ai/data-insights/open-closed-eci-gap</a></li>
+<li>Nathan Lambert, &quot;The current balance of power in open models,&quot; Interconnects, Sep 21, 2026: <a href="https://www.interconnects.ai/p/the-current-balance-of-power-in-open" target="_blank" rel="noopener noreferrer">https://www.interconnects.ai/p/the-current-balance-of-power-in-open</a></li>
+<li>BBC News, &quot;Nvidia shares sink as Chinese AI app DeepSeek spooks US markets,&quot; Jan 27, 2025: <a href="https://www.bbc.co.uk/news/articles/c0qw7z2v1pgo" target="_blank" rel="noopener noreferrer">https://www.bbc.co.uk/news/articles/c0qw7z2v1pgo</a></li>
+<li>Canva, &quot;Why we made Affinity free, and how we&#39;ll keep it that way&quot;: <a href="https://www.canva.com/newsroom/news/affinity-free/" target="_blank" rel="noopener noreferrer">https://www.canva.com/newsroom/news/affinity-free/</a></li>
+<li>Blender Development Fund: <a href="https://fund.blender.org/" target="_blank" rel="noopener noreferrer">https://fund.blender.org/</a></li>
+</ul>
+<div class="share">
+  <span class="share-label" id="share-label">Share</span>
+  <button type="button" class="share-btn" id="copy-link" data-url="https://twinzlab.online/lab/ai-free-software-future-of-saas/" aria-label="Copy link">
+    <svg class="icon-copy" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M9 9.5H7.5A2.5 2.5 0 0 0 5 12v6.5A2.5 2.5 0 0 0 7.5 21h6.5a2.5 2.5 0 0 0 2.5-2.5V17"/><rect x="9" y="3" width="10" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    <svg class="icon-check" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 9.5 17 19 7.5"/></svg>
+  </button>
+  <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ftwinzlab.online%2Flab%2Fai-free-software-future-of-saas%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4.7 9.1H7.4V19.5H4.7zM6.05 4.2a1.6 1.6 0 1 1 0 3.2 1.6 1.6 0 0 1 0-3.2zM9.3 9.1h2.55v1.42h.04c.36-.67 1.23-1.38 2.53-1.38 2.7 0 3.2 1.78 3.2 4.09v6.27h-2.7v-5.56c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93v5.66H9.3z"/></svg>
+  </a>
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftwinzlab.online%2Flab%2Fai-free-software-future-of-saas%2F&amp;text=If%20Anyone%20Can%20Build%20Anything%2C%20Who%20Still%20Pays%20for%20Software%3F" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M14.1 10.6 20.3 3.5h-1.5l-5.4 6.1L9.1 3.5H3.8l6.6 9.4-6.6 7.6h1.5l5.8-6.6 4.6 6.6h5.3l-6.9-9.9zm-2 2.3-.7-1-5.4-7.6h2.3l4.4 6.2.7 1 5.7 8h-2.3l-4.7-6.6z"/></svg>
+  </a>
+  <span class="visually-hidden" id="copy-status" role="status" aria-live="polite"></span>
+</div>
+<a class="topic-cta" href="../../contact/#contact-form" data-tz-kind="card">
+  <span class="topic-cta__title">Building with AI? Let&#x27;s compare notes</span>
+  <svg class="topic-cta__arrow" viewBox="0 0 24 24" aria-hidden="true" style="--34440n:#eaab78;--fbr8zx:1.5"><use href="#3403169090"></use></svg>
+</a>
+<aside class="more-lab" aria-label="More from the Lab">
+  <p class="more-lab__label">More from the Lab</p>
+  <p class="more-lab__links"><a href="../the-bug-that-makes-you-laugh/">The Bug That Makes You Laugh: What a Theory of Jokes Says About Building AI <svg viewBox="0 0 24 24" aria-hidden="true" style="--34440n:currentColor;--fbr8zx:1.5"><use href="#3403169090"></use></svg></a><a href="../../lab/">Lab <svg viewBox="0 0 24 24" aria-hidden="true" style="--34440n:currentColor;--fbr8zx:1.5"><use href="#3403169090"></use></svg></a></p>
+</aside>
+<p class="back-top"><a href="#top"><svg viewBox="0 0 24 24" aria-hidden="true" style="--34440n:currentColor;--fbr8zx:1.5"><use href="#3403169090"></use></svg> Back to top</a></p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</main>
+<div class="framer-14b4bh3" data-framer-name="Frame 38"><div class="framer-1qw6wwa" data-framer-name="Frame 156"><div class="framer-1qigusr" data-framer-name="Frame 37"><div class="framer-1kzvh3k" data-framer-name="Bring an idea, a challenge, or a partnership." data-framer-component-type="RichTextContainer" style="transform:none"><h2 class="framer-text framer-styles-preset-17w1rip" data-styles-preset="QBkcMOKym" dir="auto">Bring an idea, a challenge, or a partnership.</h2></div><div class="framer-c9m66p" data-framer-name="An investment conversation is welcome too." data-framer-component-type="RichTextContainer" style="transform:none"><p class="framer-text framer-styles-preset-1wtdveo" data-styles-preset="Tj1fK_QR3" dir="auto">An investment conversation is welcome too.</p></div></div><div class="framer-1ono1rh-container"><a class="framer-64vCR framer-1Z9lv framer-gox32l framer-v-gox32l framer-s29zbl" data-framer-name="Primary" href="../../contact/#contact-form" style="--border-bottom-width: 0px; --border-color: rgba(0, 0, 0, 0); --border-left-width: 0px; --border-right-width: 0px; --border-style: solid; --border-top-width: 0px; background: linear-gradient(rgb(217, 217, 217) 70.6429%, rgb(233, 171, 120) 82.6923%, rgb(193, 217, 255) 100%); border-radius: 4px; opacity: 1;" data-tz-href="../../contact/#contact-form" data-tz-kind="button"><div class="framer-korfai" data-framer-name="Contact" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv: var(--token-f383fec1-c717-48c9-9c4e-a96dee63582f, rgb(24, 17, 11)); --framer-paragraph-spacing: 0px; transform: none; opacity: 1;"><p class="framer-text framer-styles-preset-1irzx5g" data-styles-preset="k0No1TGwx" dir="auto" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-f383fec1-c717-48c9-9c4e-a96dee63582f, rgb(24, 17, 11)))">Get in touch</p></div><svg class="framer-Q9WRp framer-up7cu3" role="presentation" viewBox="0 0 24 24" style="--34440n: var(--token-f383fec1-c717-48c9-9c4e-a96dee63582f, rgb(24, 17, 11)); --fbr8zx: 1.5; opacity: 1;"><use href="#3403169090"></use></svg></a></div><div class="framer-eoj4lp-container"><div style="width:100%;height:100%;background:rgba(99, 61, 32, 0);overflow:hidden"><canvas style="display:block;width:100%;height:100%"></canvas></div></div></div></div>
+<footer class="framer-ntizu1" data-framer-name="Frame 63"><div class="framer-1fs2i4m" data-framer-name="Frame 65"><div class="framer-xie4sd"><div class="framer-1gn8tz2"><div class="framer-v6dc94"><div class="framer-qruyg5" data-framer-name="LinkedIn" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:R0Y7SW50ZXIgVGlnaHQtcmVndWxhcg==;--framer-font-family:&quot;Inter Tight&quot;, &quot;Inter Tight Placeholder&quot;, sans-serif;--framer-font-size:20px;--framer-text-alignment:center;--framer-text-color:rgb(217, 217, 217);--framer-text-decoration-offset:2px;--framer-text-decoration-thickness:1px" class="framer-text">For ideas, challenges, partnerships, or a hello.</p></div><a class="framer-1es5w7d" href="mailto:hello@twinzlab.online" data-tz-kind="text" aria-label="Email hello@twinzlab.online"><div class="framer-hl416f" data-framer-name="LinkedIn" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:R0Y7SW50ZXIgVGlnaHQtcmVndWxhcg==;--framer-font-family:&quot;Inter Tight&quot;, &quot;Inter Tight Placeholder&quot;, sans-serif;--framer-font-size:24px;--framer-text-alignment:center;--framer-text-color:rgb(255, 255, 255);--framer-text-decoration-offset:2px;--framer-text-decoration-thickness:1px;--framer-text-decoration:underline" class="framer-text">hello@twinzlab.online</p></div><svg class="framer-UYIEC framer-johc2t" role="presentation" viewBox="0 0 24 24"><use href="#933102033"></use></svg></a></div><div class="framer-1wn7zb"><a class="framer-14aoz5q" data-framer-component-type="RichTextContainer" style="transform:none" href="../../" data-tz-kind="text" aria-label="TwinzLab home"><h1 class="framer-text framer-styles-preset-1wrdhro" data-styles-preset="xzZh76NOK" dir="auto">TWINZLAB</h1></a><div class="framer-wwzuw1" data-framer-name="©2025 Twinz Lab, Built by two minds." data-framer-component-type="RichTextContainer" style="transform:none"><p class="framer-text framer-styles-preset-1irzx5g" data-styles-preset="k0No1TGwx" dir="auto">©2026 TwinzLab. Built by two minds.</p></div></div></div><div class="framer-uzoomt"><div class="framer-eaqpor" data-framer-name="Frame 50"><div class="framer-x55be0" data-framer-name="LinkedIn" data-framer-component-type="RichTextContainer" style="transform:none"><p class="framer-text framer-styles-preset-1irzx5g" data-styles-preset="k0No1TGwx" dir="auto" style="--framer-text-color:var(--token-0e4557c1-bb34-4b5d-a5f9-1597db26db5f, rgb(217, 217, 217))">Social</p></div><div class="framer-canpwq"><a class="framer-ta0yq0" data-framer-name="LinkedIn" data-framer-component-type="RichTextContainer" style="transform:none;text-decoration:none" href="https://www.linkedin.com/company/twinzlab" target="_blank" rel="noopener noreferrer" data-tz-kind="text" aria-label="LinkedIn"><p dir="auto" style="--font-selector:R0Y7SW50ZXIgVGlnaHQtcmVndWxhcg==;--framer-font-family:&quot;Inter Tight&quot;, &quot;Inter Tight Placeholder&quot;, sans-serif;--framer-font-size:20px;--framer-text-alignment:center;--framer-text-color:var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255))" class="framer-text">LinkedIn</p></a><a class="framer-tlzm73" data-framer-name="Instagram" data-framer-component-type="RichTextContainer" style="transform:none;text-decoration:none" href="https://www.instagram.com/twinz_lab/" target="_blank" rel="noopener noreferrer" data-tz-kind="text" aria-label="Instagram"><p class="framer-text framer-styles-preset-1wtdveo" data-styles-preset="Tj1fK_QR3" dir="auto" style="--framer-text-color:var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255))">Instagram</p></a><a class="framer-1gdr5uv" data-framer-name="X (Twitter)" data-framer-component-type="RichTextContainer" style="transform:none;text-decoration:none" href="https://x.com/TwinzLab" target="_blank" rel="noopener noreferrer" data-tz-kind="text" aria-label="X (Twitter)"><p class="framer-text framer-styles-preset-1wtdveo" data-styles-preset="Tj1fK_QR3" dir="auto" style="--framer-text-color:var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255))">X (Twitter)</p></a><a class="framer-1mshf4g" data-framer-name="TikTok" data-framer-component-type="RichTextContainer" style="transform:none;text-decoration:none" href="https://www.tiktok.com/@twinzlab" target="_blank" rel="noopener noreferrer" data-tz-kind="text" aria-label="TikTok"><p class="framer-text framer-styles-preset-1wtdveo" data-styles-preset="Tj1fK_QR3" dir="auto" style="--framer-text-color:var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255))">TikTok</p></a></div></div><div class="framer-tqaa0u" data-framer-name="Frame 62"><div class="framer-1pzu24x" data-framer-name="About" data-framer-component-type="RichTextContainer" style="transform:none"><p class="framer-text framer-styles-preset-1irzx5g" data-styles-preset="k0No1TGwx" dir="auto" style="--framer-text-color:var(--token-0e4557c1-bb34-4b5d-a5f9-1597db26db5f, rgb(217, 217, 217))">Pages</p></div><div class="framer-1hw19a5"><a class="framer-1j8xv75" data-framer-name="About" data-framer-component-type="RichTextContainer" style="transform:none" href="../../about/" data-tz-kind="text"><p dir="auto" style="--font-selector:R0Y7SW50ZXIgVGlnaHQtcmVndWxhcg==;--framer-font-family:&quot;Inter Tight&quot;, &quot;Inter Tight Placeholder&quot;, sans-serif;--framer-font-size:20px;--framer-text-color:rgb(255, 255, 255);--framer-text-stroke-color:var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255))" class="framer-text">About</p></a><a class="framer-51s8nu" data-framer-name="Products" data-framer-component-type="RichTextContainer" style="transform:none" href="../../products/" data-tz-kind="text"><p class="framer-text framer-styles-preset-1wtdveo" data-styles-preset="Tj1fK_QR3" dir="auto" style="--framer-text-color:var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255))">Products</p></a><a class="framer-jfm3mh" data-framer-name="Labs" data-framer-component-type="RichTextContainer" style="transform:none" href="../../lab/" data-tz-kind="text"><p class="framer-text framer-styles-preset-1wtdveo" data-styles-preset="Tj1fK_QR3" dir="auto" style="--framer-text-color:var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255))"> Lab</p></a><a class="framer-1hoop8f" data-framer-name="Contact" data-framer-component-type="RichTextContainer" style="transform:none" href="../../contact/" data-tz-kind="text"><p class="framer-text framer-styles-preset-1wtdveo" data-styles-preset="Tj1fK_QR3" dir="auto" style="--framer-text-color:var(--token-5630c55a-6dd3-49e2-8665-2a5dc6d53106, rgb(255, 255, 255))">Contact</p></a></div></div></div></div></div></footer>
+</div>
+<script src="../shared/cta-wave.js"></script>
+
+<script>
+(function () {
+  var links = [].slice.call(document.querySelectorAll(".section-nav a"));
+  if (!links.length) return;
+  var targets = links.map(function (a) {
+    return document.getElementById(a.getAttribute("href").slice(1));
+  }).filter(Boolean);
+  var current = null;
+  var mq = window.matchMedia("(max-width: 767px)");
+  function set(id) {
+    if (current === id) return;
+    current = id;
+    links.forEach(function (a) {
+      var on = id && a.getAttribute("href") === "#" + id;
+      a.classList.toggle("is-active", on);
+      if (on) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+  }
+  function update() {
+    var line = (mq.matches ? 120 : 160);
+    var id = null;
+    targets.forEach(function (el) {
+      if (el.getBoundingClientRect().top <= line) id = el.id;
+    });
+    set(id);
+  }
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+})();
+</script>
+<script>
+(function () {
+  var btn = document.getElementById("copy-link");
+  var live = document.getElementById("copy-status");
+  if (!btn) return;
+  function fallback(value) {
+    var t = document.createElement("textarea");
+    t.value = value;
+    t.setAttribute("readonly", "");
+    t.style.position = "fixed";
+    t.style.left = "-9999px";
+    document.body.appendChild(t);
+    t.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+    t.remove();
+    return ok;
+  }
+  function flash(ok) {
+    if (!ok) {
+      if (live) live.textContent = "Could not copy the link";
+      return;
+    }
+    btn.classList.add("is-copied");
+    btn.setAttribute("aria-label", "Copied");
+    if (live) live.textContent = "Link copied";
+    window.setTimeout(function () {
+      btn.classList.remove("is-copied");
+      btn.setAttribute("aria-label", "Copy link");
+      if (live) live.textContent = "";
+    }, 2000);
+  }
+  btn.addEventListener("click", function () {
+    var url = btn.getAttribute("data-url") || location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { flash(true); }, function () { flash(fallback(url)); });
+    } else {
+      flash(fallback(url));
+    }
+  });
+})();
+</script>
+</body>
+</html>
