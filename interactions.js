@@ -231,6 +231,7 @@
       setupFeatured();
       fitProcessDiagram();
       fitLabHover();
+      setupWho();
     }
   }
 
@@ -299,6 +300,205 @@
     svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
     svg.style.overflow = "visible";
     svg.setAttribute("data-tz-fit", "1");
+  }
+
+  /* ----------------------------------------------------------- who we are */
+
+  // The three bars and the portrait are one set. One is open; the others
+  // stay a sliver. They take turns, and a hover opens that one.
+  var WHO = [
+    {
+      sel: ".framer-uhwjz1",
+      title: "Ahmed Zaki",
+      body: "Ahmed Zaki is one of the twin brothers who founded TwinzLab. He builds the studio's own apps.",
+      image: "assets/framerusercontent.com/images/xjnUozwBcroSgyqhO9rSPKg1Dr0.0mvmq25.jpg",
+      alt: "Portrait of Ahmed Zaki"
+    },
+    {
+      sel: ".framer-ki8huu",
+      title: "Elmodather Zaki",
+      body: "Elmodather Zaki founded TwinzLab with his brother. Together they welcome collaborations, challenges, and investment.",
+      image: "assets/framerusercontent.com/images/eaGTdL1Y6fiZm7RNrpgyVO8Ymps.0mqmx3e.jpg",
+      alt: "Portrait of Elmodather Zaki"
+    },
+    {
+      sel: ".framer-1i7io37",
+      title: "The Lab",
+      body: "The name joins Twin, Gen Z, and Lab. We experiment here, and we publish the notes from the work.",
+      image: "assets/lab/the-bug-that-makes-you-laugh/hero.jpg",
+      alt: "A thin wave of light on a dark field"
+    },
+    {
+      sel: ".framer-1yawxw3",
+      title: "Who We Are",
+      body: "TwinzLab is founded by twin brothers Ahmed Zaki and Elmodather Zaki. We build our own apps, and we welcome collaborations, challenges, and investment.",
+      image: "assets/framerusercontent.com/images/5wNTXuzFxrzH948E1qX2FNXw.0gxhl1z.png",
+      alt: "Two open hands covered in handwritten notes"
+    }
+  ];
+  var WHO_MS = 4500;
+  var whoIndex = WHO.length - 1;
+  var whoTimer = 0;
+  var whoRewrite = 0;
+  var whoGen = 0;
+  var whoPaused = false;
+  var whoHidden = false;
+  var whoListening = false;
+  var whoSection = null;
+
+  function whoReduce() {
+    return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function whoNarrow() {
+    return window.matchMedia && window.matchMedia("(max-width: 1023px)").matches;
+  }
+
+  function whoSrcMatches(el, path) {
+    var cur = (el && el.getAttribute("src")) || "";
+    var file = path.split("/").pop();
+    return cur.indexOf(file) !== -1;
+  }
+
+  function whoArm() {
+    clearTimeout(whoTimer);
+    if (whoPaused || whoHidden || whoReduce()) return;
+    whoTimer = setTimeout(function () {
+      whoShow((whoIndex + 1) % WHO.length, true);
+    }, WHO_MS);
+  }
+
+  function whoSyncHero() {
+    if (!whoSection) return;
+    var hero = $(".framer-1yawxw3 img", whoSection);
+    if (!hero) return;
+    if (!hero.getAttribute("data-tz-who-src")) setAttr(hero, "data-tz-who-src", hero.getAttribute("src") || site(WHO[WHO.length - 1].image));
+    var slide = WHO[whoIndex];
+    if (whoNarrow()) {
+      if (!whoSrcMatches(hero, slide.image)) hero.src = site(slide.image);
+      setAttr(hero, "alt", slide.alt);
+    } else {
+      var own = hero.getAttribute("data-tz-who-src");
+      if (own && !whoSrcMatches(hero, own)) hero.src = own;
+      setAttr(hero, "alt", WHO[WHO.length - 1].alt);
+    }
+  }
+
+  function whoShow(i, animate) {
+    if (!whoSection) return;
+    var panels = $$("[data-tz-who-index]", whoSection);
+    if (!panels.length) return;
+    var slide = WHO[i];
+    var title = $(".framer-xhpb82 .framer-text", whoSection);
+    var body = $(".framer-ugn879 .framer-text", whoSection);
+    whoIndex = i;
+    panels.forEach(function (panel) {
+      var on = panel.getAttribute("data-tz-who-index") === String(i);
+      panel.classList.toggle("is-open", on);
+      setAttr(panel, "aria-pressed", on ? "true" : "false");
+    });
+    whoSyncHero();
+    if (!title || !body) return;
+    var same = text(title) === slide.title && text(body) === slide.body;
+    var gen = ++whoGen;
+    clearTimeout(whoRewrite);
+    if (!animate || whoReduce() || same) {
+      title.textContent = slide.title;
+      body.textContent = slide.body;
+      whoSection.classList.remove("is-rewriting");
+    } else {
+      whoSection.classList.add("is-rewriting");
+      whoRewrite = setTimeout(function () {
+        if (gen !== whoGen || !whoSection) return;
+        title.textContent = slide.title;
+        body.textContent = slide.body;
+        whoSection.classList.remove("is-rewriting");
+      }, 280);
+    }
+    if (animate && !whoPaused) whoArm();
+  }
+
+  function setupWho() {
+    var section = $(".framer-1lq0uvn", main());
+    if (!section) return;
+    whoSection = section;
+    setAttr(section, "data-tz-who", "1");
+    var copy = $(".framer-so8grx", section);
+    if (copy) setAttr(copy, "aria-live", "polite");
+    WHO.forEach(function (slide, i) {
+      var panel = $(slide.sel, section);
+      if (!panel) return;
+      panel.classList.add("tz-who-panel");
+      setAttr(panel, "data-tz-who-index", String(i));
+      setAttr(panel, "data-tz-kind", "who");
+      setAttr(panel, "role", "button");
+      setAttr(panel, "tabindex", "0");
+      setAttr(panel, "aria-label", "Show " + slide.title);
+      if (!$("img", panel)) {
+        var img = document.createElement("img");
+        img.className = "tz-who-photo";
+        img.alt = slide.alt;
+        img.decoding = "async";
+        img.src = site(slide.image);
+        if (slide.sel === ".framer-1i7io37") img.style.objectPosition = "center";
+        panel.appendChild(img);
+      }
+    });
+    if (!section.hasAttribute("data-tz-who-bound")) {
+      setAttr(section, "data-tz-who-bound", "1");
+      section.addEventListener("pointerover", function (e) {
+        var panel = e.target.closest && e.target.closest("[data-tz-who-index]");
+        if (!panel || !section.contains(panel)) return;
+        whoPaused = true;
+        clearTimeout(whoTimer);
+        var i = Number(panel.getAttribute("data-tz-who-index"));
+        if (i !== whoIndex) whoShow(i, true);
+      });
+      section.addEventListener("pointerleave", function () {
+        whoPaused = false;
+        whoArm();
+      });
+      section.addEventListener("pointerup", function () {
+        if (window.matchMedia("(hover: hover)").matches) return;
+        whoPaused = false;
+        whoArm();
+      });
+      section.addEventListener("focusin", function (e) {
+        var panel = e.target.closest && e.target.closest("[data-tz-who-index]");
+        if (!panel) return;
+        whoPaused = true;
+        clearTimeout(whoTimer);
+      });
+      section.addEventListener("focusout", function () {
+        whoPaused = false;
+        whoArm();
+      });
+      section.addEventListener("keydown", function (e) {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        var panel = e.target.closest && e.target.closest("[data-tz-who-index]");
+        if (!panel || panel !== e.target) return;
+        e.preventDefault();
+        whoPaused = true;
+        clearTimeout(whoTimer);
+        whoShow(Number(panel.getAttribute("data-tz-who-index")), true);
+      });
+    }
+    var start = !section.hasAttribute("data-tz-who-started");
+    if (!whoListening) {
+      whoListening = true;
+      document.addEventListener("visibilitychange", function () {
+        whoHidden = document.hidden;
+        if (whoHidden) clearTimeout(whoTimer);
+        else whoArm();
+      });
+      var narrowMq = window.matchMedia("(max-width: 1023px)");
+      if (narrowMq.addEventListener) narrowMq.addEventListener("change", whoSyncHero);
+    }
+    whoShow(whoIndex, false);
+    if (start) {
+      setAttr(section, "data-tz-who-started", "1");
+      whoArm();
+    }
   }
 
   /* ----------------------------------------------------- featured product */
