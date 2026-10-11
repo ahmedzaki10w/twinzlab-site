@@ -591,10 +591,19 @@ body.tz-form-ready #main .framer-255p7q { height: auto !important; }
     align-self: stretch !important;
     overflow: hidden !important;
     cursor: pointer;
+    background-color: #231d17 !important;
     transition: width .7s cubic-bezier(0.22, 1, 0.36, 1) !important;
   }
   #main #who-we-are .tz-who-panel.is-open {
     width: 279px !important;
+  }
+  #main #who-we-are .tz-who-panel img,
+  #main #who-we-are .tz-who-panel [data-framer-background-image-wrapper] {
+    transition: opacity .4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  #main #who-we-are .tz-who-panel:not(.is-open) img,
+  #main #who-we-are .tz-who-panel:not(.is-open) [data-framer-background-image-wrapper] {
+    opacity: 0;
   }
 }
 
@@ -614,6 +623,8 @@ body.tz-form-ready #main .framer-255p7q { height: auto !important; }
   .tz-result, .tz-empty { animation: none; }
   .tz-spinner { animation-duration: 1.6s; }
   #main #who-we-are .tz-who-panel,
+  #main #who-we-are .tz-who-panel img,
+  #main #who-we-are .tz-who-panel [data-framer-background-image-wrapper],
   #main #who-we-are .framer-xhpb82,
   #main #who-we-are .framer-ugn879 {
     transition: none !important;
