@@ -226,7 +226,10 @@
       if (el && !el.id) { el.id = anchors[sel]; setAttr(el, "data-tz-anchor", ""); }
     });
 
-    if (page === "lab") renderLabArticles();
+    if (page === "lab") {
+      renderLabArticles();
+      syncLabChips(labArticles());
+    }
     if (FILTERS[page]) setupFilter(page);
     if (page === "contact") { setupTopics(); mountForm(); }
     if (page === "home") {
@@ -798,6 +801,9 @@
     setAttr(card, "data-tz-card", "");
     setAttr(card, "data-tz-kind", "card");
     setAttr(card, "data-tz-slug", article.slug || "");
+    var tagKeys = (article.tags || []).map(slug).filter(Boolean);
+    if (tagKeys.length) setAttr(card, "data-tz-tags", tagKeys.join(","));
+    else card.removeAttribute("data-tz-tags");
     var title = $(".framer-zdps2f .framer-text", card);
     var excerpt = $(".framer-7454k4 .framer-text", card);
     var tag = $(".framer-svx48s .framer-text", card);
@@ -827,7 +833,9 @@
     if (!list) return;
     var articles = labArticles();
     if (!articles.length) return;
-    var signature = articles.map(function (article) { return article.slug || ""; }).join("|");
+    var signature = articles.map(function (article) {
+      return [article.slug || "", article.category || "", (article.tags || []).join(",")].join("~");
+    }).join("|");
     var current = $$(".framer-eo4uhb", list);
     if (list.getAttribute("data-tz-lab-sig") === signature && current.length === articles.length) return;
 
@@ -844,6 +852,55 @@
       else list.appendChild(card);
     });
     setAttr(list, "data-tz-lab-sig", signature);
+  }
+
+  // Category is the card label. Tags are extra chips, cloned from the
+  // existing chip so the bar stays the same shape.
+  function syncLabChips(articles) {
+    var bar = $(".framer-zk7jz2", main());
+    if (!bar || !articles.length) return;
+    var present = {};
+    Array.prototype.forEach.call(bar.children, function (chip) {
+      if (chip.hasAttribute("data-tz-extra-chip")) return;
+      var key = slug(text(chip));
+      if (key) present[key] = true;
+    });
+    var wanted = [];
+    var seen = {};
+    articles.forEach(function (article) {
+      var labels = [];
+      if (article.category) labels.push(article.category);
+      (article.tags || []).forEach(function (tag) { labels.push(tag); });
+      labels.forEach(function (label) {
+        var key = slug(label);
+        if (!key || key === "all" || present[key] || seen[key]) return;
+        seen[key] = true;
+        wanted.push(label);
+      });
+    });
+    var current = $$("[data-tz-extra-chip]", bar).map(function (chip) { return text(chip); });
+    if (current.join("|") === wanted.join("|")) {
+      if (wanted.length) setAttr(bar, "data-tz-chip-wrap", "");
+      return;
+    }
+    $$("[data-tz-extra-chip]", bar).forEach(function (chip) { chip.remove(); });
+    if (!wanted.length) {
+      bar.removeAttribute("data-tz-chip-wrap");
+      return;
+    }
+    var template = bar.children[1] || bar.children[0];
+    if (!template) return;
+    wanted.forEach(function (label) {
+      var chip = template.cloneNode(true);
+      setAttr(chip, "data-tz-extra-chip", "");
+      chip.removeAttribute("data-tz-filter");
+      chip.removeAttribute("aria-pressed");
+      chip.removeAttribute("data-tz-kind");
+      var node = $(".framer-text", chip) || chip;
+      node.textContent = label;
+      bar.appendChild(chip);
+    });
+    setAttr(bar, "data-tz-chip-wrap", "");
   }
 
   /* -------------------------------------------------------------- filters */
@@ -886,8 +943,13 @@
     var shown = 0;
     cfg.cards.forEach(function (sel) {
       $$(sel, root).forEach(function (card) {
-        var tag = slug(text($(cfg.tag, card)));
-        var match = value === "all" || tag === value;
+        var keys = [];
+        var pill = slug(text($(cfg.tag, card)));
+        if (pill) keys.push(pill);
+        (card.getAttribute("data-tz-tags") || "").split(",").forEach(function (key) {
+          if (key && keys.indexOf(key) === -1) keys.push(key);
+        });
+        var match = value === "all" || keys.indexOf(value) !== -1;
         if (match) { card.removeAttribute("data-tz-hidden"); shown++; }
         else setAttr(card, "data-tz-hidden", "");
       });

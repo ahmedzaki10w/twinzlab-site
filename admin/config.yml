@@ -69,7 +69,7 @@ collections:
         name: cover
         widget: image
         required: false
-        hint: "Wide image at the top of the article."
+        hint: "Wide image at the top of the article. Leave this blank and the page uses the Lab color field until you add one."
       - label: Cover alt text
         name: coverAlt
         widget: string
@@ -89,13 +89,13 @@ collections:
         widget: select
         required: false
         default: Experiments
-        options: ["Experiments", "Dev Logs", "Product Updates", "Behind the Scenes", "Announcements"]
-        hint: "Matches the filter chips on the Lab page."
+        options: ["Experiments", "Dev Logs", "Product Updates", "Behind the Scenes", "Announcements", "Opinion"]
+        hint: "The label on the Lab card, and one of the filter chips."
       - label: Tags
         name: tags
         widget: list
         required: false
-        hint: "Optional. Used in the page metadata, not the filter chips."
+        hint: "Optional. Each tag is also a filter chip on the Lab page."
       - label: Author
         name: author
         widget: string

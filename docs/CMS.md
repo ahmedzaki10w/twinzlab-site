@@ -64,8 +64,8 @@ If GitHub shows an error about the callback URL, the OAuth app callback is not e
 
 1. In the editor, open **Lab** and choose **New Article**.
 2. Fill in the title, slug, date, and excerpt. The slug is the address: `notes-from-the-lab` becomes `https://twinzlab.online/lab/notes-from-the-lab/`.
-3. Pick a category that matches the chips on the Lab page: Experiments, Dev Logs, Product Updates, Behind the Scenes, or Announcements.
-4. Add a cover if you have one. Uploaded images are stored in `assets/uploads` in the repository.
+3. Pick a category: Experiments, Dev Logs, Product Updates, Behind the Scenes, Announcements, or Opinion. Tags you add become filter chips too.
+4. Add a cover if you have one. If you leave it blank, the page uses the Lab color field until you add an image. Uploaded images are stored in `assets/uploads` in the repository.
 5. Write the article in Markdown. A heading written as `## A section` is added to the list beside the title.
 6. Leave **Draft** off.
 7. Choose **Publish**.

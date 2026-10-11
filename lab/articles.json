@@ -1,10 +1,29 @@
 [
   {
+    "title": "If Anyone Can Build Anything, Who Still Pays for Software?",
+    "slug": "ai-free-software-future-of-saas",
+    "date": "2026-10-11",
+    "excerpt": "AI is helping people rebuild big paid software for free, and open models are doing the same to the AI labs. Will SaaS, or AI itself, become worthless? We dig into the evidence.",
+    "category": "Opinion",
+    "tags": [
+      "From the Lab",
+      "Opinion",
+      "AI",
+      "Open Source",
+      "SaaS",
+      "Future of Software",
+      "Open-Weight Models"
+    ],
+    "card": "/assets/lab/cover-fallback.png",
+    "url": "/lab/ai-free-software-future-of-saas/"
+  },
+  {
     "title": "The Bug That Makes You Laugh: What a Theory of Jokes Says About Building AI",
     "slug": "the-bug-that-makes-you-laugh",
     "date": "2026-09-27",
     "excerpt": "A joke is a glitch in your mental model, and a useful lens on building with AI.",
     "category": "Experiments",
+    "tags": [],
     "card": "/assets/lab/the-bug-that-makes-you-laugh/card.jpg",
     "url": "/lab/the-bug-that-makes-you-laugh/"
   }

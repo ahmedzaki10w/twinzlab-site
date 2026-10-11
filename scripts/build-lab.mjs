@@ -24,6 +24,9 @@ const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 const DEFAULT_CTA = "Building with AI? Let's compare notes";
 const ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true" style="--34440n:currentColor;--fbr8zx:1.5"><use href="#3403169090"></use></svg>';
 
+const FALLBACK_COVER = "/assets/lab/cover-fallback.png";
+const FALLBACK_ALT = "Soft warm and cool light on a dark field.";
+
 const marked = new Marked();
 let usedIds = new Set();
 marked.use({
@@ -37,6 +40,15 @@ marked.use({
       while (usedIds.has(id)) id = `${slugify(decode(plain)) || "section"}-${n++}`;
       usedIds.add(id);
       return `<h${depth} id="${id}">${text}</h${depth}>\n`;
+    },
+    link({ href, title, tokens }) {
+      const text = this.parser.parseInline(tokens);
+      const safe = String(href || "").trim();
+      if (!safe || /^\s*javascript:/i.test(safe)) return text;
+      const titleAttr = title ? ` title="${esc(title)}"` : "";
+      const external = /^https?:\/\//i.test(safe) && !safe.startsWith(SITE);
+      const extra = external ? ` target="_blank" rel="noopener noreferrer"` : "";
+      return `<a href="${esc(safe)}"${titleAttr}${extra}>${text}</a>`;
     },
   },
 });
@@ -355,10 +367,10 @@ function loadArticles() {
       excerpt: String(data.excerpt || data.description || "").trim(),
       description: String(data.description || data.excerpt || "").trim(),
       dek: String(data.dek || data.excerpt || data.description || "").trim(),
-      cover: String(data.cover || "").trim(),
-      coverAlt: String(data.coverAlt || data.cover_alt || "").trim(),
-      card: String(data.card || data.cover || "").trim(),
-      og: String(data.og || data.card || data.cover || "").trim(),
+      cover: String(data.cover || "").trim() || FALLBACK_COVER,
+      coverAlt: String(data.coverAlt || data.cover_alt || "").trim() || (String(data.cover || "").trim() ? "" : FALLBACK_ALT),
+      card: String(data.card || data.cover || "").trim() || FALLBACK_COVER,
+      og: String(data.og || data.card || data.cover || "").trim() || FALLBACK_COVER,
       category: String(data.category || "").trim(),
       tags: asList(data.tags),
       author: String(data.author || "").trim(),
@@ -407,6 +419,7 @@ function manifest(articles) {
     date: article.date,
     excerpt: article.excerpt,
     category: article.category,
+    tags: article.tags,
     card: rootPath(article.card || article.cover),
     url: `/lab/${article.slug}/`,
   }));

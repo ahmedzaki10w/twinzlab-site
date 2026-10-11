@@ -1073,6 +1073,16 @@ html.tz-reveal-on .tz-reveal.tz-reveal-soft {
   height: auto !important;
 }
 
+/* Extra tag chips sit on the next line instead of running off the page. */
+#main .framer-zk7jz2[data-tz-chip-wrap] {
+  flex-wrap: wrap !important;
+  align-items: flex-start !important;
+  align-content: flex-start !important;
+  height: auto !important;
+  row-gap: 8px !important;
+  overflow: visible !important;
+}
+
 /* Value titles and blurbs keep the width they had in a 291px card.
    In the five-up row that width runs past the card and the next card
    covers the last letters. Size them to the card and let them wrap. */
