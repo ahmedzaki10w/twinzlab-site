@@ -111,14 +111,6 @@
   };
 
   var FILTERS = {
-    products: {
-      chips: ".framer-rimxp0", list: ".framer-ob073m",
-      cards: [".framer-1ef4b7q", ".framer-nzlyda", ".framer-tlhq47"],
-      tag: ".framer-14uwwsz, .framer-1ag9kqb, .framer-1g5nybw",
-      empty: function (label) {
-        return { msg: "No " + label + " published yet. We're building them now.", cta: "Tell us what you'd like to see", href: site("contact/?topic=" + encodeURIComponent(label) + "#contact-form") };
-      }
-    },
     lab: {
       chips: ".framer-zk7jz2", list: ".framer-1klyps3",
       cards: [".framer-eo4uhb"],
@@ -165,10 +157,19 @@
     });
   }
 
+  // The products page still ships All / Aresson / Daftar / Soon chips.
+  // Hydration puts them back, so drop them on every pass.
+  function dropProductFilter() {
+    $$(".framer-rimxp0", main()).forEach(function (el) {
+      el.remove();
+    });
+  }
+
   function enhance() {
     var root = main();
     if (!root) return;
     dropPlaceholderArticles();
+    dropProductFilter();
     var page = pageName();
 
     $$("a.framer-s29zbl", root).forEach(function (a) {
