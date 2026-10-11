@@ -984,8 +984,8 @@ html.tz-reveal-on .tz-reveal.tz-reveal-soft {
   #main .framer-17nt926 .framer-text { --framer-font-size-scale: .6; }
 }
 
-/* One published article. Keep that card the filled surface (#231d17) and
-   drop the empty "coming soon" slots, including after Framer hydrates them. */
+/* Published notes use the filled card surface (#231d17). Drop the empty
+   "coming soon" slots, including after Framer hydrates them. */
 #main .framer-qwhetu,
 #main .framer-wljenu,
 #main .framer-1kvby1z,
@@ -1001,6 +1001,9 @@ html.tz-reveal-on .tz-reveal.tz-reveal-soft {
   max-width: 100% !important;
   height: auto !important;
   align-self: flex-start !important;
+}
+#main #from-the-lab .framer-1ytkcbt {
+  flex-wrap: wrap !important;
 }
 #main #from-the-lab,
 #main #from-the-lab .framer-kg80rm,

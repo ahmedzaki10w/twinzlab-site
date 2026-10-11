@@ -426,17 +426,18 @@ function manifest(articles) {
 }
 
 function injectManifest(json) {
-  const indexPath = path.join(LAB_DIR, "index.html");
-  let html = fs.readFileSync(indexPath, "utf8");
   const block = `<!-- tz-lab-articles --><script type="application/json" id="tz-lab-articles">${json}</script><!-- /tz-lab-articles -->`;
-  if (html.includes("<!-- tz-lab-articles -->")) {
-    html = html.replace(/<!-- tz-lab-articles -->[\s\S]*?<!-- \/tz-lab-articles -->/, block);
-  } else if (!html.includes("</head>")) {
-    throw new Error("lab/index.html has no </head>, so the article list cannot be added");
-  } else {
-    html = html.replace("</head>", `${block}</head>`);
+  for (const indexPath of [path.join(LAB_DIR, "index.html"), path.join(root, "index.html")]) {
+    let html = fs.readFileSync(indexPath, "utf8");
+    if (html.includes("<!-- tz-lab-articles -->")) {
+      html = html.replace(/<!-- tz-lab-articles -->[\s\S]*?<!-- \/tz-lab-articles -->/, block);
+    } else if (!html.includes("</head>")) {
+      throw new Error(`${indexPath} has no </head>, so the article list cannot be added`);
+    } else {
+      html = html.replace("</head>", `${block}</head>`);
+    }
+    fs.writeFileSync(indexPath, html);
   }
-  fs.writeFileSync(indexPath, html);
 }
 
 function vendorDecap() {
