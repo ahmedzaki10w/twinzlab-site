@@ -1020,12 +1020,47 @@ html.tz-reveal-on .tz-reveal.tz-reveal-soft {
    Hydration restores the SSR node, so hide it before the script removes it. */
 #main .framer-rimxp0 { display: none !important; }
 
-/* Article titles are 24px. That still reads large on a tablet and a phone. */
+/* Homepage article titles are 24px. That still reads large on a tablet and a phone. */
 @media (max-width: 1023px) {
-  #main .framer-zdps2f .framer-text,
   #main #from-the-lab .framer-g4yjk0 .framer-text { --framer-font-size-scale: .833; }
 }
 @media (max-width: 767px) {
-  #main .framer-zdps2f .framer-text,
   #main #from-the-lab .framer-g4yjk0 .framer-text { --framer-font-size-scale: .75; }
+}
+
+/* Lab page article card. The thumbnail sat on the title, the blurb sat 32px
+   above Read more, and the 24px title wrapped to three lines in a 420px frame.
+   One rhythm at every width: 16px under the image, 8px under the title, 16px
+   above Read more. Title 20px (18px on a phone), blurb and link 14px. */
+#main .framer-eo4uhb {
+  gap: 16px !important;
+  justify-content: flex-start !important;
+}
+#main .framer-eo4uhb .framer-ryexna {
+  gap: 16px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+#main .framer-eo4uhb .framer-15obbl6 {
+  gap: 8px !important;
+}
+#main .framer-eo4uhb .framer-zdps2f .framer-text {
+  --framer-font-size-scale: .833 !important;
+}
+#main .framer-eo4uhb .framer-7454k4 .framer-text {
+  --framer-font-size-scale: .875 !important;
+}
+#main .framer-eo4uhb .framer-sunr89 .framer-text,
+#main .framer-eo4uhb .framer-15awcsp .framer-text {
+  --framer-font-size: 14px !important;
+  --framer-font-size-scale: 1 !important;
+}
+#main .framer-eo4uhb .framer-13h60oi {
+  width: 14px !important;
+  height: 14px !important;
+}
+@media (max-width: 767px) {
+  #main .framer-eo4uhb .framer-zdps2f .framer-text {
+    --framer-font-size-scale: .75 !important;
+  }
 }
