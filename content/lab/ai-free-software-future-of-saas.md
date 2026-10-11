@@ -4,6 +4,10 @@ slug: ai-free-software-future-of-saas
 date: "2026-10-11"
 excerpt: "AI is helping people rebuild big paid software for free, and open models are doing the same to the AI labs. Will SaaS, or AI itself, become worthless? We dig into the evidence."
 description: "AI lets anyone rebuild software for free, and open models are coming for the AI labs too. Will SaaS become useless? What dies, what survives and who wins."
+cover: /assets/lab/ai-free-software-future-of-saas/hero.jpg
+coverAlt: "A thin white line drawing of a glass wall with one pane shattered, and small figures carrying glowing laptops through the gap. A lock, a database, and a handshake sit on top of the wall."
+card: /assets/lab/ai-free-software-future-of-saas/card.jpg
+og: /assets/lab/ai-free-software-future-of-saas/og.jpg
 category: Opinion
 tags:
   - From the Lab
