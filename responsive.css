@@ -1025,3 +1025,22 @@ html.tz-reveal-on .tz-reveal.tz-reveal-soft {
   #main .framer-zdps2f .framer-text,
   #main #from-the-lab .framer-g4yjk0 .framer-text { --framer-font-size-scale: .75; }
 }
+
+/* Value titles and blurbs keep the width they had in a 291px card.
+   In the five-up row that width runs past the card and the next card
+   covers the last letters. Size them to the card and let them wrap. */
+#main #values .framer-1luoeas [data-framer-component-type="RichTextContainer"],
+#main #values .framer-1luoeas [data-framer-component-type="RichTextContainer"] .framer-text {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  white-space: normal !important;
+  overflow-wrap: break-word;
+}
+#main #values .framer-1luoeas [data-text-fill] {
+  display: inline-block !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
