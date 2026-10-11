@@ -18,6 +18,17 @@ Open [http://127.0.0.1:4817](http://127.0.0.1:4817).
 
 Use a non-default port (e.g. `4817`) if `3000` / `8080` are already in use.
 
+## Lab articles
+
+Founders publish Lab articles from [twinzlab.online/admin](https://twinzlab.online/admin). The steps for GitHub sign-in and Cloudflare are in [docs/CMS.md](docs/CMS.md).
+
+```bash
+npm install
+npm run build
+```
+
+`npm run build` turns `content/lab/*.md` into the article pages and the Lab card list.
+
 ## Notes
 
 - Contact form uses FormSubmit; activate the FormSubmit email once the site is publicly hosted.

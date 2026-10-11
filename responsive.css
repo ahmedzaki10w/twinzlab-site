@@ -1065,6 +1065,14 @@ html.tz-reveal-on .tz-reveal.tz-reveal-soft {
   }
 }
 
+/* Further Lab articles use the same 420px card and wrap onto the next row. */
+#main .framer-1klyps3 {
+  flex-wrap: wrap !important;
+  align-items: flex-start !important;
+  align-content: flex-start !important;
+  height: auto !important;
+}
+
 /* Value titles and blurbs keep the width they had in a 291px card.
    In the five-up row that width runs past the card and the next card
    covers the last letters. Size them to the card and let them wrap. */

@@ -212,6 +212,7 @@
       $$(sel, root).forEach(function (el) { makeDisabled(el, "Full post coming soon", "pill"); });
     });
     $$(".framer-1uia4ak, .framer-fwj0dz-container a.framer-s29zbl", root).forEach(function (el) {
+      if (el.closest(".framer-1klyps3")) return;
       makeLink(el, site(ARTICLE), "button", "Read the article");
     });
 
@@ -225,6 +226,7 @@
       if (el && !el.id) { el.id = anchors[sel]; setAttr(el, "data-tz-anchor", ""); }
     });
 
+    if (page === "lab") renderLabArticles();
     if (FILTERS[page]) setupFilter(page);
     if (page === "contact") { setupTopics(); mountForm(); }
     if (page === "home") {
@@ -764,6 +766,84 @@
       return;
     }
     paintFeatured();
+  }
+
+  /* --------------------------------------------------------- lab articles */
+
+  // The Lab page is a Framer export. Article cards are filled from the
+  // manifest the build writes into #tz-lab-articles, using the published
+  // card as the template so the frame stays the same.
+  var labCardTemplate = null;
+
+  function labArticles() {
+    var node = document.getElementById("tz-lab-articles");
+    if (!node) return [];
+    try {
+      var data = JSON.parse(node.textContent || "[]");
+      return Array.isArray(data) ? data : [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  function labImage(url) {
+    var value = String(url || "");
+    if (!/^\/assets\/[A-Za-z0-9._~/-]+$/.test(value)) return "";
+    return value;
+  }
+
+  function fillLabCard(card, article) {
+    card.removeAttribute("data-tz-hidden");
+    card.removeAttribute("data-tz-disabled");
+    setAttr(card, "data-tz-card", "");
+    setAttr(card, "data-tz-kind", "card");
+    setAttr(card, "data-tz-slug", article.slug || "");
+    var title = $(".framer-zdps2f .framer-text", card);
+    var excerpt = $(".framer-7454k4 .framer-text", card);
+    var tag = $(".framer-svx48s .framer-text", card);
+    var pill = $(".framer-svx48s", card);
+    var thumb = $(".framer-1p016lq", card);
+    var read = $(".framer-1uia4ak", card);
+    if (title) title.textContent = article.title || "";
+    if (excerpt) excerpt.textContent = article.excerpt || "";
+    if (tag) tag.textContent = article.category || "";
+    if (pill) pill.style.display = article.category ? "" : "none";
+    if (thumb) {
+      var image = labImage(article.card);
+      thumb.style.backgroundImage = image ? 'url("' + image + '")' : "none";
+      thumb.style.backgroundSize = "cover";
+      thumb.style.backgroundPosition = "center";
+      thumb.style.backgroundRepeat = "no-repeat";
+    }
+    if (read) {
+      var path = String(article.url || "").replace(/^\//, "");
+      makeLink(read, site(path), "button", "Read the article");
+    }
+  }
+
+  function renderLabArticles() {
+    var root = main();
+    var list = $(".framer-1klyps3", root);
+    if (!list) return;
+    var articles = labArticles();
+    if (!articles.length) return;
+    var signature = articles.map(function (article) { return article.slug || ""; }).join("|");
+    var current = $$(".framer-eo4uhb", list);
+    if (list.getAttribute("data-tz-lab-sig") === signature && current.length === articles.length) return;
+
+    var seed = current[0] || labCardTemplate;
+    if (!labCardTemplate && seed) labCardTemplate = seed.cloneNode(true);
+    if (!labCardTemplate) return;
+
+    current.forEach(function (card) { card.remove(); });
+    var empty = $(".tz-empty", list);
+    articles.forEach(function (article) {
+      var card = labCardTemplate.cloneNode(true);
+      fillLabCard(card, article);
+      if (empty) list.insertBefore(card, empty);
+      else list.appendChild(card);
+    });
+    setAttr(list, "data-tz-lab-sig", signature);
   }
 
   /* -------------------------------------------------------------- filters */
