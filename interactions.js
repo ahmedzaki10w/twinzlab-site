@@ -149,8 +149,9 @@
     setAttr(el, "title", reason);
   }
 
-  // The export still ships two empty "coming soon" article cards. Hydration
-  // puts them back, so drop them on every pass. Only one note is published.
+  // The export still ships empty "coming soon" article cards. Hydration
+  // puts them back, so drop them on every pass. Published notes are filled
+  // from the Lab manifest instead.
   function dropPlaceholderArticles() {
     $$(".framer-qwhetu, .framer-wljenu, .framer-1kvby1z, .framer-1dmwas0", main()).forEach(function (el) {
       el.remove();
@@ -213,6 +214,8 @@
     });
     $$(".framer-1uia4ak, .framer-fwj0dz-container a.framer-s29zbl", root).forEach(function (el) {
       if (el.closest(".framer-1klyps3")) return;
+      // Home cards get their own article link in renderHomeArticles.
+      if (page === "home" && el.closest(".framer-1ytkcbt") && labArticles().length) return;
       makeLink(el, site(ARTICLE), "button", "Read the article");
     });
 
@@ -235,6 +238,7 @@
     if (page === "home") {
       setupFeatured();
       fitProcessDiagram();
+      renderHomeArticles();
       fitLabHover();
       setupWho();
     }
@@ -777,6 +781,7 @@
   // manifest the build writes into #tz-lab-articles, using the published
   // card as the template so the frame stays the same.
   var labCardTemplate = null;
+  var homeLabTemplate = null;
 
   function labArticles() {
     var node = document.getElementById("tz-lab-articles");
@@ -852,6 +857,64 @@
       else list.appendChild(card);
     });
     setAttr(list, "data-tz-lab-sig", signature);
+  }
+
+  // Home "From the Lab" is one Framer card. Clone it for each published
+  // note, newest first, so a new article shows up here as well as on /lab/.
+  function fillHomeCard(card, article) {
+    setAttr(card, "data-tz-slug", article.slug || "");
+    var title = $(".framer-g4yjk0 .framer-text", card);
+    var excerpt = $(".framer-5ysmln .framer-text", card);
+    var tag = $(".framer-th7ax0 .framer-text", card);
+    var thumb = $(".framer-1oc9la7, .framer-7kjbep, .framer-1ghax4c", card);
+    var read = $("a.framer-s29zbl", card);
+    var nextTitle = article.title || "";
+    var nextExcerpt = article.excerpt || "";
+    if (title && title.textContent !== nextTitle) title.textContent = nextTitle;
+    if (excerpt && excerpt.textContent !== nextExcerpt) excerpt.textContent = nextExcerpt;
+    if (tag && article.category && tag.textContent !== article.category) tag.textContent = article.category;
+    if (thumb) {
+      var image = labImage(article.card);
+      if (image) {
+        var bg = 'url("' + image + '")';
+        if (thumb.style.backgroundImage !== bg) thumb.style.backgroundImage = bg;
+        thumb.style.backgroundSize = "cover";
+        thumb.style.backgroundPosition = "center";
+        thumb.style.backgroundRepeat = "no-repeat";
+      }
+    }
+    if (read) {
+      var path = String(article.url || "").replace(/^\//, "");
+      makeLink(read, site(path), "button", "Read the article");
+    }
+  }
+
+  function renderHomeArticles() {
+    var section = document.getElementById("from-the-lab");
+    if (!section) return;
+    var list = $(".framer-1ytkcbt", section);
+    if (!list) return;
+    var articles = labArticles();
+    if (!articles.length) return;
+    var dek = $(".framer-1e6exfl .framer-text", section);
+    if (dek && dek.textContent !== "Notes from the work.") dek.textContent = "Notes from the work.";
+    var signature = articles.map(function (article) {
+      return [article.slug || "", article.title || "", article.card || ""].join("~");
+    }).join("|");
+    var current = $$(".framer-inyeg6", list);
+    if (!homeLabTemplate && current[0]) homeLabTemplate = current[0].cloneNode(true);
+    if (list.getAttribute("data-tz-home-sig") === signature && current.length === articles.length) {
+      current.forEach(function (card, i) { fillHomeCard(card, articles[i]); });
+      return;
+    }
+    if (!homeLabTemplate) return;
+    current.forEach(function (card) { card.remove(); });
+    articles.forEach(function (article) {
+      var card = homeLabTemplate.cloneNode(true);
+      fillHomeCard(card, article);
+      list.appendChild(card);
+    });
+    setAttr(list, "data-tz-home-sig", signature);
   }
 
   // Category is the card label. Tags are extra chips, cloned from the
