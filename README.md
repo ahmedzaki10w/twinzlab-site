@@ -31,7 +31,7 @@ npm run build
 
 ## Notes
 
-- Contact form uses FormSubmit; activate the FormSubmit email once the site is publicly hosted.
+- Contact, the Lab Notes signup, and the coming-soon waitlist share one endpoint. Set `ENDPOINT_OVERRIDE` at the top of `signup.js` if you move off FormSubmit. Leave it empty to post to `https://formsubmit.co/ajax/hello@twinzlab.online`. Activate that FormSubmit address once the site is publicly hosted. A failed post opens a mailto draft and does not say the person is subscribed. Store links for Aresson and Hesba stay empty in `STORE_URLS` inside `interactions.js` until the apps are public. The reply-time line is `REPLY_TIME` in the same file.
 - Keep `responsive.css` / `responsive.js`, `interactions.css` / `interactions.js`, `assets/`, page folders, and `f2c-sw.js` at the repo root.
 
 ## Branding notes

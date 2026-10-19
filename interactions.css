@@ -656,6 +656,254 @@ body.tz-form-ready #main .framer-255p7q { height: auto !important; }
   }
 }
 
+/* ---------------------------------------------------------------- founder fixes */
+
+/* What we build: dark scrim so white type stays above 4.5:1 on the photo. */
+#main .framer-1d8ufji,
+#main .framer-1413m6a,
+#main .framer-ck2tmp { isolation: isolate; }
+#main .framer-1d8ufji::after,
+#main .framer-1413m6a::after,
+#main .framer-ck2tmp::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 78%;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to top, #17100b 0%, #17100b 36%, rgba(23, 16, 11, .88) 58%, rgba(23, 16, 11, 0) 100%);
+}
+#main .framer-1n7qrll,
+#main .framer-1mdvhxc,
+#main .framer-7xxt58,
+#main .framer-1wuy6vh,
+#main .framer-9c2v11,
+#main .framer-1onjfjr {
+  position: relative;
+  z-index: 2;
+}
+
+/* Twin Advantage: the dark panel fades into a soft image. No hard seam. */
+#main .framer-1ugbpjk .framer-1u1mjpr {
+  background-color: #231d18 !important;
+  overflow: hidden;
+}
+#main .framer-1ugbpjk .framer-1ekzfv9 {
+  position: relative;
+  z-index: 3;
+}
+#main .framer-1ugbpjk .framer-i60mr7 {
+  position: relative;
+  z-index: 1;
+  margin-left: -140px;
+  isolation: isolate;
+}
+#main .framer-1ugbpjk .framer-i60mr7::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, #231d18 0%, rgba(35, 29, 24, .94) 14%, rgba(35, 29, 24, .62) 34%, rgba(35, 29, 24, .22) 56%, rgba(35, 29, 24, 0) 78%);
+}
+#main .framer-1ugbpjk .framer-i60mr7 > div:first-child {
+  z-index: 0;
+  filter: blur(28px) saturate(1.05);
+  transform: scale(1.22);
+  transform-origin: center right;
+}
+#main .framer-1ugbpjk .framer-ranyug,
+#main .framer-1ugbpjk .framer-o9jlmc,
+#main .framer-1ugbpjk .framer-l3n8uv,
+#main .framer-1ugbpjk .framer-4x0bkz {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, .16) !important;
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55), inset 0 -8px 16px rgba(255, 255, 255, .04);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+}
+#main .framer-1ugbpjk .framer-ranyug > div:first-child,
+#main .framer-1ugbpjk .framer-o9jlmc > div:first-child,
+#main .framer-1ugbpjk .framer-l3n8uv > div:first-child,
+#main .framer-1ugbpjk .framer-4x0bkz > div:first-child { opacity: 0 !important; }
+#main .framer-1ugbpjk .framer-ranyug .framer-text,
+#main .framer-1ugbpjk .framer-o9jlmc .framer-text,
+#main .framer-1ugbpjk .framer-l3n8uv .framer-text,
+#main .framer-1ugbpjk .framer-4x0bkz .framer-text {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .4);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  #main .framer-1ugbpjk .framer-ranyug,
+  #main .framer-1ugbpjk .framer-o9jlmc,
+  #main .framer-1ugbpjk .framer-l3n8uv,
+  #main .framer-1ugbpjk .framer-4x0bkz {
+    background: rgba(23, 16, 11, .72) !important;
+  }
+}
+@media (max-width: 1023px) {
+  #main .framer-1ugbpjk .framer-i60mr7 {
+    margin-left: 0;
+    margin-top: -36px;
+  }
+  #main .framer-1ugbpjk .framer-i60mr7::before {
+    background: linear-gradient(180deg, #231d18 0%, rgba(35, 29, 24, .85) 22%, rgba(35, 29, 24, .28) 48%, rgba(35, 29, 24, 0) 72%);
+  }
+  #main .framer-1ugbpjk .framer-i60mr7 > div:first-child {
+    transform-origin: center top;
+    min-height: 200px;
+  }
+}
+
+/* Coming soon is an honest empty card, not a product photo. */
+#main .framer-tlhq47.tz-ghost {
+  background: transparent !important;
+  border: 1.5px dashed #eaab78 !important;
+  border-radius: 16px;
+  box-shadow: none !important;
+}
+#main .framer-tlhq47.tz-ghost .framer-1kf9dvd {
+  background: transparent !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+#main .framer-tlhq47.tz-ghost .framer-1kf9dvd img,
+#main .framer-tlhq47.tz-ghost .framer-1kf9dvd [data-framer-background-image-wrapper] { opacity: 0 !important; }
+#main .tz-ghost-mark {
+  width: 96px;
+  height: 96px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Lab series numbers and equal cards. */
+#main .tz-lab-no {
+  margin: 0 0 8px;
+  color: #eaab78;
+  font: 500 12px/1.2 "Inter Tight", "Inter Tight Placeholder", system-ui, sans-serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+#main .framer-1klyps3 { align-items: stretch !important; }
+#main .framer-1klyps3 > .framer-eo4uhb {
+  align-self: stretch !important;
+  height: auto !important;
+}
+#main .framer-eo4uhb .framer-ryexna {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+#main .framer-eo4uhb .framer-1uia4ak { margin-top: auto !important; }
+#main .framer-1azgdz2 { height: auto !important; }
+
+/* Pause / play for the one homepage autoplay module. */
+#main .framer-1lq0uvn,
+#main .framer-iyzx2i { position: relative; }
+.tz-play {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 6;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(234, 171, 120, .9);
+  background: rgba(23, 16, 11, .78);
+  color: #eaab78;
+  font: 500 13px/1 "Inter Tight", "Inter Tight Placeholder", system-ui, sans-serif;
+  cursor: pointer;
+}
+.tz-play:focus-visible { outline: 2px solid #eaab78; outline-offset: 3px; }
+
+/* Contact paths. */
+.tz-paths {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  margin: 0 0 28px;
+  font-family: "Inter Tight", "Inter Tight Placeholder", system-ui, sans-serif;
+}
+.tz-path {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 44px;
+  padding: 16px 18px;
+  text-align: left;
+  color: #d9d9d9;
+  background: #231c17;
+  border: 1px solid rgba(234, 171, 120, .45);
+  border-radius: 12px;
+  cursor: pointer;
+  font: inherit;
+}
+.tz-path[aria-pressed="true"] {
+  border-color: #eaab78;
+  background: #2e251f;
+}
+.tz-path__title { color: #eaab78; font-size: 16px; font-weight: 500; }
+.tz-path__line { font-size: 14px; line-height: 1.45; color: #d9d9d9; }
+.tz-paths__note {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
+  color: #d9d9d9;
+  font-size: 14px;
+}
+@media (max-width: 767px) {
+  .tz-paths { grid-template-columns: 1fr; }
+}
+
+/* Shared email signup (Lab Notes and the coming-soon waitlist). */
+.tz-signup-host { width: 100%; margin-top: 28px; }
+.tz-signup {
+  width: min(640px, 100%);
+  margin: 8px 0 0;
+  color: #d9d9d9;
+  font-family: "Inter Tight", "Inter Tight Placeholder", system-ui, sans-serif;
+}
+.tz-signup__title {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  color: #d9d9d9;
+}
+.tz-signup__dek { margin: 0 0 16px; font-size: 15px; line-height: 1.45; color: #d9d9d9; }
+.tz-signup__row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+.tz-signup__label { display: flex; flex-direction: column; gap: 6px; flex: 1 1 220px; }
+.tz-signup__label-text { font-size: 14px; color: #d9d9d9; }
+.tz-signup__input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(217, 217, 217, .35);
+  background: #17100b;
+  color: #d9d9d9;
+  font: 400 16px/1.2 "Inter Tight", "Inter Tight Placeholder", system-ui, sans-serif;
+}
+.tz-signup__input:focus-visible { outline: 2px solid #eaab78; outline-offset: 3px; }
+.tz-signup__error,
+.tz-signup__result p { margin: 12px 0 0; font-size: 14px; line-height: 1.45; }
+.tz-signup__error { color: #ff9d8f; }
+.tz-signup__result { margin-top: 8px; }
+.tz-signup__result .tz-btn { margin-top: 12px; }
+.tz-signup--compact { width: 100%; margin: 0; }
+.tz-signup--compact .tz-signup__dek { font-size: 14px; }
+.tz-signup--compact .tz-signup__row { flex-direction: column; align-items: stretch; }
+#main .framer-tlhq47.tz-ghost .tz-signup-host { margin-top: 12px; padding: 0 8px 8px; }
+
 /* Twinzlab: hide Framer editor/badge chrome if hydration re-injects it */
 #__framer-badge-container,
 .__framer-badge,
