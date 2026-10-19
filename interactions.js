@@ -109,7 +109,7 @@
 
   function productKeyFromName(name) {
     var n = String(name || "").trim().toLowerCase();
-    if (n === "hesba" || n === "daftar") return "hesba";
+    if (n === "hesba") return "hesba";
     if (n === "aresson") return "aresson";
     return "";
   }
@@ -188,7 +188,7 @@
     });
   }
 
-  // The products page still ships All / Aresson / Daftar / Soon chips.
+  // The products page still ships All / Aresson / Hesba / Soon chips.
   // Hydration puts them back, so drop them on every pass.
   function dropProductFilter() {
     $$(".framer-rimxp0", main()).forEach(function (el) {
@@ -277,6 +277,7 @@
     if (page === "products") setupGhost();
     if (FILTERS[page]) setupFilter(page);
     if (page === "contact") { mountPaths(); setupTopics(); mountForm(); }
+    paintProductShots();
     if (page === "home") {
       setupFeatured();
       fitProcessDiagram();
@@ -561,20 +562,96 @@
   /* ----------------------------------------------------- featured product */
 
   // Homepage carousel. Coming soon stays on the products page as a ghost card.
+  // Aresson and Hesba art is a blurred photo with the real app screen floating on it.
+  var PRODUCT_SHOTS = {
+    aresson: {
+      alt: "Aresson app onboarding screen: Find your perfect coach, book in seconds",
+      bgW: 1200, bgH: 900, screenW: 720, screenH: 1558,
+      bgSizes: "(min-width: 1200px) 560px, 100vw",
+      screenSizes: "(min-width: 1200px) 240px, 160px",
+      bgAvif: "/assets/products/aresson-bg-800.avif 800w, /assets/products/aresson-bg.avif 1200w",
+      bgWebp: "/assets/products/aresson-bg-800.webp 800w, /assets/products/aresson-bg.webp 1200w",
+      bgFallback: "/assets/products/aresson-bg.webp",
+      screenAvif: "/assets/products/aresson-screen-480.avif 480w, /assets/products/aresson-screen.avif 720w",
+      screenWebp: "/assets/products/aresson-screen-480.webp 480w, /assets/products/aresson-screen.webp 720w",
+      screenFallback: "/assets/products/aresson-screen.webp"
+    },
+    hesba: {
+      alt: "Hesba app sales dashboard",
+      bgW: 940, bgH: 680, screenW: 720, screenH: 1616,
+      bgSizes: "(min-width: 1200px) 560px, 100vw",
+      screenSizes: "(min-width: 1200px) 240px, 160px",
+      bgAvif: "/assets/products/hesba-bg-720.avif 720w, /assets/products/hesba-bg.avif 940w",
+      bgWebp: "/assets/products/hesba-bg-720.webp 720w, /assets/products/hesba-bg.webp 940w",
+      bgFallback: "/assets/products/hesba-bg.webp",
+      screenAvif: "/assets/products/hesba-screen-480.avif 480w, /assets/products/hesba-screen.avif 720w",
+      screenWebp: "/assets/products/hesba-screen-480.webp 480w, /assets/products/hesba-screen.webp 720w",
+      screenFallback: "/assets/products/hesba-screen.webp"
+    }
+  };
+
+  function shotPicture(shot, kind) {
+    var isScreen = kind === "screen";
+    var cls = isScreen ? "tz-shot__screen" : "tz-shot__bg";
+    var alt = isScreen ? shot.alt : "";
+    var w = isScreen ? shot.screenW : shot.bgW;
+    var h = isScreen ? shot.screenH : shot.bgH;
+    var sizes = isScreen ? shot.screenSizes : shot.bgSizes;
+    var avif = isScreen ? shot.screenAvif : shot.bgAvif;
+    var webp = isScreen ? shot.screenWebp : shot.bgWebp;
+    var fallback = isScreen ? shot.screenFallback : shot.bgFallback;
+    return '<picture>' +
+      '<source type="image/avif" srcset="' + avif + '" sizes="' + sizes + '">' +
+      '<source type="image/webp" srcset="' + webp + '" sizes="' + sizes + '">' +
+      '<img class="' + cls + '" src="' + fallback + '" alt="' + alt + '" width="' + w + '" height="' + h + '" decoding="async">' +
+      '</picture>';
+  }
+
+  function mountShot(host, key) {
+    if (!host) return;
+    var existing = host.querySelector(":scope > .tz-shot");
+    if (!key || !PRODUCT_SHOTS[key]) {
+      if (existing) existing.remove();
+      host.removeAttribute("data-tz-shot");
+      return;
+    }
+    if (existing && existing.getAttribute("data-tz-shot") === key) {
+      if (host.getAttribute("data-tz-shot") !== key) setAttr(host, "data-tz-shot", key);
+      return;
+    }
+    if (existing) existing.remove();
+    setAttr(host, "data-tz-shot", key);
+    var shot = PRODUCT_SHOTS[key];
+    host.insertAdjacentHTML("beforeend",
+      '<div class="tz-shot" data-tz-shot="' + key + '">' +
+      shotPicture(shot, "bg") + shotPicture(shot, "screen") +
+      '</div>');
+  }
+
+  // Products-page art slots. The homepage featured frame is painted per slide.
+  function paintProductShots() {
+    var root = main();
+    if (!root) return;
+    mountShot($(".framer-qubl6t", root), "aresson");
+    mountShot($(".framer-2p0onn", root), "hesba");
+  }
+
   var FEATURED = [
     {
       name: "Hesba",
       key: "hesba",
       blurb: "A mobile app for kiosk and small-shop owners to manage sales and their team.",
       href: "products/#hesba",
-      gradient: "linear-gradient(#1e211d 0%,#274735 66.0661%,#accbda 100%)"
+      gradient: "linear-gradient(#1e211d 0%,#274735 66.0661%,#accbda 100%)",
+      shot: "hesba"
     },
     {
       name: "Aresson",
       key: "aresson",
       blurb: "Discover and book sports sessions with coaches and trainers across different sports.",
       href: "products/#aresson",
-      gradient: "linear-gradient(#1e211d 0%,#4a3428 62%,#e9ab78 100%)"
+      gradient: "linear-gradient(#1e211d 0%,#4a3428 62%,#e9ab78 100%)",
+      shot: "aresson"
     }
   ];
   var featuredIndex = 0;
@@ -609,7 +686,15 @@
       var blurbText = blurb.querySelector("h2, p") || blurb;
       if (text(blurbText) !== slide.blurb) blurbText.textContent = slide.blurb;
     }
-    if (art) art.style.background = slide.gradient;
+    if (art) {
+      if (slide.shot) {
+        art.style.background = "";
+        mountShot(art, slide.shot);
+      } else {
+        mountShot(art, "");
+        art.style.background = slide.gradient;
+      }
+    }
     if (button) {
       applyDest(button, productDestination(slide.key, slide.href));
       setAttr(button, "aria-label", "View " + slide.name);

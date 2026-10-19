@@ -1019,7 +1019,7 @@ html.tz-reveal-on .tz-reveal.tz-reveal-soft {
   top: auto !important;
 }
 
-/* Products filter chips (All / Aresson / Daftar / Soon) are unused.
+/* Products filter chips (All / Aresson / Hesba / Soon) are unused.
    Hydration restores the SSR node, so hide it before the script removes it. */
 #main .framer-rimxp0 { display: none !important; }
 
