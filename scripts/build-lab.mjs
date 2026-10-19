@@ -312,6 +312,7 @@ function articleHtml(article, articles) {
     ctaBlock(article),
     moreLab(article, articles),
     sources,
+    `<aside class="tz-signup-host" data-tz-signup="lab-notes" aria-label="Lab Notes"></aside>`,
     `<p class="back-top"><a href="#top">${ARROW} Back to top</a></p>`,
   ].filter(Boolean);
 
