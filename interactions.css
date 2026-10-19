@@ -656,6 +656,64 @@ body.tz-form-ready #main .framer-255p7q { height: auto !important; }
   }
 }
 
+/* Product art: real app screen floating on the founder's blurred photo.
+   The copy stays on the existing dark card surface, so the title stays readable.
+   Coming soon keeps its gradient. */
+#main [data-tz-shot="aresson"] {
+  background-image: none !important;
+  background-color: #d7e6f8 !important;
+}
+#main [data-tz-shot="hesba"] {
+  background-image: none !important;
+  background-color: #e5f3df !important;
+}
+#main .tz-shot {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+}
+#main .tz-shot picture { display: contents; }
+#main .tz-shot__bg {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+#main .tz-shot__screen {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto !important;
+  height: auto !important;
+  max-width: 64%;
+  max-height: 86%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  border-radius: clamp(18px, 14%, 32px);
+  box-shadow: 0 16px 34px rgba(24, 17, 11, 0.22), 0 2px 8px rgba(24, 17, 11, 0.1);
+  display: block;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  #main .tz-shot__screen {
+    transition: transform .45s var(--tz-ease), box-shadow .45s var(--tz-ease);
+  }
+  #main .framer-1ef4b7q:hover .tz-shot__screen,
+  #main .framer-nzlyda:hover .tz-shot__screen,
+  #main #featured-product .framer-11xoq6b:hover .tz-shot__screen {
+    transform: translate(-50%, calc(-50% - 8px));
+    box-shadow: 0 24px 42px rgba(24, 17, 11, 0.28), 0 4px 12px rgba(24, 17, 11, 0.12);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #main .tz-shot__screen { transition: none !important; }
+}
+
 /* Twinzlab: hide Framer editor/badge chrome if hydration re-injects it */
 #__framer-badge-container,
 .__framer-badge,
