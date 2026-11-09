@@ -1950,6 +1950,7 @@
 
   function isHydrated() {
     var m = main();
+    if (m && !m.hasAttribute("data-framer-hydrate-v2")) return true;
     var el = m && m.firstElementChild;
     if (!el) return false;
     for (var k in el) if (k.indexOf("__reactFiber") === 0) return true;
