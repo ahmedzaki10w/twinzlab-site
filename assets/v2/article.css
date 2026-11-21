@@ -1,0 +1,12 @@
+/* Article pages use the in-flow v2 header, aligned to the same 80px page margin. */
+.article {
+  width: min(1440px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 28px 80px 96px;
+}
+@media (max-width: 700px) {
+  .article { padding: 16px 20px 72px; }
+}
+.prose a { text-decoration: underline; text-underline-offset: 3px; }
+.article-side { top: 24px; }
