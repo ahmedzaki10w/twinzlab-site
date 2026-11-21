@@ -21,8 +21,9 @@ const TEMPLATE = fs.readFileSync(path.join(root, "scripts", "partials", "article
 const SHARE = fs.readFileSync(path.join(root, "scripts", "partials", "share.html"), "utf8");
 const MARKER = "twinzlab-lab-article";
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS_LONG = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const DEFAULT_CTA = "Building with AI? Let's compare notes";
-const ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true" style="--34440n:currentColor;--fbr8zx:1.5"><use href="#3403169090"></use></svg>';
+const ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L16 12 L8 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 const FALLBACK_COVER = "/assets/lab/cover-fallback.png";
 const FALLBACK_ALT = "Soft warm and cool light on a dark field.";
@@ -213,9 +214,9 @@ function shareBlock(article) {
 
 function ctaBlock(article) {
   const label = article.cta || DEFAULT_CTA;
-  return `<a class="topic-cta" href="../../contact/#contact-form" data-tz-kind="card">
+  return `<a class="topic-cta" href="../../contact/#contact-form">
   <span class="topic-cta__title">${esc(label)}</span>
-  <svg class="topic-cta__arrow" viewBox="0 0 24 24" aria-hidden="true" style="--34440n:#eaab78;--fbr8zx:1.5"><use href="#3403169090"></use></svg>
+  <svg class="topic-cta__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L16 12 L8 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>`;
 }
 
@@ -225,7 +226,7 @@ function moreLab(article, articles) {
     return `<aside class="more-lab" aria-label="More from the Lab">
   <p class="more-lab__label">More from the Lab</p>
   <p class="more-lab__note">More experiments coming soon</p>
-  <p class="more-lab__links"><a href="../../lab/">Lab ${ARROW}</a><a href="../../products/">Products ${ARROW}</a></p>
+  <p class="more-lab__links"><a href="../../lab/">Lab ${ARROW}</a><a href="../../#coming-soon">Coming soon ${ARROW}</a></p>
 </aside>`;
   }
   const links = others.slice(0, 4).map((item) => `<a href="../${item.slug}/">${esc(item.title)} ${ARROW}</a>`).join("");
@@ -319,7 +320,7 @@ function articleHtml(article, articles) {
   return `  <article class="article" id="top">
     <div class="article-body">
       <div class="article-side">
-        <p class="kicker"><a href="../../lab/"><svg class="kicker-arrow" viewBox="0 0 24 24" aria-hidden="true" style="--34440n:currentColor;--fbr8zx:1.5"><use href="#3403169090"></use></svg> Lab</a></p>
+        <p class="kicker"><a href="../../lab/"><svg class="kicker-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L16 12 L8 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Lab</a></p>
         <h1>${esc(article.title)}</h1>
 ${navBlock(navItems)}
       </div>
@@ -423,7 +424,45 @@ function manifest(articles) {
     tags: article.tags,
     card: rootPath(article.card || article.cover),
     url: `/lab/${article.slug}/`,
+    reading: article.reading,
   }));
+}
+
+function longDate(iso) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if (!match) return iso;
+  return `${Number(match[3])} ${MONTHS_LONG[Number(match[2]) - 1]} ${match[1]}`;
+}
+
+function labCard(article, index) {
+  const blurb = article.excerpt || article.description;
+  const delay = index % 2 ? " d1" : "";
+  return `<a class="card pr rv${delay}" href="/lab/${article.slug}/"><div class="frame pcv"><img src="${esc(rootPath(article.card))}" alt=""></div>
+ <div class="ptx"><div><h3>${esc(article.title)}</h3><p class="meta">${esc(longDate(article.date))} · ${esc(article.reading)}</p></div><p class="body">${esc(blurb)}</p></div></a>`;
+}
+
+function labFeature(article) {
+  if (!article) return `<p class="lead">More notes when there is something real to share.</p>`;
+  const lead = article.description || article.excerpt;
+  return `<a class="card pf e4" href="/lab/${article.slug}/">
+  <div class="pft"><div><h2>${esc(article.title)}</h2><p class="meta">${esc(longDate(article.date))} · ${esc(article.reading)}</p></div><div><p class="lead">${esc(lead)}</p><p style="margin-top:24px"><span class="tl">Read the note</span></p></div></div>
+  <div class="frame pcv"><img src="${esc(rootPath(article.card))}" alt=""></div></a>`;
+}
+
+function fillRegion(file, start, end, inner) {
+  const html = fs.readFileSync(file, "utf8");
+  const pattern = new RegExp(`${start}[\\s\\S]*?${end}`);
+  if (!pattern.test(html)) throw new Error(`${file} is missing ${start}`);
+  fs.writeFileSync(file, html.replace(pattern, `${start}\n${inner}\n${end}`));
+}
+
+function injectCards(articles) {
+  const cards = articles.length
+    ? articles.map(labCard).join("")
+    : `<p class="body">More notes when there is something real to share.</p>`;
+  fillRegion(path.join(root, "index.html"), "<!-- tz-home-cards -->", "<!-- /tz-home-cards -->", cards);
+  fillRegion(path.join(LAB_DIR, "index.html"), "<!-- tz-lab-feature -->", "<!-- /tz-lab-feature -->", labFeature(articles[0]));
+  fillRegion(path.join(LAB_DIR, "index.html"), "<!-- tz-lab-cards -->", "<!-- /tz-lab-cards -->", cards);
 }
 
 function injectManifest(json) {
@@ -460,7 +499,7 @@ function vendorDecap() {
 }
 
 function writeSitemap(articles) {
-  const staticUrls = ["/", "/about/", "/products/", "/contact/", "/lab/"];
+  const staticUrls = ["/", "/about/", "/contact/", "/lab/"];
   const urls = [
     ...staticUrls.map((loc) => `  <url><loc>${SITE}${loc}</loc></url>`),
     ...articles.map((article) => `  <url><loc>${SITE}/lab/${article.slug}/</loc><lastmod>${article.date}</lastmod></url>`),
@@ -483,6 +522,7 @@ removeStale(new Set(articles.map((article) => article.slug)));
 const listed = manifest(articles);
 const inline = JSON.stringify(listed).replace(/</g, "\\u003c");
 injectManifest(inline);
+injectCards(articles);
 fs.writeFileSync(path.join(LAB_DIR, "articles.json"), `${JSON.stringify(listed, null, 2)}\n`);
 writeSitemap(articles);
 vendorDecap();

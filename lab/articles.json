@@ -15,7 +15,8 @@
       "Open-Weight Models"
     ],
     "card": "/assets/lab/ai-free-software-future-of-saas/card.jpg",
-    "url": "/lab/ai-free-software-future-of-saas/"
+    "url": "/lab/ai-free-software-future-of-saas/",
+    "reading": "9 min read"
   },
   {
     "title": "The Bug That Makes You Laugh: What a Theory of Jokes Says About Building AI",
@@ -25,6 +26,7 @@
     "category": "Experiments",
     "tags": [],
     "card": "/assets/lab/the-bug-that-makes-you-laugh/card.jpg",
-    "url": "/lab/the-bug-that-makes-you-laugh/"
+    "url": "/lab/the-bug-that-makes-you-laugh/",
+    "reading": "7 min read"
   }
 ]
