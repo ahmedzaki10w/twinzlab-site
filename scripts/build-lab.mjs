@@ -236,14 +236,32 @@ function moreLab(article, articles) {
 </aside>`;
 }
 
-function navBlock(items) {
-  if (!items.length) return "";
-  const lis = items.map((item) => `            <li><a href="#${item.id}">${item.label}</a></li>`).join("\n");
-  return `        <nav class="section-nav" aria-label="In this article">
-          <ol>
-${lis}
-          </ol>
-        </nav>`;
+const PX = {
+  cat: '<svg class="pxi" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><rect x="0" y="0" width="2" height="2"/><rect x="2" y="0" width="2" height="2"/><rect x="4" y="0" width="2" height="2"/><rect x="6" y="0" width="2" height="2"/><rect x="0" y="2" width="2" height="2"/><rect x="6" y="2" width="2" height="2"/><rect x="0" y="4" width="2" height="2"/><rect x="6" y="4" width="2" height="2"/><rect x="10" y="4" width="2" height="2"/><rect x="12" y="4" width="2" height="2"/><rect x="14" y="4" width="2" height="2"/><rect x="0" y="6" width="2" height="2"/><rect x="2" y="6" width="2" height="2"/><rect x="4" y="6" width="2" height="2"/><rect x="6" y="6" width="2" height="2"/><rect x="10" y="6" width="2" height="2"/><rect x="14" y="6" width="2" height="2"/><rect x="10" y="8" width="2" height="2"/><rect x="14" y="8" width="2" height="2"/><rect x="0" y="10" width="2" height="2"/><rect x="2" y="10" width="2" height="2"/><rect x="4" y="10" width="2" height="2"/><rect x="6" y="10" width="2" height="2"/><rect x="10" y="10" width="2" height="2"/><rect x="12" y="10" width="2" height="2"/><rect x="14" y="10" width="2" height="2"/><rect x="0" y="12" width="2" height="2"/><rect x="6" y="12" width="2" height="2"/><rect x="0" y="14" width="2" height="2"/><rect x="2" y="14" width="2" height="2"/><rect x="4" y="14" width="2" height="2"/><rect x="6" y="14" width="2" height="2"/></svg>',
+  date: '<svg class="pxi" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><rect x="2" y="0" width="2" height="2"/><rect x="12" y="0" width="2" height="2"/><rect x="0" y="2" width="2" height="2"/><rect x="2" y="2" width="2" height="2"/><rect x="4" y="2" width="2" height="2"/><rect x="6" y="2" width="2" height="2"/><rect x="8" y="2" width="2" height="2"/><rect x="10" y="2" width="2" height="2"/><rect x="12" y="2" width="2" height="2"/><rect x="14" y="2" width="2" height="2"/><rect x="0" y="4" width="2" height="2"/><rect x="14" y="4" width="2" height="2"/><rect x="0" y="6" width="2" height="2"/><rect x="4" y="6" width="2" height="2"/><rect x="8" y="6" width="2" height="2"/><rect x="14" y="6" width="2" height="2"/><rect x="0" y="8" width="2" height="2"/><rect x="14" y="8" width="2" height="2"/><rect x="0" y="10" width="2" height="2"/><rect x="4" y="10" width="2" height="2"/><rect x="8" y="10" width="2" height="2"/><rect x="14" y="10" width="2" height="2"/><rect x="0" y="12" width="2" height="2"/><rect x="14" y="12" width="2" height="2"/><rect x="0" y="14" width="2" height="2"/><rect x="2" y="14" width="2" height="2"/><rect x="4" y="14" width="2" height="2"/><rect x="6" y="14" width="2" height="2"/><rect x="8" y="14" width="2" height="2"/><rect x="10" y="14" width="2" height="2"/><rect x="12" y="14" width="2" height="2"/><rect x="14" y="14" width="2" height="2"/></svg>',
+  time: '<svg class="pxi" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><rect x="4" y="0" width="2" height="2"/><rect x="6" y="0" width="2" height="2"/><rect x="8" y="0" width="2" height="2"/><rect x="10" y="0" width="2" height="2"/><rect x="2" y="2" width="2" height="2"/><rect x="12" y="2" width="2" height="2"/><rect x="0" y="4" width="2" height="2"/><rect x="8" y="4" width="2" height="2"/><rect x="14" y="4" width="2" height="2"/><rect x="0" y="6" width="2" height="2"/><rect x="8" y="6" width="2" height="2"/><rect x="14" y="6" width="2" height="2"/><rect x="0" y="8" width="2" height="2"/><rect x="8" y="8" width="2" height="2"/><rect x="10" y="8" width="2" height="2"/><rect x="14" y="8" width="2" height="2"/><rect x="0" y="10" width="2" height="2"/><rect x="14" y="10" width="2" height="2"/><rect x="2" y="12" width="2" height="2"/><rect x="12" y="12" width="2" height="2"/><rect x="4" y="14" width="2" height="2"/><rect x="6" y="14" width="2" height="2"/><rect x="8" y="14" width="2" height="2"/><rect x="10" y="14" width="2" height="2"/></svg>',
+  share: '<svg class="pxi" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><rect x="8" y="0" width="2" height="2"/><rect x="10" y="2" width="2" height="2"/><rect x="0" y="4" width="2" height="2"/><rect x="2" y="4" width="2" height="2"/><rect x="4" y="4" width="2" height="2"/><rect x="6" y="4" width="2" height="2"/><rect x="8" y="4" width="2" height="2"/><rect x="10" y="4" width="2" height="2"/><rect x="12" y="4" width="2" height="2"/><rect x="0" y="6" width="2" height="2"/><rect x="10" y="6" width="2" height="2"/><rect x="0" y="8" width="2" height="2"/><rect x="8" y="8" width="2" height="2"/><rect x="0" y="10" width="2" height="2"/><rect x="0" y="12" width="2" height="2"/><rect x="0" y="14" width="2" height="2"/></svg>',
+  arrow: '<svg class="pxi" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><rect x="8" y="2" width="2" height="2"/><rect x="10" y="4" width="2" height="2"/><rect x="0" y="6" width="2" height="2"/><rect x="2" y="6" width="2" height="2"/><rect x="4" y="6" width="2" height="2"/><rect x="6" y="6" width="2" height="2"/><rect x="8" y="6" width="2" height="2"/><rect x="10" y="6" width="2" height="2"/><rect x="12" y="6" width="2" height="2"/><rect x="10" y="8" width="2" height="2"/><rect x="8" y="10" width="2" height="2"/></svg>',
+};
+
+function readingLabel(article) {
+  return String(article.reading || "").replace(/\s*read$/i, "");
+}
+
+function tocBlock(items) {
+  const lis = items.map((item) => `<li><a href="#${item.id}" data-for="${item.id}">${esc(decode(item.label))}</a></li>`).join("");
+  return `<nav class="toc" aria-label="Contents" id="sb-drop"><p class="toc-l">Contents</p><div class="railbox"><div class="rail" aria-hidden="true"></div><ol>${lis}</ol></div></nav>`;
+}
+
+function fromLab(article, articles) {
+  const others = articles.filter((item) => item.slug !== article.slug);
+  const cards = others.length
+    ? others.map(labCard).join("")
+    : `<p class="body">More notes when there is something real to share.</p>`;
+  return `<section class="lab"><div class="wrap">
+ <div class="lab-head"><h2>From the Lab <span class="sub">Notes from the work.</span></h2><a class="tl" href="../../lab/">Read all notes</a></div>
+ <div class="prgrid">${cards}</div>
+</div></section>`;
 }
 
 function metaBlock(article) {
@@ -301,39 +319,40 @@ function articleHtml(article, articles) {
   const pulled = extractSources(prose);
   prose = pulled.prose;
   if (!sources && pulled.sources) sources = pulled.sources;
-  const navItems = headings(`${prose}\n${sources}`);
-  const hero = article.cover
-    ? `        <figure class="hero">\n          <img src="${rel(article.cover)}" width="1600" height="900" alt="${esc(article.coverAlt || "")}">\n        </figure>`
+  const navItems = headings(prose).filter((item) => item.id !== "sources-heading");
+  const intro = article.dek || article.excerpt || article.description;
+  const cover = article.card || article.cover;
+  const coverAlt = article.coverAlt || "";
+  const category = article.category || "Lab";
+  const pageUrl = `${SITE}/lab/${article.slug}/`;
+  const coverFig = cover
+    ? `<figure class="acover"><img src="${rel(cover)}" width="1600" height="900" alt="${esc(coverAlt)}"></figure>`
     : "";
-  const dek = article.dek || article.excerpt;
-  const parts = [
-    prose,
-    authorNote(article),
-    shareBlock(article).trim(),
-    ctaBlock(article),
-    moreLab(article, articles),
-    sources,
-    `<aside class="tz-signup-host" data-tz-signup="lab-notes" aria-label="Lab Notes"></aside>`,
-    `<p class="back-top"><a href="#top">${ARROW} Back to top</a></p>`,
-  ].filter(Boolean);
+  const proseParts = [prose, authorNote(article), sources].filter(Boolean).join("\n");
 
-  return `  <article class="article" id="top">
-    <div class="article-body">
-      <div class="article-side">
-        <p class="kicker"><a href="../../lab/"><svg class="kicker-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L16 12 L8 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Lab</a></p>
-        <h1>${esc(article.title)}</h1>
-${navBlock(navItems)}
-      </div>
-      <div class="article-main">
-        ${byline(article)}
-${hero}
-        <p class="dek">${esc(dek)}</p>
-        <div class="prose">
-${parts.join("\n")}
-        </div>
-      </div>
-    </div>
-  </article>`;
+  return `<article class="art" id="top">
+<header class="ahero wrap"><div class="agrid">
+ <div class="ahero-main" data-enter>
+  <h1 class="e2">${esc(article.title)}</h1>
+  <p class="adek e3">${esc(intro)}</p>
+ </div>
+ <ul class="ameta" data-enter>
+  <li class="e3">${PX.cat}<span class="ml">Category</span><a class="mv" href="../../lab/">${esc(category)}</a></li>
+  <li class="e3">${PX.date}<span class="ml">Date</span><span class="mv"><time datetime="${esc(article.date)}">${esc(longDate(article.date))}</time></span></li>
+  <li class="e3">${PX.time}<span class="ml">Reading time</span><span class="mv">${esc(readingLabel(article))}</span></li>
+  <li class="e3">${PX.share}<span class="ml">Share</span><button class="mv copy" type="button" data-url="${esc(pageUrl)}">Copy link</button><span class="sr" role="status" aria-live="polite"></span></li>
+ </ul>
+</div></header>
+<div class="abody wrap"><div class="agrid">
+ ${coverFig}
+ ${tocBlock(navItems)}
+ <div class="prose">
+${proseParts}
+ </div>
+</div></div>
+<div class="wrap notes-signup" id="lab-notes"><aside class="tz-signup-host" data-tz-signup="lab-notes" aria-label="Lab Notes"></aside></div>
+</article>
+${fromLab(article, articles)}`;
 }
 
 function loadArticles() {

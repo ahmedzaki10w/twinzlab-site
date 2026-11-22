@@ -34,40 +34,38 @@ if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add(
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -12% 0px"});
 els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(function(e){e.classList.add("in")})},4000)});</script>
 <link rel="stylesheet" href="../../assets/v2/site.css">
-<link rel="stylesheet" href="../shared/article.css">
-<link rel="stylesheet" href="../../assets/v2/article.css">
+<link rel="stylesheet" href="../../assets/v2/article-layout.css">
 <script src="../../signup.js" defer></script>
 <script src="../../assets/v2/site.js" defer></script>
 <script src="../../assets/v2/wordfx.js" defer></script>
+<script src="../../assets/v2/article-layout.js" defer></script>
 </head>
-<body>
+<body class="artpage">
 <a class="skip" href="#top">Skip to content</a>
 <header class="nav"><nav class="pill" aria-label="Main"><a href="../../">Home</a><a href="../../about/">About</a><a href="../../lab/" class="on" aria-current="page">Lab</a></nav><a class="logo" href="../../" aria-label="TwinzLab home"><img src="../../assets/v2/logo.svg" alt="" width="158" height="158"></a><div class="right"><a href="../../contact/">Build with us</a><a class="nav-cta" href="../../contact/#contact-form">Contact</a></div><button class="burger" type="button" aria-expanded="false" aria-controls="nav-sheet" aria-label="Open menu">Menu</button><div class="sheet" id="nav-sheet" hidden><a href="../../">Home</a><a href="../../about/">About</a><a href="../../lab/" aria-current="page">Lab</a><a href="../../contact/">Build with us</a><a class="nav-cta" href="../../contact/#contact-form">Contact</a></div></header>
 <main id="main">
+<div class="subbar" id="subbar"><div class="wrap subbar-in"><a class="sb-home" href="../../lab/">From the Lab</a>
+ <nav class="sb-links" aria-label="Lab"><a href="../../lab/" class="on">Notes</a><a href="#lab-notes">Lab Notes</a><a href="../../contact/">Contact</a></nav>
+ <button class="sb-toggle" type="button" aria-expanded="false" aria-controls="sb-drop">Contents <svg class="pxi" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><rect x="8" y="2" width="2" height="2"/><rect x="10" y="4" width="2" height="2"/><rect x="0" y="6" width="2" height="2"/><rect x="2" y="6" width="2" height="2"/><rect x="4" y="6" width="2" height="2"/><rect x="6" y="6" width="2" height="2"/><rect x="8" y="6" width="2" height="2"/><rect x="10" y="6" width="2" height="2"/><rect x="12" y="6" width="2" height="2"/><rect x="10" y="8" width="2" height="2"/><rect x="8" y="10" width="2" height="2"/></svg></button></div>
+ <div class="sb-progress" aria-hidden="true"><i></i></div></div>
 
-    <article class="article" id="top">
-    <div class="article-body">
-      <div class="article-side">
-        <p class="kicker"><a href="../../lab/"><svg class="kicker-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L16 12 L8 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Lab</a></p>
-        <h1>The Bug That Makes You Laugh: What a Theory of Jokes Says About Building AI</h1>
-        <nav class="section-nav" aria-label="In this article">
-          <ol>
-            <li><a href="#jokes-as-bugs">Jokes as bugs, laughter as a bug report</a></li>
-            <li><a href="#can-machines-get-the-joke">Can machines get the joke?</a></li>
-            <li><a href="#the-safety-angle">The safety angle: humor as an immune system</a></li>
-            <li><a href="#why-the-funniest-joke">Why the funniest joke won&#x27;t be funny to us</a></li>
-            <li><a href="#building-with-ai">What this means if you build with AI</a></li>
-            <li><a href="#sources-heading">Sources</a></li>
-          </ol>
-        </nav>
-      </div>
-      <div class="article-main">
-        <p class="byline"><span class="byline-by">By</span><a href="../../about/">Ahmed Zaki</a><span class="sep" aria-hidden="true">·</span><time datetime="2026-09-27">Sep 27, 2026</time><span class="sep" aria-hidden="true">·</span><span>7 min read</span></p>
-        <figure class="hero">
-          <img src="../../assets/lab/the-bug-that-makes-you-laugh/hero.jpg" width="1600" height="900" alt="A dot-matrix bug on a cream field, with peach marks along its sides.">
-        </figure>
-        <p class="dek">A computer scientist argues that every joke is a glitch in your mental model, and that makes humor a surprisingly useful lens on AI, its blind spots and the products we build with it.</p>
-        <div class="prose">
+  <article class="art" id="top">
+<header class="ahero wrap"><div class="agrid">
+ <div class="ahero-main" data-enter>
+  <h1 class="e2">The Bug That Makes You Laugh: What a Theory of Jokes Says About Building AI</h1>
+  <p class="adek e3">A computer scientist argues that every joke is a glitch in your mental model, and that makes humor a surprisingly useful lens on AI, its blind spots and the products we build with it.</p>
+ </div>
+ <ul class="ameta" data-enter>
+  <li class="e3"><svg class="pxi" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><rect x="0" y="0" width="2" height="2"/><rect x="2" y="0" width="2" height="2"/><rect x="4" y="0" width="2" height="2"/><rect x="6" y="0" width="2" height="2"/><rect x="0" y="2" width="2" height="2"/><rect x="6" y="2" width="2" height="2"/><rect x="0" y="4" width="2" height="2"/><rect x="6" y="4" width="2" height="2"/><rect x="10" y="4" width="2" height="2"/><rect x="12" y="4" width="2" height="2"/><rect x="14" y="4" width="2" height="2"/><rect x="0" y="6" width="2" height="2"/><rect x="2" y="6" width="2" height="2"/><rect x="4" y="6" width="2" height="2"/><rect x="6" y="6" width="2" height="2"/><rect x="10" y="6" width="2" height="2"/><rect x="14" y="6" width="2" height="2"/><rect x="10" y="8" width="2" height="2"/><rect x="14" y="8" width="2" height="2"/><rect x="0" y="10" width="2" height="2"/><rect x="2" y="10" width="2" height="2"/><rect x="4" y="10" width="2" height="2"/><rect x="6" y="10" width="2" height="2"/><rect x="10" y="10" width="2" height="2"/><rect x="12" y="10" width="2" height="2"/><rect x="14" y="10" width="2" height="2"/><rect x="0" y="12" width="2" height="2"/><rect x="6" y="12" width="2" height="2"/><rect x="0" y="14" width="2" height="2"/><rect x="2" y="14" width="2" height="2"/><rect x="4" y="14" width="2" height="2"/><rect x="6" y="14" width="2" height="2"/></svg><span class="ml">Category</span><a class="mv" href="../../lab/">Experiments</a></li>
+  <li class="e3"><svg class="pxi" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><rect x="2" y="0" width="2" height="2"/><rect x="12" y="0" width="2" height="2"/><rect x="0" y="2" width="2" height="2"/><rect x="2" y="2" width="2" height="2"/><rect x="4" y="2" width="2" height="2"/><rect x="6" y="2" width="2" height="2"/><rect x="8" y="2" width="2" height="2"/><rect x="10" y="2" width="2" height="2"/><rect x="12" y="2" width="2" height="2"/><rect x="14" y="2" width="2" height="2"/><rect x="0" y="4" width="2" height="2"/><rect x="14" y="4" width="2" height="2"/><rect x="0" y="6" width="2" height="2"/><rect x="4" y="6" width="2" height="2"/><rect x="8" y="6" width="2" height="2"/><rect x="14" y="6" width="2" height="2"/><rect x="0" y="8" width="2" height="2"/><rect x="14" y="8" width="2" height="2"/><rect x="0" y="10" width="2" height="2"/><rect x="4" y="10" width="2" height="2"/><rect x="8" y="10" width="2" height="2"/><rect x="14" y="10" width="2" height="2"/><rect x="0" y="12" width="2" height="2"/><rect x="14" y="12" width="2" height="2"/><rect x="0" y="14" width="2" height="2"/><rect x="2" y="14" width="2" height="2"/><rect x="4" y="14" width="2" height="2"/><rect x="6" y="14" width="2" height="2"/><rect x="8" y="14" width="2" height="2"/><rect x="10" y="14" width="2" height="2"/><rect x="12" y="14" width="2" height="2"/><rect x="14" y="14" width="2" height="2"/></svg><span class="ml">Date</span><span class="mv"><time datetime="2026-09-27">27 September 2026</time></span></li>
+  <li class="e3"><svg class="pxi" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><rect x="4" y="0" width="2" height="2"/><rect x="6" y="0" width="2" height="2"/><rect x="8" y="0" width="2" height="2"/><rect x="10" y="0" width="2" height="2"/><rect x="2" y="2" width="2" height="2"/><rect x="12" y="2" width="2" height="2"/><rect x="0" y="4" width="2" height="2"/><rect x="8" y="4" width="2" height="2"/><rect x="14" y="4" width="2" height="2"/><rect x="0" y="6" width="2" height="2"/><rect x="8" y="6" width="2" height="2"/><rect x="14" y="6" width="2" height="2"/><rect x="0" y="8" width="2" height="2"/><rect x="8" y="8" width="2" height="2"/><rect x="10" y="8" width="2" height="2"/><rect x="14" y="8" width="2" height="2"/><rect x="0" y="10" width="2" height="2"/><rect x="14" y="10" width="2" height="2"/><rect x="2" y="12" width="2" height="2"/><rect x="12" y="12" width="2" height="2"/><rect x="4" y="14" width="2" height="2"/><rect x="6" y="14" width="2" height="2"/><rect x="8" y="14" width="2" height="2"/><rect x="10" y="14" width="2" height="2"/></svg><span class="ml">Reading time</span><span class="mv">7 min</span></li>
+  <li class="e3"><svg class="pxi" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><rect x="8" y="0" width="2" height="2"/><rect x="10" y="2" width="2" height="2"/><rect x="0" y="4" width="2" height="2"/><rect x="2" y="4" width="2" height="2"/><rect x="4" y="4" width="2" height="2"/><rect x="6" y="4" width="2" height="2"/><rect x="8" y="4" width="2" height="2"/><rect x="10" y="4" width="2" height="2"/><rect x="12" y="4" width="2" height="2"/><rect x="0" y="6" width="2" height="2"/><rect x="10" y="6" width="2" height="2"/><rect x="0" y="8" width="2" height="2"/><rect x="8" y="8" width="2" height="2"/><rect x="0" y="10" width="2" height="2"/><rect x="0" y="12" width="2" height="2"/><rect x="0" y="14" width="2" height="2"/></svg><span class="ml">Share</span><button class="mv copy" type="button" data-url="https://twinzlab.online/lab/the-bug-that-makes-you-laugh/">Copy link</button><span class="sr" role="status" aria-live="polite"></span></li>
+ </ul>
+</div></header>
+<div class="abody wrap"><div class="agrid">
+ <figure class="acover"><img src="../../assets/lab/the-bug-that-makes-you-laugh/card.jpg" width="1600" height="900" alt="A dot-matrix bug on a cream field, with peach marks along its sides."></figure>
+ <nav class="toc" aria-label="Contents" id="sb-drop"><p class="toc-l">Contents</p><div class="railbox"><div class="rail" aria-hidden="true"></div><ol><li><a href="#jokes-as-bugs" data-for="jokes-as-bugs">Jokes as bugs, laughter as a bug report</a></li><li><a href="#can-machines-get-the-joke" data-for="can-machines-get-the-joke">Can machines get the joke?</a></li><li><a href="#the-safety-angle" data-for="the-safety-angle">The safety angle: humor as an immune system</a></li><li><a href="#why-the-funniest-joke" data-for="why-the-funniest-joke">Why the funniest joke won&#x27;t be funny to us</a></li><li><a href="#building-with-ai" data-for="building-with-ai">What this means if you build with AI</a></li></ol></div></nav>
+ <div class="prose">
 <p>Here is a small experiment. Read this line, which cognitive scientists Matthew Hurley, Daniel Dennett and Reginald Adams use to illustrate their theory of humor: &quot;I wondered why the Frisbee was getting bigger, and then it hit me.&quot;</p>
 <p>If you smiled, something specific just happened in your head. You committed to one meaning of &quot;hit me&quot; (I realized). A moment later you found out you were wrong (it literally hit me). You fixed the mistake, and your brain paid you a small reward for fixing it.</p>
 <p>That is the core idea behind a 2025 paper by Roman V. Yampolskiy, a computer scientist at the University of Louisville, called &quot;Towards Solving Humor: Why the Funniest AI Joke Will Not Be Funny, to Us.&quot; We build apps and poke at AI models for a living, so a paper that treats jokes as software bugs didn&#39;t stay in the &quot;read later&quot; folder for long. Here is what it argues, where we think it&#39;s onto something, and where we&#39;re not convinced.</p>
@@ -126,28 +124,6 @@ els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(functi
 </ol>
 <p>Maybe the best test of a well-built AI product is a little like a good joke. It surprises you in a way that makes sense afterward, and nobody ends up as the butt of it.</p>
 <p class="author-note"><a href="../../about/">Ahmed Zaki</a> is a co-founder of TwinzLab.</p>
-<div class="share">
-  <span class="share-label" id="share-label">Share</span>
-  <button type="button" class="share-btn" id="copy-link" data-url="https://twinzlab.online/lab/the-bug-that-makes-you-laugh/" aria-label="Copy link">
-    <svg class="icon-copy" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M9 9.5H7.5A2.5 2.5 0 0 0 5 12v6.5A2.5 2.5 0 0 0 7.5 21h6.5a2.5 2.5 0 0 0 2.5-2.5V17"/><rect x="9" y="3" width="10" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-    <svg class="icon-check" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 9.5 17 19 7.5"/></svg>
-  </button>
-  <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ftwinzlab.online%2Flab%2Fthe-bug-that-makes-you-laugh%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
-    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4.7 9.1H7.4V19.5H4.7zM6.05 4.2a1.6 1.6 0 1 1 0 3.2 1.6 1.6 0 0 1 0-3.2zM9.3 9.1h2.55v1.42h.04c.36-.67 1.23-1.38 2.53-1.38 2.7 0 3.2 1.78 3.2 4.09v6.27h-2.7v-5.56c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93v5.66H9.3z"/></svg>
-  </a>
-  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftwinzlab.online%2Flab%2Fthe-bug-that-makes-you-laugh%2F&amp;text=The%20Bug%20That%20Makes%20You%20Laugh%3A%20What%20a%20Theory%20of%20Jokes%20Says%20About%20Building%20AI" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
-    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M14.1 10.6 20.3 3.5h-1.5l-5.4 6.1L9.1 3.5H3.8l6.6 9.4-6.6 7.6h1.5l5.8-6.6 4.6 6.6h5.3l-6.9-9.9zm-2 2.3-.7-1-5.4-7.6h2.3l4.4 6.2.7 1 5.7 8h-2.3l-4.7-6.6z"/></svg>
-  </a>
-  <span class="visually-hidden" id="copy-status" role="status" aria-live="polite"></span>
-</div>
-<a class="topic-cta" href="../../contact/#contact-form">
-  <span class="topic-cta__title">Building with AI? Let&#x27;s compare notes</span>
-  <svg class="topic-cta__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L16 12 L8 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</a>
-<aside class="more-lab" aria-label="More from the Lab">
-  <p class="more-lab__label">More from the Lab</p>
-  <p class="more-lab__links"><a href="../ai-free-software-future-of-saas/">If Anyone Can Build Anything, Who Still Pays for Software? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L16 12 L8 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="../../lab/">Lab <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L16 12 L8 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
-</aside>
 <section class="sources" aria-labelledby="sources-heading">
         <h2 id="sources-heading">Sources</h2>
         <ol>
@@ -193,12 +169,15 @@ els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(functi
 </li>
         </ol>
       </section>
-<aside class="tz-signup-host" data-tz-signup="lab-notes" aria-label="Lab Notes"></aside>
-<p class="back-top"><a href="#top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L16 12 L8 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back to top</a></p>
-        </div>
-      </div>
-    </div>
-  </article>
+ </div>
+</div></div>
+<div class="wrap notes-signup" id="lab-notes"><aside class="tz-signup-host" data-tz-signup="lab-notes" aria-label="Lab Notes"></aside></div>
+</article>
+<section class="lab"><div class="wrap">
+ <div class="lab-head"><h2>From the Lab <span class="sub">Notes from the work.</span></h2><a class="tl" href="../../lab/">Read all notes</a></div>
+ <div class="prgrid"><a class="card pr rv" href="/lab/ai-free-software-future-of-saas/"><div class="frame pcv"><img src="/assets/lab/ai-free-software-future-of-saas/card.jpg" alt=""></div>
+ <div class="ptx"><div><h3>If Anyone Can Build Anything, Who Still Pays for Software?</h3><p class="meta">11 October 2026 · 9 min read</p></div><p class="body">AI is helping people rebuild big paid software for free, and open models are doing the same to the AI labs. Will SaaS, or AI itself, become worthless? We dig into the evidence.</p></div></a></div>
+</div></section>
 
 </main>
 <div class="close"><div class="wrap"><div class="mark rv" aria-hidden="true"><img src="../../assets/v2/logo.svg" alt="" width="158" height="158"></div><h2>Bring an idea, a challenge, or a partnership.</h2><p class="lead">An investment conversation is welcome too.</p><div class="acts"><a class="btn p" href="../../contact/#contact-form">Get in touch</a></div></div></div>
@@ -207,79 +186,5 @@ els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(functi
 <div><h4>Social</h4><ul><li><a href="https://www.linkedin.com/company/twinzlab" target="_blank" rel="noopener noreferrer">LinkedIn</a></li><li><a href="https://www.instagram.com/twinz_lab/" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><a href="https://x.com/TwinzLab" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li><li><a href="https://www.tiktok.com/@twinzlab" target="_blank" rel="noopener noreferrer">TikTok</a></li></ul></div>
 <div><h4>Pages</h4><ul><li><a href="../../about/">About</a></li><li><a href="../../lab/">Lab</a></li><li><a href="../../contact/">Contact</a></li></ul></div></div>
 <div class="wordbox"><p class="word" aria-hidden="true">TWINZLAB</p><canvas class="wordfx" aria-hidden="true"></canvas></div><div class="legal small"><span>©2026 TwinzLab. Built by two minds.</span></div></div></footer>
-<script>
-(function () {
-  var links = [].slice.call(document.querySelectorAll(".section-nav a"));
-  if (!links.length) return;
-  var targets = links.map(function (a) {
-    return document.getElementById(a.getAttribute("href").slice(1));
-  }).filter(Boolean);
-  var current = null;
-  var mq = window.matchMedia("(max-width: 767px)");
-  function set(id) {
-    if (current === id) return;
-    current = id;
-    links.forEach(function (a) {
-      var on = id && a.getAttribute("href") === "#" + id;
-      a.classList.toggle("is-active", on);
-      if (on) a.setAttribute("aria-current", "true");
-      else a.removeAttribute("aria-current");
-    });
-  }
-  function update() {
-    var line = (mq.matches ? 120 : 160);
-    var id = null;
-    targets.forEach(function (el) {
-      if (el.getBoundingClientRect().top <= line) id = el.id;
-    });
-    set(id);
-  }
-  window.addEventListener("scroll", update, { passive: true });
-  window.addEventListener("resize", update);
-  update();
-})();
-</script>
-<script>
-(function () {
-  var btn = document.getElementById("copy-link");
-  var live = document.getElementById("copy-status");
-  if (!btn) return;
-  function fallback(value) {
-    var t = document.createElement("textarea");
-    t.value = value;
-    t.setAttribute("readonly", "");
-    t.style.position = "fixed";
-    t.style.left = "-9999px";
-    document.body.appendChild(t);
-    t.select();
-    var ok = false;
-    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
-    t.remove();
-    return ok;
-  }
-  function flash(ok) {
-    if (!ok) {
-      if (live) live.textContent = "Could not copy the link";
-      return;
-    }
-    btn.classList.add("is-copied");
-    btn.setAttribute("aria-label", "Copied");
-    if (live) live.textContent = "Link copied";
-    window.setTimeout(function () {
-      btn.classList.remove("is-copied");
-      btn.setAttribute("aria-label", "Copy link");
-      if (live) live.textContent = "";
-    }, 2000);
-  }
-  btn.addEventListener("click", function () {
-    var url = btn.getAttribute("data-url") || location.href;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(function () { flash(true); }, function () { flash(fallback(url)); });
-    } else {
-      flash(fallback(url));
-    }
-  });
-})();
-</script>
 </body>
 </html>
