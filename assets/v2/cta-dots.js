@@ -2,7 +2,7 @@
    loop, twin rings, play, a dotted path) draw themselves dot by dot on the same grid, hold, and fade.
    The centre stays clear for the copy. Desktop cursor warms the grid it passes over. */
 (function(){
-var cv=document.getElementById('cta-cv'); if(!cv) return;
+var cv=document.querySelector('.close.cdots canvas.cta-cv'); if(!cv) return;
 var G=12;
 var GL={
  spark:['....x....','....x....','....x....','...x.x...','xxx...xxx','...x.x...','....x....','....x....','....x....'],
