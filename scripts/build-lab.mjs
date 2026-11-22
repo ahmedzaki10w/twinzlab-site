@@ -40,7 +40,8 @@ marked.use({
       let n = 2;
       while (usedIds.has(id)) id = `${slugify(decode(plain)) || "section"}-${n++}`;
       usedIds.add(id);
-      return `<h${depth} id="${id}">${text}</h${depth}>\n`;
+      const reveal = depth === 2 ? " data-reveal" : "";
+      return `<h${depth} id="${id}"${reveal}>${text}</h${depth}>\n`;
     },
     link({ href, title, tokens }) {
       const text = this.parser.parseInline(tokens);
@@ -127,7 +128,7 @@ function asList(value) {
 
 function preprocess(markdown) {
   return markdown.replace(/^##\s+(.+?)\s+\{#([A-Za-z0-9_-]+)\}\s*$/gm, (_, text, id) => {
-    return `\n<h2 id="${id}">${esc(text)}</h2>\n`;
+    return `\n<h2 id="${id}" data-reveal>${esc(text)}</h2>\n`;
   });
 }
 
@@ -150,6 +151,10 @@ function stripSourceArrows(html) {
     .replace(/<span\b[^>]*aria-hidden=(?:"true"|'true')[^>]*>\s*(?:&#x2197;|&#8599;|&nearr;|[↗↖↘↙←→↑↓↔↕↩↪⤴⤵])\s*<\/span>/gi, "")
     .replace(/(?:&#x2197;|&#8599;|&nearr;|[↗↖↘↙←→↑↓↔↕↩↪⤴⤵])/g, "")
     .replace(/<a\b[^>]*>\s*<\/a>/gi, "");
+}
+
+function withReveal(html) {
+  return String(html || "").replace(/<h2\b(?![^>]*\bdata-reveal\b)/gi, "<h2 data-reveal");
 }
 
 function sourcesFrom(raw) {
@@ -267,7 +272,7 @@ function fromLab(article, articles) {
     ? others.map(labCard).join("")
     : `<p class="body">More notes when there is something real to share.</p>`;
   return `<section class="lab"><div class="wrap">
- <div class="lab-head"><h2>From the Lab <span class="sub">Notes from the work.</span></h2><a class="tl" href="../../lab/">Read all notes</a></div>
+ <div class="lab-head"><h2 data-reveal>From the Lab <span class="sub">Notes from the work.</span></h2><a class="tl" href="../../lab/">Read all notes</a></div>
  <div class="prgrid">${cards}</div>
 </div></section>`;
 }
@@ -337,13 +342,13 @@ function articleHtml(article, articles) {
   const coverFig = cover
     ? `<figure class="acover"><img src="${rel(cover)}" width="1600" height="900" alt="${esc(coverAlt)}"></figure>`
     : "";
-  const proseParts = [prose, authorNote(article), sources].filter(Boolean).join("\n");
+  const proseParts = [withReveal(prose), authorNote(article), withReveal(sources)].filter(Boolean).join("\n");
 
   return `<article class="art" id="top">
 <header class="ahero wrap"><div class="agrid">
  <div class="ahero-main" data-enter>
-  <h1 class="e2">${esc(article.title)}</h1>
-  <p class="adek e3">${esc(intro)}</p>
+  <h1 class="e2" data-reveal>${esc(article.title)}</h1>
+  <p class="adek e3" data-reveal data-reveal-delay="150">${esc(intro)}</p>
  </div>
  <ul class="ameta" data-enter>
   <li class="e3">${PX.cat}<span class="ml">Category</span><a class="mv" href="../../lab/">${esc(category)}</a></li>

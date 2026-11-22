@@ -43,12 +43,6 @@ els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(functi
 .slist li{border-top:1px solid var(--line);padding:24px 0}.slist li:last-child{border-bottom:1px solid var(--line)}
 .sname{display:flex;align-items:center;gap:14px;margin-bottom:10px}.sname h3{font-size:24px}.sname .soon{margin-left:auto}
 .sname .t-matrix{margin:0;background:transparent;padding:0}
-/* Transitions.dev — Texts reveal */
-.t-stagger-line{display:block}
-.js .t-stagger-line{opacity:0;transform:translateY(12px);filter:blur(3px);transition:opacity 500ms cubic-bezier(.22,1,.36,1),transform 500ms cubic-bezier(.22,1,.36,1),filter 500ms cubic-bezier(.22,1,.36,1)}
-.js .t-stagger-line--2{transition-delay:80ms}
-.js .t-stagger.is-shown .t-stagger-line{opacity:1;transform:none;filter:none}
-@media (prefers-reduced-motion:reduce){.js .t-stagger-line{opacity:1;transform:none;filter:none;transition:none!important}}
 .whostage{margin-top:120px;aspect-ratio:1280/560;background:transparent}
 .hfield{position:relative;min-height:900px;padding-bottom:0}
 .herobg{position:absolute;left:0;right:0;top:0;height:900px;pointer-events:none}
@@ -102,24 +96,24 @@ els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(functi
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><nav class="pill" aria-label="Main"><a href="/" class="on" aria-current="page">Home</a><a href="/about/">About</a><a href="/lab/">Lab</a></nav><a class="logo" href="/" aria-label="TwinzLab home"><img src="/assets/v2/logo.svg" alt="" width="158" height="158"></a><div class="right"><a href="/contact/">Build with us</a><a class="nav-cta" href="/contact/#contact-form">Contact</a></div><button class="burger" type="button" aria-expanded="false" aria-controls="nav-sheet" aria-label="Open menu">Menu</button><div class="sheet" id="nav-sheet" hidden><a href="/" aria-current="page">Home</a><a href="/about/">About</a><a href="/lab/">Lab</a><a href="/contact/">Build with us</a><a class="nav-cta" href="/contact/#contact-form">Contact</a></div></header><main id="main">
 <section class="hero hfield" data-enter><div class="herobg"><canvas id="hero-cv" role="img" aria-label="Still dunes drawn in dots rolling to a far horizon, fine sand blowing off their crests, with a narrow doorway of warm light standing among them"></canvas><img class="cv-fallback" src="/assets/v2/img/hero-field.webp" alt=""></div><div class="wrap">
- <h1 class="t-stagger"><span class="t-stagger-line t-stagger-line--1">Dream big, reach far.</span><span class="sub t-stagger-line t-stagger-line--2">TwinzLab is a studio building apps that make things better.</span></h1>
+ <h1><span data-reveal>Dream big, reach far.</span><span class="sub" data-reveal data-reveal-delay="150">TwinzLab is a studio building apps that make things better.</span></h1>
  <div class="acts e3"><a class="btn p" href="/contact/">Get in touch</a><a class="btn s" href="/about/">Our story</a></div>
 </div></section>
 
 <section class="belief"><div class="narrow c">
  <p class="kicker">Who we are</p>
- <h2 class="statement">We believe Gen Z can change the world. <span class="g">So we build our own apps, and we welcome collaborations, challenges, and investment.</span></h2>
- <p class="body" style="margin-top:32px">TwinzLab is founded by twin brothers Ahmed Zaki and Elmodather Zaki.</p>
+ <h2 class="statement" data-reveal>We believe Gen Z can change the world. <span class="g">So we build our own apps, and we welcome collaborations, challenges, and investment.</span></h2>
+ <p class="body" style="margin-top:32px" data-reveal>TwinzLab is founded by twin brothers Ahmed Zaki and Elmodather Zaki.</p>
  <p style="margin-top:28px"><a class="tl" href="/about/">Read our story</a></p>
 </div><div class="wrap"><div class="frame whostage"><canvas id="who-cv" class="dotcv" role="img" aria-label="Thousands of single dots drifting loose from the left, then locking into one precise grid that climbs to the right"></canvas><img class="cv-fallback" src="/assets/v2/img/who-flow.webp" alt=""></div></div></section>
 
 <section class="make"><div class="narrow c">
  <p class="kicker">What we make</p>
- <p class="statement">Three kinds of product come out of the Lab: <span class="w">Twinz Apps</span> <span class="g">for everyday workflows,</span> <span class="w">Twinz Play</span> <span class="g">for quick games and micro-experiences, and</span> <span class="w">Twinz AI</span> <span class="g">for productivity and creativity.</span></p>
+ <p class="statement" data-reveal>Three kinds of product come out of the Lab: <span class="w">Twinz Apps</span> <span class="g">for everyday workflows,</span> <span class="w">Twinz Play</span> <span class="g">for quick games and micro-experiences, and</span> <span class="w">Twinz AI</span> <span class="g">for productivity and creativity.</span></p>
 </div></section>
 
 <section class="studio"><div class="wrap">
- <div class="sec-head c"><h2>A studio, open both ways <span class="sub">We build our own apps, and we build with others.</span></h2></div>
+ <div class="sec-head c"><h2 data-reveal>A studio, open both ways <span class="sub">We build our own apps, and we build with others.</span></h2></div>
  <div class="scells">
   <div class="sc rv"><p class="meta">01</p><h3>Our own apps</h3><p class="body">Products we start from a real problem and ship ourselves.</p></div>
   <div class="sc rv d1"><p class="meta">02</p><h3>Collaborations and challenges</h3><p class="body">Bring an idea or a hard problem, and we work on it with you.</p></div>
@@ -129,14 +123,14 @@ els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(functi
 </div></section>
 
 <section class="process"><div class="wrap">
- <div class="sec-head c"><h2>How we build <span class="sub">The same four steps for our own apps and the ones we take on with others.</span></h2></div>
+ <div class="sec-head c"><h2 data-reveal>How we build <span class="sub">The same four steps for our own apps and the ones we take on with others.</span></h2></div>
  <div class="track rv"><div class="rail draw"></div>
   <ol class="steps"><li><span class="t-matrix" data-variant="scan" aria-hidden="true"></span><h3>Discover</h3><p class="body">We start from a real problem, ours or one you bring to us.</p></li><li><span class="t-matrix" data-variant="twinkle" aria-hidden="true"></span><h3>Design</h3><p class="body">We shape the product until it is clear and simple to use.</p></li><li><span class="t-matrix" data-variant="orbit" aria-hidden="true"></span><h3>Develop</h3><p class="body">We build, try it, and refine what we learn.</p></li><li><span class="t-matrix" data-variant="pulse" aria-hidden="true"></span><h3>Launch</h3><p class="body">We ship, then keep the door open for what should come next.</p></li></ol></div>
 </div></section>
 
 <section class="soonb" id="coming-soon"><div class="wrap"><div class="sgrid">
  <div class="frame svis rv"><img src="/assets/v2/img/soon-dots.png" alt=""></div>
- <div class="stext"><p class="kicker">In the works</p><h2>Two apps, coming soon.</h2>
+ <div class="stext"><p class="kicker">In the works</p><h2 data-reveal>Two apps, coming soon.</h2>
   <ul class="slist">
    <li><div class="sname"><span class="t-matrix" data-variant="orbit" aria-hidden="true"></span><h3>Aresson</h3><span class="soon">Coming soon</span></div><p class="body">Discover and book sports sessions with coaches and trainers across different sports.</p></li>
    <li><div class="sname"><span class="t-matrix" data-variant="twinkle" aria-hidden="true"></span><h3>Hesba</h3><span class="soon">Coming soon</span></div><p class="body">A mobile app for kiosk and small-shop owners to manage sales and their team.</p></li>
@@ -144,7 +138,7 @@ els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(functi
 </div></div></section>
 
 <section class="lab"><div class="wrap">
- <div class="lab-head"><h2>From the Lab <span class="sub">Notes from the work.</span></h2><a class="tl" href="/lab/">Read all notes</a></div>
+ <div class="lab-head"><h2 data-reveal>From the Lab <span class="sub">Notes from the work.</span></h2><a class="tl" href="/lab/">Read all notes</a></div>
  <div class="prgrid"><!-- tz-home-cards -->
 <a class="card pr rv" href="/lab/ai-free-software-future-of-saas/"><div class="frame pcv"><img src="/assets/lab/ai-free-software-future-of-saas/card.jpg" alt=""></div>
  <div class="ptx"><div><h3>If Anyone Can Build Anything, Who Still Pays for Software?</h3><p class="meta">11 October 2026 · 9 min read</p></div><p class="body">AI is helping people rebuild big paid software for free, and open models are doing the same to the AI labs. Will SaaS, or AI itself, become worthless? We dig into the evidence.</p></div></a><a class="card pr rv d1" href="/lab/the-bug-that-makes-you-laugh/"><div class="frame pcv"><img src="/assets/lab/the-bug-that-makes-you-laugh/card.jpg" alt=""></div>
@@ -156,4 +150,4 @@ els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(functi
 <div><h4>Social</h4><ul><li><a href="https://www.linkedin.com/company/twinzlab" target="_blank" rel="noopener noreferrer">LinkedIn</a></li><li><a href="https://www.instagram.com/twinz_lab/" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><a href="https://x.com/TwinzLab" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li><li><a href="https://www.tiktok.com/@twinzlab" target="_blank" rel="noopener noreferrer">TikTok</a></li></ul></div>
 <div><h4>Pages</h4><ul><li><a href="/about/">About</a></li><li><a href="/lab/">Lab</a></li><li><a href="/contact/">Contact</a></li></ul></div></div>
 <div class="wordbox"><p class="word" aria-hidden="true">TWINZLAB</p><canvas class="wordfx" aria-hidden="true"></canvas></div><div class="legal small"><span>©2026 TwinzLab. Built by two minds.</span></div></div></footer><script src="/assets/v2/site.js" defer></script>
-<script src="/assets/v2/wordfx.js" defer></script><script src="/assets/v2/tzlib.js" defer></script><script src="/assets/v2/hero-field.js" defer></script><script src="/assets/v2/who-flow.js" defer></script><script src="/assets/v2/cta-dots.js" defer></script></body></html>
+<script src="/assets/v2/wordfx.js" defer></script><script src="/assets/v2/tzlib.js" defer></script><script src="/assets/v2/hero-field.js" defer></script><script src="/assets/v2/who-flow.js" defer></script><script src="/assets/v2/cta-dots.js" defer></script><script src="/assets/v2/text-reveal.js" defer></script></body></html>
