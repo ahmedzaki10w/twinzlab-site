@@ -145,7 +145,7 @@ a.card.pr{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-top:24px;b
 @media (max-width:700px){a.card.pr{grid-template-columns:1fr;gap:16px}}
 /* footer wordmark: quiet fill, dot-matrix reaction to a real mouse (wordfx.js) */
 .wordbox{position:relative}
-.word{color:rgba(255,255,255,.1)}
+.word{color:#2E2823}
 .wordfx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 /* canvases sit on top of a still, so a failed or script-less canvas still shows the picture */
 .herobg>canvas,.herobg>img,.ctabg>canvas,.ctabg>img{position:absolute;inset:0}
