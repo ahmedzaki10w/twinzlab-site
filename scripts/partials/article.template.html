@@ -14,16 +14,20 @@ if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add(
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -12% 0px"});
 els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(function(e){e.classList.add("in")})},4000)});</script>
 <link rel="stylesheet" href="../../assets/v2/site.css">
-<link rel="stylesheet" href="../shared/article.css">
-<link rel="stylesheet" href="../../assets/v2/article.css">
+<link rel="stylesheet" href="../../assets/v2/article-layout.css">
 <script src="../../signup.js" defer></script>
 <script src="../../assets/v2/site.js" defer></script>
 <script src="../../assets/v2/wordfx.js" defer></script>
+<script src="../../assets/v2/article-layout.js" defer></script>
 </head>
-<body>
+<body class="artpage">
 <a class="skip" href="#top">Skip to content</a>
 <header class="nav"><nav class="pill" aria-label="Main"><a href="../../">Home</a><a href="../../about/">About</a><a href="../../lab/" class="on" aria-current="page">Lab</a></nav><a class="logo" href="../../" aria-label="TwinzLab home"><img src="../../assets/v2/logo.svg" alt="" width="158" height="158"></a><div class="right"><a href="../../contact/">Build with us</a><a class="nav-cta" href="../../contact/#contact-form">Contact</a></div><button class="burger" type="button" aria-expanded="false" aria-controls="nav-sheet" aria-label="Open menu">Menu</button><div class="sheet" id="nav-sheet" hidden><a href="../../">Home</a><a href="../../about/">About</a><a href="../../lab/" aria-current="page">Lab</a><a href="../../contact/">Build with us</a><a class="nav-cta" href="../../contact/#contact-form">Contact</a></div></header>
 <main id="main">
+<div class="subbar" id="subbar"><div class="wrap subbar-in"><a class="sb-home" href="../../lab/">From the Lab</a>
+ <nav class="sb-links" aria-label="Lab"><a href="../../lab/" class="on">Notes</a><a href="#lab-notes">Lab Notes</a><a href="../../contact/">Contact</a></nav>
+ <button class="sb-toggle" type="button" aria-expanded="false" aria-controls="sb-drop">Contents <svg class="pxi" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><rect x="8" y="2" width="2" height="2"/><rect x="10" y="4" width="2" height="2"/><rect x="0" y="6" width="2" height="2"/><rect x="2" y="6" width="2" height="2"/><rect x="4" y="6" width="2" height="2"/><rect x="6" y="6" width="2" height="2"/><rect x="8" y="6" width="2" height="2"/><rect x="10" y="6" width="2" height="2"/><rect x="12" y="6" width="2" height="2"/><rect x="10" y="8" width="2" height="2"/><rect x="8" y="10" width="2" height="2"/></svg></button></div>
+ <div class="sb-progress" aria-hidden="true"><i></i></div></div>
 
   {{ARTICLE}}
 
@@ -34,79 +38,5 @@ els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(functi
 <div><h4>Social</h4><ul><li><a href="https://www.linkedin.com/company/twinzlab" target="_blank" rel="noopener noreferrer">LinkedIn</a></li><li><a href="https://www.instagram.com/twinz_lab/" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><a href="https://x.com/TwinzLab" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li><li><a href="https://www.tiktok.com/@twinzlab" target="_blank" rel="noopener noreferrer">TikTok</a></li></ul></div>
 <div><h4>Pages</h4><ul><li><a href="../../about/">About</a></li><li><a href="../../lab/">Lab</a></li><li><a href="../../contact/">Contact</a></li></ul></div></div>
 <div class="wordbox"><p class="word" aria-hidden="true">TWINZLAB</p><canvas class="wordfx" aria-hidden="true"></canvas></div><div class="legal small"><span>©2026 TwinzLab. Built by two minds.</span></div></div></footer>
-<script>
-(function () {
-  var links = [].slice.call(document.querySelectorAll(".section-nav a"));
-  if (!links.length) return;
-  var targets = links.map(function (a) {
-    return document.getElementById(a.getAttribute("href").slice(1));
-  }).filter(Boolean);
-  var current = null;
-  var mq = window.matchMedia("(max-width: 767px)");
-  function set(id) {
-    if (current === id) return;
-    current = id;
-    links.forEach(function (a) {
-      var on = id && a.getAttribute("href") === "#" + id;
-      a.classList.toggle("is-active", on);
-      if (on) a.setAttribute("aria-current", "true");
-      else a.removeAttribute("aria-current");
-    });
-  }
-  function update() {
-    var line = (mq.matches ? 120 : 160);
-    var id = null;
-    targets.forEach(function (el) {
-      if (el.getBoundingClientRect().top <= line) id = el.id;
-    });
-    set(id);
-  }
-  window.addEventListener("scroll", update, { passive: true });
-  window.addEventListener("resize", update);
-  update();
-})();
-</script>
-<script>
-(function () {
-  var btn = document.getElementById("copy-link");
-  var live = document.getElementById("copy-status");
-  if (!btn) return;
-  function fallback(value) {
-    var t = document.createElement("textarea");
-    t.value = value;
-    t.setAttribute("readonly", "");
-    t.style.position = "fixed";
-    t.style.left = "-9999px";
-    document.body.appendChild(t);
-    t.select();
-    var ok = false;
-    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
-    t.remove();
-    return ok;
-  }
-  function flash(ok) {
-    if (!ok) {
-      if (live) live.textContent = "Could not copy the link";
-      return;
-    }
-    btn.classList.add("is-copied");
-    btn.setAttribute("aria-label", "Copied");
-    if (live) live.textContent = "Link copied";
-    window.setTimeout(function () {
-      btn.classList.remove("is-copied");
-      btn.setAttribute("aria-label", "Copy link");
-      if (live) live.textContent = "";
-    }, 2000);
-  }
-  btn.addEventListener("click", function () {
-    var url = btn.getAttribute("data-url") || location.href;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(function () { flash(true); }, function () { flash(fallback(url)); });
-    } else {
-      flash(fallback(url));
-    }
-  });
-})();
-</script>
 </body>
 </html>
