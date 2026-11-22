@@ -6,7 +6,7 @@ excerpt: "A joke is a glitch in your mental model, and a useful lens on building
 description: "Are jokes just bugs in our mental models? We dig into Roman Yampolskiy's theory of humor and what it means for AI, AI safety and building products with AI."
 dek: "A computer scientist argues that every joke is a glitch in your mental model, and that makes humor a surprisingly useful lens on AI, its blind spots and the products we build with it."
 cover: /assets/lab/the-bug-that-makes-you-laugh/hero.jpg
-coverAlt: "Line drawing of a smiling face in dark glasses on a pale green and grey field."
+coverAlt: "A dot-matrix bug on a cream field, with peach marks along its sides."
 card: /assets/lab/the-bug-that-makes-you-laugh/card.jpg
 og: /assets/lab/the-bug-that-makes-you-laugh/og.jpg
 category: Experiments
