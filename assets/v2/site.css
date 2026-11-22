@@ -71,7 +71,8 @@ section{padding:160px 0}
 .close{padding:200px 0;text-align:center}
 .close.cdots{position:relative;overflow:hidden}
 .close.cdots .ctabg{position:absolute;inset:0;pointer-events:none}
-.close.cdots .ctabg canvas,.close.cdots .ctabg img{width:100%;height:100%;display:block;object-fit:cover}
+.close.cdots .ctabg canvas,.close.cdots .ctabg img{width:100%;height:100%;object-fit:cover}
+.close.cdots .ctabg canvas{display:block}
 .close.cdots .wrap{position:relative;z-index:1}
 .close .mark{width:56px;height:56px;margin:0 auto 40px}
 .close .mark img,.close .mark svg{width:100%;height:100%;display:block}
@@ -87,6 +88,9 @@ footer{padding:72px 0 40px;border-top:1px solid var(--line)}
 /* motion (Emil): entrance on load, one per element role, ease-out, transform+opacity only */
 @keyframes rise{from{opacity:0;transform:translateY(14px)}}
 @keyframes lift{from{opacity:0;transform:translateY(40px)}}
+/* Text reveal (text-reveal.js). Words stay painted until the script adds .rv-on, so a failed script leaves the type readable. */
+.rv-on:not(.rv-done) .rw,.rv-on:not(.rv-done).rw{color:transparent;-webkit-background-clip:text;background-clip:text;background-image:linear-gradient(90deg,var(--fc,#fff) 0%,var(--fc,#fff) 30%,#EAAB78 40%,transparent 50%,transparent 100%);background-repeat:no-repeat}
+[data-enter] [data-reveal],[data-enter] :is(.e1,.e2,.e3):has([data-reveal]){animation:none}
 [data-enter] .e1{animation:rise 600ms var(--ease-out) both}
 [data-enter] .e2{animation:rise 550ms var(--ease-out) 110ms both}
 [data-enter] .e3{animation:rise 500ms var(--ease-out) 230ms both}
@@ -100,6 +104,7 @@ footer{padding:72px 0 40px;border-top:1px solid var(--line)}
 .js .draw{transform:scaleX(0);transform-origin:left;transition:transform 1200ms var(--ease-out)}
 .js .in .draw,.js .draw.in{transform:none}
 @media (prefers-reduced-motion:reduce){
+ [data-reveal]{color:inherit;background:none;-webkit-text-fill-color:currentColor}
  [data-enter] *{animation:none!important}
  .js .rv,.js .draw{opacity:1;transform:none;transition:none}
  .frame>img,.btn,.tl::after,.mail::after{transition:none}
@@ -145,7 +150,7 @@ a.card.pr{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-top:24px;b
 /* canvases sit on top of a still, so a failed or script-less canvas still shows the picture */
 .herobg>canvas,.herobg>img,.ctabg>canvas,.ctabg>img{position:absolute;inset:0}
 .frame>.cv-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-img.cv-fallback[hidden]{display:none}
+img.cv-fallback[hidden],.close .ctabg img.cv-fallback[hidden]{display:none}
 #coming-soon,#contact-form{scroll-margin-top:24px}
 /* mobile menu: the bar hides the pills; the button opens this sheet */
 .sheet{display:none;position:absolute;z-index:6;left:20px;right:20px;top:68px;flex-direction:column;gap:4px;padding:8px;border-radius:12px;background:#231D17;box-shadow:0 24px 60px rgba(0,0,0,.4)}
