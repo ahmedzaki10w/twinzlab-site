@@ -144,6 +144,14 @@ function extractSources(html) {
   return { prose: html.replace(match[0], "").trim(), sources: match[0].trim() };
 }
 
+function stripSourceArrows(html) {
+  return String(html || "")
+    .replace(/<span class="sep"[^>]*>\s*(?:·|&#183;|&middot;)\s*<\/span>\s*<a\b[^>]*class="src-back"[^>]*>[\s\S]*?<\/a>/gi, "")
+    .replace(/<span\b[^>]*aria-hidden=(?:"true"|'true')[^>]*>\s*(?:&#x2197;|&#8599;|&nearr;|[↗↖↘↙←→↑↓↔↕↩↪⤴⤵])\s*<\/span>/gi, "")
+    .replace(/(?:&#x2197;|&#8599;|&nearr;|[↗↖↘↙←→↑↓↔↕↩↪⤴⤵])/g, "")
+    .replace(/<a\b[^>]*>\s*<\/a>/gi, "");
+}
+
 function sourcesFrom(raw) {
   const trimmed = String(raw || "").trim();
   if (!trimmed) return "";
@@ -319,6 +327,7 @@ function articleHtml(article, articles) {
   const pulled = extractSources(prose);
   prose = pulled.prose;
   if (!sources && pulled.sources) sources = pulled.sources;
+  sources = stripSourceArrows(sources);
   const navItems = headings(prose).filter((item) => item.id !== "sources-heading");
   const intro = article.dek || article.excerpt || article.description;
   const cover = article.card || article.cover;
