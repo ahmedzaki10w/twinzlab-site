@@ -84,7 +84,8 @@ footer{padding:72px 0 40px;border-top:1px solid var(--line)}
 .fgrid ul{list-style:none;display:grid;gap:8px;font:400 15px 'Inter';color:var(--mute)}
 .fgrid h4{font:400 14px 'Inter';color:var(--dim);margin-bottom:12px}
 .word{font:400 180px/0.9 'Inter Tight';letter-spacing:-.05em;margin-top:96px;color:#fff;white-space:nowrap;text-align:center}
-.legal{display:flex;justify-content:space-between;margin-top:28px}
+.legal{display:flex;justify-content:space-between;gap:12px;margin-top:28px}
+.legal a{text-decoration:underline;text-underline-offset:2px}
 /* motion (Emil): entrance on load, one per element role, ease-out, transform+opacity only */
 @keyframes rise{from{opacity:0;transform:translateY(14px)}}
 @keyframes lift{from{opacity:0;transform:translateY(40px)}}
